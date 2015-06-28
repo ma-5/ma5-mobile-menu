@@ -41,7 +41,7 @@ Body content shoud be placed in .ma5-page element
 ### 3. HTML for menu
 
 ```html
-<!-- this html can be placed ewerywhere you want -->
+<!-- menu html can be placed ewerywhere you want -->
 <nav class="ma5-menu-mobile">
     <ul class="ma5-ul">
         <li class="ma5-li-1"><a href="#node1">Node 1</a></li>
@@ -70,28 +70,6 @@ Body content shoud be placed in .ma5-page element
         </li>
         <li class="ma5-li-3"><a href="#node3">Node 3</a></li>
         <li class="ma5-li-4"><a href="#node4">Node 4</a></li>
-        <li class="ma5-li-5">
-            <a href="#node5">Node 5</a><span class="ma5-btn-enter">&gt;</span>
-            <ul class="ma5-ul-5">
-                <li class="ma5-li-5-1">
-                    <div class="ma5-leave-bar"><span class="ma5-btn-leave">&lt;</span>Node 5</div>
-                    <a href="#node5-1">Node 5-1</a>
-                </li>
-                <li class="ma5-li-5-2"><a href="#node5-2">Node 5-2</a></li>
-                <li class="ma5-li-5-3">
-                    <a href="#node5-3">Node 5-3</a><span class="ma5-btn-enter">&gt;</span>
-                    <ul class="ma5-ul-5-3">
-                        <li class="ma5-li-5-3-1">
-                            <div class="ma5-leave-bar"><span class="ma5-btn-leave">&lt;</span>Node 5-3</div>
-                            <a href="#node5-3-1">Node 5-3-1</a>
-                        </li>
-                        <li class="ma5-li-5-3-2"><a href="#node5-3-2">Node 5-3-2</a></li>
-                        <li class="ma5-li-5-3-3"><a href="#node5-3-3">Node 5-3-3</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-        <li class="ma5-li-6"><a href="#node6">Node 6</a></li>
     </ul>
 </nav>
 ```
@@ -159,11 +137,9 @@ Active panel and node:
 
 Class for &lt;a&gt; ".ma5-path-to-active" add color to path to active link.
 
-The panel is open when main &lt;html&gt; element contains css class ".ma5-menu-active". So for touch swipe you can use some function like this:
+The panel is open when main &lt;html&gt; element contains css class ".ma5-menu-active". So for touch swipe you can add swipe detect function and use some code like this:
 
 ```javascript
-$("body").yourSwipeDetectFunction( {
-    if ( YourFunctionSwipeDetect == 'left' ) { $('html').removeClass('ma5-menu-active');}
-    if ( YourFunctionSwipeDetect == 'right' ) { $('html').addClass('ma5-menu-active');}
-});
+if ( YourSwipeDetectFunction == 'left' ) { $('html').removeClass('ma5-menu-active')};
+if ( YourSwipeDetectFunction == 'right' ) { $('html').addClass('ma5-menu-active')};
 ```
