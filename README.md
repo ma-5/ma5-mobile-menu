@@ -41,7 +41,7 @@ Body content shoud be placed in .ma5-page element
 ### 3. HTML for menu
 
 ```html
-<!-- this html can be placed ewerywhere you want ->
+<!-- this html can be placed ewerywhere you want -->
 <nav class="ma5-menu-mobile">
     <ul class="ma5-ul">
         <li class="ma5-li-1"><a href="#node1">Node 1</a></li>
@@ -158,4 +158,5 @@ Active panel and node:
 ```
 
 Class for <a> ".ma5-path-to-active" add color to path to active link.
+
 The panel is open when <html> it contains css class ".ma5-menu-active".
