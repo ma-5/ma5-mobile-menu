@@ -41,7 +41,7 @@ Body content shoud be placed in .ma5-page element
 ### 3. HTML for menu
 
 ```html
-<!-- this html can be placed ewerywhere you want -->
+<!-- menu html can be placed ewerywhere you want -->
 <nav class="ma5-menu-mobile">
     <ul class="ma5-ul">
         <li class="ma5-li-1"><a href="#node1">Node 1</a></li>
