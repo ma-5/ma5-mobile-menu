@@ -62,7 +62,7 @@ Body content shoud be placed in .ma5-page element
                             <a href="#node2-3-1">Node 2-3-1</a>
                         </li>
                         <!-- active node -->
-                        <li class="ma5-li-2-3-2 ma5-active-li"><a href="#node2-3-2">Node 2-3-2</a></li>
+                        <li class="ma5-li-2-3-2 ma5-active-li"><a class="ma5-path-to-active" href="#node2-3-2">Node 2-3-2</a></li>
                         <li class="ma5-li-2-3-3"><a href="#node2-3-3">Node 2-3-3</a></li>
                     </ul>
                 </li>
