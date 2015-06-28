@@ -31,13 +31,13 @@
 
 .ma5-menu-mobile { display: none; }
 .menu-mobi-toggle { cursor: pointer; }
-.ma5-mobile-menu-container { -webkit-transform: translate3d(-280px, 0, 0); transform: translate3d(-280px, 0, 0); -webkit-transition: all 0.3s ease-out 0s; transition: all 0.3s ease-out 0s; position: fixed; background-color: #fefefe; width: 280px; height: 100%; top: 0; left: 0; z-index: 200; }
-.ma5-page { -webkit-transition: all 0.3s ease-out 0s; transition: all 0.3s ease-out 0s; }
+.ma5-mobile-menu-container { -webkit-transform: translate3d(-280px, 0, 0); transform: translate3d(-280px, 0, 0); -webkit-transition: -webkit-transform 0.3s ease-out 0s; transition: transform 0.3s ease-out 0s; position: fixed; background-color: #fefefe; width: 280px; height: 100%; top: 0; left: 0; z-index: 200; }
+.ma5-page { -webkit-transition: -webkit-transform 0.3s ease-out 0s; transition: transform 0.3s ease-out 0s; }
 .ma5-menu-active { overflow: hidden; }
 .ma5-menu-active body { overflow: hidden; }
-.ma5-menu-active .ma5-mobile-menu-container { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); -webkit-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; }
-.ma5-menu-active .ma5-page { -webkit-transform: translate3d(280px, 0, 0); transform: translate3d(280px, 0, 0); -webkit-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; }
-.ma5-menu-panel { width: 280px; height: 100%; position: absolute; overflow: hidden; overflow-y: auto; top: 0; left: 0; margin: 0; padding: 0; list-style-type: none; z-index: 100; background-color: #fefefe; box-shadow: -8px 0 8px rgba(0, 0, 0, 0.05) inset; }
+.ma5-menu-active .ma5-mobile-menu-container { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); -webkit-transition: -webkit-transform 0.3s ease-in 0s; transition: transform 0.3s ease-in 0s; }
+.ma5-menu-active .ma5-page { -webkit-transform: translate3d(280px, 0, 0); transform: translate3d(280px, 0, 0); -webkit-transition: -webkit-transform 0.3s ease-in 0s; transition: transform 0.3s ease-in 0s; }
+.ma5-menu-panel { width: 280px; height: 100%; position: absolute; overflow: hidden; overflow-y: auto; top: 0; left: 0; margin: 0; padding: 0; list-style-type: none; z-index: 100; background-color: #fefefe; -webkit-box-shadow: -8px 0 8px rgba(0, 0, 0, 0.05) inset; box-shadow: -8px 0 8px rgba(0, 0, 0, 0.05) inset; }
 .ma5-menu-panel:after { content: ""; display: block; position: absolute; width: 1px; height: 100%; right: 0; top: 0; background-color: rgba(166, 202, 237, 0.2); }
 .ma5-menu-panel li { position: relative; padding-right: 50px; font-size: 0; }
 .ma5-menu-panel li:after { content: ""; display: block; position: absolute; width: 100%; height: 1px; left: 0; bottom: 0; background-color: rgba(166, 202, 237, 0.2); }
