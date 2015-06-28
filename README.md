@@ -159,4 +159,4 @@ Active panel and node:
 
 Class for <a> ".ma5-path-to-active" add color to path to active link.
 
-The panel is open when main &lt;html&gt; element it contains css class ".ma5-menu-active".
+The panel is open when main &lt;html&gt; element contains css class ".ma5-menu-active".
