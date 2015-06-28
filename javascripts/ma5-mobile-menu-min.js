@@ -1,0 +1,8 @@
+/*
+*   MA5 jquery mobile menu
+*   v 1.0
+*   Copyright (c) 2015 Tomasz Kalinowski
+*   http://mobile-menu.ma5.pl
+*   GitHub: https://github.com/ma-5/ma5-mobile-menu
+*/
+$(document).ready(function(){$("body").append('<div class="ma5-mobile-menu-container"/>'),$(".ma5-menu-mobile").find("ul").clone().addClass("ma5-menu-panel").appendTo(".ma5-mobile-menu-container").find("ul").remove(),$(".ma5-toggle-menu").on("click touch",function(){$("html").toggleClass("ma5-menu-active")}),$(".ma5-btn-enter").on("click touch",function(){$(".ma5-menu-panel").removeClass("ma5-active-ul"),$(".ma5-menu-panel li").removeClass("ma5-active-li");var e=$(this).parent().attr("class").replace("li","ul"),a=$(this).parent().attr("class").replace("li","ul").split("-"),a=(a.splice(-1,1),a.join("-"));$(".ma5-menu-panel").removeClass("ma5-active-leave ma5-parent-leave ma5-active-enter ma5-parent-enter"),$(".ma5-menu-panel."+a).addClass("ma5-parent-enter"),$(".ma5-menu-panel."+e).addClass("ma5-active-enter")}),$(".ma5-leave-bar").on("click touch",function(){var e=$(this).parent().attr("class").replace("li","ul").split("-"),e=(e.splice(-1,1),e.splice(-1,1),e.join("-")),a=$(this).parent().attr("class").replace("li","ul").split("-"),a=(a.splice(-1,1),a.join("-"));$(".ma5-menu-panel").removeClass("ma5-active-leave ma5-parent-leave ma5-active-enter ma5-parent-enter"),$(".ma5-menu-panel."+e).addClass("ma5-parent-leave"),$(".ma5-menu-panel."+a).addClass("ma5-active-leave")})});

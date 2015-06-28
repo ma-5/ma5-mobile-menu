@@ -1,0 +1,56 @@
+/*
+*   MA5 jquery mobile menu
+*   v 1.0
+*   Copyright (c) 2015 Tomasz Kalinowski
+*   http://mobile-menu.ma5.pl
+*   GitHub: https://github.com/ma-5/ma5-mobile-menu
+*/
+@-webkit-keyframes ma5-panelIn { 0% { -webkit-transform: translate3d(-280px, 0, 0); transform: translate3d(-280px, 0, 0); }
+  100% { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); } }
+
+@-moz-keyframes ma5-panelIn { 0% { -webkit-transform: translate3d(-280px, 0, 0); transform: translate3d(-280px, 0, 0); }
+  100% { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); } }
+
+@-ms-keyframes ma5-panelIn { 0% { -webkit-transform: translate3d(-280px, 0, 0); transform: translate3d(-280px, 0, 0); }
+  100% { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); } }
+
+@keyframes ma5-panelIn { 0% { -webkit-transform: translate3d(-280px, 0, 0); transform: translate3d(-280px, 0, 0); }
+  100% { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); } }
+
+@-webkit-keyframes ma5-panelOut { 0% { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); }
+  100% { -webkit-transform: translate3d(-280px, 0, 0); transform: translate3d(-280px, 0, 0); } }
+
+@-moz-keyframes ma5-panelOut { 0% { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); }
+  100% { -webkit-transform: translate3d(-280px, 0, 0); transform: translate3d(-280px, 0, 0); } }
+
+@-ms-keyframes ma5-panelOut { 0% { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); }
+  100% { -webkit-transform: translate3d(-280px, 0, 0); transform: translate3d(-280px, 0, 0); } }
+
+@keyframes ma5-panelOut { 0% { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); }
+  100% { -webkit-transform: translate3d(-280px, 0, 0); transform: translate3d(-280px, 0, 0); } }
+
+.ma5-menu-mobile { display: none; }
+.menu-mobi-toggle { cursor: pointer; }
+.ma5-mobile-menu-container { -webkit-transform: translate3d(-280px, 0, 0); transform: translate3d(-280px, 0, 0); -webkit-transition: all 0.3s ease-out 0s; transition: all 0.3s ease-out 0s; position: fixed; background-color: #fefefe; width: 280px; height: 100%; top: 0; left: 0; z-index: 200; }
+.ma5-page { -webkit-transition: all 0.3s ease-out 0s; transition: all 0.3s ease-out 0s; }
+.ma5-menu-active { overflow: hidden; }
+.ma5-menu-active body { overflow: hidden; }
+.ma5-menu-active .ma5-mobile-menu-container { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); -webkit-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; }
+.ma5-menu-active .ma5-page { -webkit-transform: translate3d(280px, 0, 0); transform: translate3d(280px, 0, 0); -webkit-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; }
+.ma5-menu-panel { width: 280px; height: 100%; position: absolute; overflow: hidden; overflow-y: auto; top: 0; left: 0; margin: 0; padding: 0; list-style-type: none; z-index: 100; background-color: #fefefe; box-shadow: -8px 0 8px rgba(0, 0, 0, 0.05) inset; }
+.ma5-menu-panel:after { content: ""; display: block; position: absolute; width: 1px; height: 100%; right: 0; top: 0; background-color: rgba(166, 202, 237, 0.2); }
+.ma5-menu-panel li { position: relative; padding-right: 50px; font-size: 0; }
+.ma5-menu-panel li:after { content: ""; display: block; position: absolute; width: 100%; height: 1px; left: 0; bottom: 0; background-color: rgba(166, 202, 237, 0.2); }
+.ma5-menu-panel a { display: inline-block; padding: 15px; text-decoration: none !important; color: black; width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 16px; outline: none !important; }
+.ma5-menu-panel .ma5-btn-enter, .ma5-menu-panel .ma5-btn-leave { font-size: 16px; cursor: pointer; display: inline-block; position: absolute; padding: 15px 15px 14px 15px; width: 50px; height: 49px; overflow: hidden; left: 0; top: 0; text-align: center; background-color: #a6caed; color: white; }
+.ma5-menu-panel .ma5-btn-enter .glyphicon, .ma5-menu-panel .ma5-btn-leave .glyphicon { top: 2px; }
+.ma5-menu-panel .ma5-btn-enter { z-index: 0; left: auto; right: 0; }
+.ma5-menu-panel .ma5-leave-bar { font-size: 16px; cursor: pointer; display: block; position: relative; padding: 15px 20px 15px 60px; margin-right: -50px; text-align: center; color: #668aad; text-transform: uppercase; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.ma5-menu-panel .ma5-leave-bar:after { content: ""; display: block; position: absolute; width: 100%; height: 1px; left: 0; bottom: 0; background-color: rgba(166, 202, 237, 0.2); }
+.ma5-menu-panel:first-of-type { z-index: 160; }
+.ma5-menu-panel.ma5-active-ul { z-index: 170; }
+.ma5-menu-panel .ma5-active-li a, .ma5-menu-panel .ma5-path-to-active { color: #668aad; }
+.ma5-menu-panel.ma5-parent-leave, .ma5-menu-panel.ma5-parent-enter { z-index: 180; }
+.ma5-menu-panel.ma5-active-leave, .ma5-menu-panel.ma5-active-enter { z-index: 190; }
+.ma5-menu-panel.ma5-active-enter { -webkit-animation-timing-function: ease-out; -webkit-animation-duration: 0.4s; -webkit-animation-delay: 0; -webkit-animation-fill-mode: both; -webkit-animation-name: ma5-panelIn; animation-timing-function: ease-out; animation-duration: 0.4s; animation-delay: 0; animation-fill-mode: both; animation-name: ma5-panelIn; }
+.ma5-menu-panel.ma5-active-leave { -webkit-animation-timing-function: ease-out; -webkit-animation-duration: 0.4s; -webkit-animation-delay: 0; -webkit-animation-fill-mode: both; -webkit-animation-name: ma5-panelOut; animation-timing-function: ease-out; animation-duration: 0.4s; animation-delay: 0; animation-fill-mode: both; animation-name: ma5-panelOut; }
