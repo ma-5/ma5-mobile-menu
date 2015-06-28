@@ -1,2 +1,2 @@
-# Ma5 mobile menu
+# MA5 mobile menu
 Simple and ultralight jQuery mobile menu with panels.
