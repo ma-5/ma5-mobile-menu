@@ -159,4 +159,11 @@ Active panel and node:
 
 Class for &lt;a&gt; ".ma5-path-to-active" add color to path to active link.
 
-The panel is open when main &lt;html&gt; element contains css class ".ma5-menu-active".
+The panel is open when main &lt;html&gt; element contains css class ".ma5-menu-active". So for touch swipe you can use some function like this:
+
+```js
+$("body").yourSwipeDetectFunction( {
+    if ( YourFunctionSwipeDetect == 'left' ) { $('html').removeClass('ma5-menu-active');}
+    if ( YourFunctionSwipeDetect == 'right' ) { $('html').addClass('ma5-menu-active');}
+});
+```
