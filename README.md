@@ -34,6 +34,8 @@ Body content shoud be placed in .ma5-page element
     <div class="ma5-page">
         <!-- body content -->
     </div>
+    <!-- .ma5-toggle-menu html can be placed ewerywhere you want -->
+    <a class="ma5-toggle-menu">Toggle menu</a>
 </body>
 ```
 
