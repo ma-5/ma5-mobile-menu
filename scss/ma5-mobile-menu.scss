@@ -419,6 +419,9 @@ $ma5-mobile-menu-color9:#cccccc; // menu-header background-color;
         }
     }
     .ma5-menu-swipe {
+        .ma5-mobile-menu-container {
+            overflow:visible;
+        }
         .ma5-close-bar {
             background-color:$ma5-mobile-menu-color9;
         }
