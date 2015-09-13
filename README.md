@@ -59,8 +59,8 @@ Example 1
         <ul class="ma5-ul">
             <li class="ma5-li-1"><a href="#node1">Node 1</a></li>
             <li class="ma5-li-2">
-                <!-- When list item has submenu the link should have .ma5-has-children class -->
-                <a class="ma5-has-children" href="#node2">Node 2</a><span class="ma5-btn-enter"></span>
+                <!-- When list item has submenu the link should have .ma5-has-submenu class -->
+                <a class="ma5-has-submenu" href="#node2">Node 2</a><span class="ma5-btn-enter"></span>
                 <ul class="ma5-ul-2">
                     <li class="ma5-li-2-1">
                         <!-- .ma5-leave-bar for go to back action  -->
@@ -69,7 +69,7 @@ Example 1
                     </li>
                     <li class="ma5-li-2-2"><a href="#node2-2">Node 2-2</a></li>
                     <li class="ma5-li-2-3">
-                        <a class="ma5-has-children" href="#node2-3">Node 2-2</a><span class="ma5-btn-enter"></span>
+                        <a class="ma5-has-submenu" href="#node2-3">Node 2-2</a><span class="ma5-btn-enter"></span>
                         <ul class="ma5-ul-2-3">
                             <li class="ma5-li-2-3-1">
                                 <div class="ma5-leave-bar"><span class="ma5-btn-leave"></span>Node 2-2</div>
@@ -111,7 +111,7 @@ Example 2: Active panel and path to active. Panel for Node 2-2 is visible at sta
             <li class="ma5-li-1"><a href="#node1">Node 1</a></li>
             <li class="ma5-li-2">
                 <!-- Use .ma5-path-to-active to mark path links  -->
-                <a class="ma5-path-to-active ma5-has-children" href="#node2">Node 2</a><span class="ma5-btn-enter"></span>
+                <a class="ma5-path-to-active ma5-has-submenu" href="#node2">Node 2</a><span class="ma5-btn-enter"></span>
                 <!-- active panel -->
                 <ul class="ma5-ul-2 ma5-active-ul">
                     <li class="ma5-li-2-1">
@@ -121,7 +121,7 @@ Example 2: Active panel and path to active. Panel for Node 2-2 is visible at sta
                     <li class="ma5-li-2-2"><a href="#node2-2">Node 2-2</a></li>
                     <!-- active node -->
                     <li class="ma5-li-2-3 ma5-active-li">
-                        <a class="ma5-path-to-active ma5-has-children" href="#node2-3">Node 2-2</a><span class="ma5-btn-enter"></span>
+                        <a class="ma5-path-to-active ma5-has-submenu" href="#node2-3">Node 2-2</a><span class="ma5-btn-enter"></span>
                         <ul class="ma5-ul-2-3">
                             <li class="ma5-li-2-3-1">
                                 <div class="ma5-leave-bar"><span class="ma5-btn-leave"></span>Node 2-2</div>
