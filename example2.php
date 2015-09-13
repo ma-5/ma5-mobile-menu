@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang='pl'>
     <head>
-        <title>MA5 mobile menu - Example 1 - Default animation</title>
+        <title>MA5 mobile menu - Example 2 - Swipe page animation</title>
         <meta name="description" content="Simple and ultralight jQuery mobile menu with panels">
         <meta name="keywords" content="ma5-mobile-menu, mobile menu query, ultralight mobile menu, simple mobile menu">
         <meta charset="utf-8">
@@ -15,7 +15,7 @@
         <script>
             $(document).ready(function(){
                 ma5mobileMenu({
-                    swipe: false
+                    swipe: true
                 });
             });
         </script>
@@ -65,7 +65,7 @@
                 </ul>
             </nav>
             <section class="content">
-                <h2>Example 1 - Default animation</h2>
+                <h2>Example 2 - Swipe page animation</h2>
                 <p>Scale browser window to activate mobile menu.</p>
                 <p><a href="index.php">Example 1 - default animation</a></p>
                 <p><a href="example2.php">Example 2 - Swipe panel animation</a></p>

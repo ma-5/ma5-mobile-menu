@@ -6,9 +6,15 @@
 .content {
     padding:0 15px;
 }
+.hidden-xs {
+    display:none;
+}
 
 // desktop menu
 @media (min-width: 768px) {
+    .hidden-xs {
+        display:block;
+    }
     .ma5-mobile-menu-container {
         display:block;
     }

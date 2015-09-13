@@ -1,6 +1,7 @@
 # MA5 mobile menu
 Simple and ultralight jQuery menu with panels for mobile phones.
 >v.1.0 Initial
+>v.1.1 Add animation options
 
 ###Features:
 * Small
