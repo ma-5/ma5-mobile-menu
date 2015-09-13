@@ -1,4 +1,4 @@
-/*
+/*!
 *   MA5 jquery mobile menu
 *   v 1.1
 *   Copyright (c) 2015 Tomasz Kalinowski
