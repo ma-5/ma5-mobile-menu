@@ -65,7 +65,7 @@
             </nav>
             <section class="content">
                 <h2>Simple and ultralight jQuery mobile menu with panels.</h2>
-                <p>Scale browser window to activate mobile menu</p>
+                <p>Scale browser window to activate mobile menu.</p>
                 <p>Documentation and sources: <a href="https://github.com/ma-5/ma5-mobile-menu" target="_blank">GitHub</a></p>
             </section>
         </article>
