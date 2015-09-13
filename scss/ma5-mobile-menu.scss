@@ -15,6 +15,7 @@ $ma5-mobile-menu-color5:#dd0000; // path to active elements, leave bar colors
 $ma5-mobile-menu-color6:#dd0000; // toogle menu background color;
 $ma5-mobile-menu-color7:#dbdbdb; // panel leave bar background-color
 $ma5-mobile-menu-color8:rgba(#090909, 0.5); // buttons enter text color
+$ma5-mobile-menu-color9:#cccccc; // menu-header background-color;
 
 
 // panel in animation
@@ -83,8 +84,6 @@ $ma5-mobile-menu-color8:rgba(#090909, 0.5); // buttons enter text color
     	transform: translate3d(-100%, 0, 0);
     }
 }
-
-
 * {
     -webkit-box-sizing:border-box;
     -moz-box-sizing:border-box;
@@ -96,11 +95,6 @@ $ma5-mobile-menu-color8:rgba(#090909, 0.5); // buttons enter text color
         -moz-box-sizing:border-box;
         box-sizing:border-box
     }
-}
-
-
-.ma5-menu-mobile {
-	display: none;
 }
 .ma5-mobile-menu-container {
 	-webkit-transform: translate3d(-100%, 0, 0);
@@ -328,13 +322,15 @@ $ma5-mobile-menu-color8:rgba(#090909, 0.5); // buttons enter text color
 
 // menu active
 @media (max-width: ($ma5-mobile-menu-breakpoint - 1)) {
+    .ma5-menu-mobile {
+        display:none;
+    }
     .ma5-menu-header,
     .ma5-close-bar {
         position: relative;
         height: $ma5-mobile-menu-top-position;
         padding:10px 10px 10px ($ma5-mobile-menu-top-position + 10px);
         text-align:center;
-        background-color:#cccccc;//temp
 
         .ma5-menu-heading {
             margin:0;
@@ -357,6 +353,9 @@ $ma5-mobile-menu-color8:rgba(#090909, 0.5); // buttons enter text color
             letter-spacing:-1px;
             color:rgba(0,0,0,0);
         }
+    }
+    .ma5-menu-header {
+        background-color:$ma5-mobile-menu-color9;
     }
     .ma5-close-bar {
         top:-50px;
@@ -433,7 +432,7 @@ $ma5-mobile-menu-color8:rgba(#090909, 0.5); // buttons enter text color
 }
 
 
-// menu inactive
+// desktop menu 
 @media (min-width: $ma5-mobile-menu-breakpoint) {
     .ma5-mobile-menu-container {
         display:none;
@@ -452,7 +451,7 @@ $ma5-mobile-menu-color8:rgba(#090909, 0.5); // buttons enter text color
     .ma5-menu-active body {
 	   overflow: visible;
        height:auto;
-       
+
     }
     .ma5-menu-active .ma5-page {
     	-webkit-transform: translate3d(0, 0, 0);

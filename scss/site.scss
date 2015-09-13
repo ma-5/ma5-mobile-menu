@@ -2,9 +2,46 @@
 .content {
     max-width:1200px;
     margin:0 auto;
+}
+.content {
     padding:0 15px;
 }
 
-.ma5-menu-header {
+// desktop menu
+@media (min-width: 768px) {
+    .ma5-mobile-menu-container {
+        display:block;
+    }
+    .site-header,
+    .content {
+        padding:0 15px;
+    }
+    .ma5-menu-mobile {
+        padding:0 15px;
+        max-width:1200px;
+        margin:0 auto;
 
+        > ul {
+            padding:0;
+            font-size:0;
+            > li {
+                display:inline;
+
+                > a {
+                    padding:10px 30px;
+                    margin-right:1px;
+                    background-color:#dd0000;
+                    color:#ffffff;
+                    display:inline-block;
+                    font-size:20px;
+                    text-decoration:none;
+
+                }
+
+                ul {
+                    display:none;
+                }
+            }
+        }
+    }
 }
