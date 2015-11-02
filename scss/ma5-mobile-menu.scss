@@ -1,43 +1,32 @@
-/*! MA5 jquery mobile menu v 1.1 GitHub: https://github.com/ma-5/ma5-mobile-menu */
-
-// config
-$ma5-mobile-menu-breakpoint: 768px; // screen width to hide menu
-$ma5-mobile-menu-top-position: 50px; // top margin, space for site header and toogle button
-$ma5-mobile-menu-link-height: 50px;
-$ma5-mobile-menu-font-size:16px;
-// colors
-$ma5-color-white:#ffffff;
-$ma5-mobile-menu-color1:#fefefe; // menu container and panels background color
-$ma5-mobile-menu-color2:rgba(0, 0, 0, 0.15); // panel shadow color
-$ma5-mobile-menu-color3:rgba(17, 28, 37, 0.24); // separator lines color
-$ma5-mobile-menu-color4:#030303; // menu links color
-$ma5-mobile-menu-color5:#dd0000; // path to active elements, leave bar colors
-$ma5-mobile-menu-color6:#dd0000; // toogle menu background color;
-$ma5-mobile-menu-color7:#dbdbdb; // panel leave bar background-color
-$ma5-mobile-menu-color8:rgba(#090909, 0.5); // buttons enter text color
-$ma5-mobile-menu-color9:#cccccc; // menu-header background-color;
+/* 
+MA5 jquery mobile menu component 
+v2.1.0 
+GitHub: https://github.com/ma-5/ 
+*/
+$ma5-menu-color-primary:#728f3a;
+$ma5-phone-desktop-breakpoint:768px;
+$ma5-mobile-menu-color1:darken($ma5-menu-color-primary,4%); // background, panel right border
+$ma5-mobile-menu-color2:rgba(0, 0, 0, 0.05); // shadow
+$ma5-mobile-menu-color3:lighten($ma5-menu-color-primary, 4%); // li separator
+$ma5-mobile-menu-color4:lighten($ma5-menu-color-primary, 4%); // buttons enter leave bg
+$ma5-mobile-menu-color5:#fff; // path to active color
+$ma5-mobile-menu-color6:lighten($ma5-menu-color-primary, 4%); // close bar background and border
+$ma5-mobile-menu-color7: #a3b978; // links color
+$ma5-mobile-menu-color8:lighten($ma5-menu-color-primary, 12%); // toggle menu bg
 
 
-// panel in animation
 @-webkit-keyframes ma5-panelIn {
     0% {
-        -webkit-transform: translate3d(-100%, 0, 0);
+    	-webkit-transform: translate3d(-280px, 0, 0);
     }
     100% {
-        -webkit-transform: translate3d(0, 0, 0);
+    	-webkit-transform: translate3d(0, 0, 0);
     }
 }
-@-moz-keyframes ma5-panelIn {
-    0% {
-        -moz-transform: translate3d(-100%, 0, 0);
-    }
-    100% {
-    	-moz-transform: translate3d(0, 0, 0);
-    }
-}
+
 @-ms-keyframes ma5-panelIn {
     0% {
-        -ms-transform: translate3d(-100%, 0, 0);
+    	-ms-transform: translate3d(-280px, 0, 0);
     }
     100% {
     	-ms-transform: translate3d(0, 0, 0);
@@ -45,27 +34,18 @@ $ma5-mobile-menu-color9:#cccccc; // menu-header background-color;
 }
 @keyframes ma5-panelIn {
     0% {
-    	transform: translate3d(-100%, 0, 0);
+    	transform: translate3d(-280px, 0, 0);
     }
     100% {
     	transform: translate3d(0, 0, 0);
     }
 }
-// panel out animation
 @-webkit-keyframes ma5-panelOut {
     0% {
     	-webkit-transform: translate3d(0, 0, 0);
     }
     100% {
-        -webkit-transform: translate3d(-100%, 0, 0);
-    }
-}
-@-moz-keyframes ma5-panelOut {
-    0% {
-    	-moz-transform: translate3d(0, 0, 0);
-    }
-    100% {
-        -moz-transform: translate3d(-100%, 0, 0);
+    	-webkit-transform: translate3d(-280px, 0, 0);
     }
 }
 @-ms-keyframes ma5-panelOut {
@@ -73,7 +53,7 @@ $ma5-mobile-menu-color9:#cccccc; // menu-header background-color;
     	-ms-transform: translate3d(0, 0, 0);
     }
     100% {
-        -ms-transform: translate3d(-100%, 0, 0);
+    	-ms-transform: translate3d(-280px, 0, 0);
     }
 }
 @keyframes ma5-panelOut {
@@ -81,70 +61,79 @@ $ma5-mobile-menu-color9:#cccccc; // menu-header background-color;
     	transform: translate3d(0, 0, 0);
     }
     100% {
-    	transform: translate3d(-100%, 0, 0);
+    	transform: translate3d(-280px, 0, 0);
     }
 }
-* {
-    -webkit-box-sizing:border-box;
-    -moz-box-sizing:border-box;
-    box-sizing:border-box;
+.ma5-menu-mobile {
+	> ul {
 
-    &:after,
-    &:before {
-        -webkit-box-sizing:border-box;
-        -moz-box-sizing:border-box;
-        box-sizing:border-box;
+        @media (max-width: ($ma5-phone-desktop-breakpoint - 1)) {
+            display: none;
+        }
+    }
+}
+.ma5-toggle-menu {
+	cursor: pointer;
+
+    .glyphicon {
+        font-size:12px;
+        margin-left:5px;
+        -webkit-transform:scale(1.4, 1);
+        transform:scale(1.4, 1);
     }
 }
 .ma5-mobile-menu-container {
-	-webkit-transform: translate3d(-100%, 0, 0);
-	-ms-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
-	-ms-transition: -ms-transform 0.4s ease-out 0s;
-    -webkit-transition: -webkit-transform 0.4s ease-out 0s;
+	-webkit-transform: translate3d(-280px, 0, 0);
+    -ms-transform: translate3d(-280px, 0, 0);
+	transform: translate3d(-280px, 0, 0);
+	-webkit-transition: -webkit-transform 0.4s ease-out 0s;
+    -ms-transition: -webkit-transform 0.4s ease-out 0s;
 	transition: transform 0.4s ease-out 0s;
 	position: fixed;
 	background-color: $ma5-mobile-menu-color1;
-	width: 100%;
-    width:100vw;
-	height: 70%;
-    height:calc( 100% - #{$ma5-mobile-menu-top-position} );
-    overflow:hidden;
-	top: $ma5-mobile-menu-top-position;
+	width: 280px;
+	height: 100%;
+	top: 0;
 	left: 0;
-    line-height:1.2;
-    z-index:105;
-    display:block;
-    background-color:$ma5-mobile-menu-color1;
+	z-index: 200;
+    line-height:1.375;
 }
-
 .ma5-page {
 	-webkit-transition: -webkit-transform 0.4s ease-out 0s;
-	-ms-transition: -ms-transform 0.4s ease-out 0s;
-    transition: transform 0.4s ease-out 0s;
+    -ms-transition: -webkit-transform 0.4s ease-out 0s;
+	transition: transform 0.4s ease-out 0s;
     overflow:hidden;
 }
 .ma5-menu-active {
 	overflow: hidden;
+
     height:100%;
 
     &.ma5-menu-swipe {
         .ma5-mobile-menu-container {
             top:0;
-            margin-top:$ma5-mobile-menu-top-position;
+            margin-top:0;
             overflow:visible;
         }
     }
-    body {
+    > body {
     	overflow: hidden;
+        overflow-y: scroll;
         height:100%;
     }
     .ma5-page {
-    	-webkit-transform: translate3d(100%, 0, 0);
-    	-ms-transform: translate3d(100%, 0, 0);
-        transform: translate3d(100%, 0, 0);
+        margin-right:-16.8px;
+    	-webkit-transform: translate3d(280px, 0, 0);
+    	-ms-transform: translate3d(280px, 0, 0);
+        transform: translate3d(280px, 0, 0);
     	-webkit-transition: -webkit-transform 0.4s ease-out 0s;
+        -ms-transition: -webkit-transform 0.4s ease-out 0s;
     	transition: transform 0.4s ease-out 0s;
+
+        @media (max-width: ($ma5-phone-desktop-breakpoint - 1)) {
+            height:100%;
+            overflow:hidden;
+        }
     }
     .ma5-mobile-menu-container {
         -webkit-transform: translate3d(0, 0, 0);
@@ -154,310 +143,210 @@ $ma5-mobile-menu-color9:#cccccc; // menu-header background-color;
         -ms-transition: -ms-transform 0.4s ease-out 0s;
     	transition: transform 0.4s ease-out 0s;
     }
+
+}
+.ma5-menu-active .ma5-mobile-menu-container {
+	-webkit-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+	-webkit-transition: -webkit-transform 0.4s ease-in 0s;
+    -ms-transition: -webkit-transform 0.4s ease-in 0s;
+	transition: transform 0.4s ease-in 0s;
+}
+.ma5-menu-active .ma5-page {
+	-webkit-transform: translate3d(280px, 0, 0);
+    -ms-transform: translate3d(280px, 0, 0);
+	transform: translate3d(280px, 0, 0);
+	-webkit-transition: -webkit-transform 0.4s ease-in 0s;
+    -ms-transition: -webkit-transform 0.4s ease-in 0s;
+	transition: transform 0.4s ease-in 0s;
 }
 .ma5-menu-panel {
-	width: 100%;
-    width:100vw;
-	height: 100%;
+	width: 280px;
+	height: 80%;
+    height:calc(100% - 50px);
 	position: absolute;
-    display:block;
 	overflow: hidden;
-	overflow-y: scroll;
-	top: 0;
+	overflow-y: auto;
+	top: 50px;
 	left: 0;
 	margin: 0;
 	padding: 0;
 	list-style-type: none;
 	z-index: 100;
 	background-color: $ma5-mobile-menu-color1;
-	-webkit-box-shadow: -12px 0 12px $ma5-mobile-menu-color2;
-    box-shadow: -12px 0 12px $ma5-mobile-menu-color2;
+	-webkit-box-shadow: -8px 0 8px $ma5-mobile-menu-color2 inset;
+    -ms-box-shadow: -8px 0 8px $ma5-mobile-menu-color2 inset;
+	box-shadow: -8px 0 8px $ma5-mobile-menu-color2 inset;
+}
+.ma5-menu-panel:after {
+	content: "";
+	display: block;
+	position: absolute;
+	width: 1px;
+	height: 100%;
+	right: 0;
+	top: 0;
+	background-color: $ma5-mobile-menu-color1;
+}
+.ma5-menu-panel li {
+	position: relative;
+	padding-right: 50px;
+    margin-bottom:-1px;
+	font-size: 0;
+}
+.ma5-menu-panel li:after {
+	content: "";
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 1px;
+	left: 0;
+	bottom: 0;
+	background-color: $ma5-mobile-menu-color3;
     -webkit-transform:translate3d(0,0,0);
     -ms-transform:translate3d(0,0,0);
     transform:translate3d(0,0,0);
-    visibility:hidden;
-    border-right:1px solid rgba(0,0,0,0); // shadow fix
-
-    li {
-    	position: relative;
-    	padding-right: 50px;
-    	font-size: 0;
-
-        &:after {
-        	content: "";
-        	display: block;
-        	position: absolute;
-        	width: 100%;
-        	height: 1px;
-        	left: 0;
-        	bottom: 0;
-        	background-color: $ma5-mobile-menu-color3;
-            -webkit-transform:translate3d(0,0,0);
-            -ms-transform:translate3d(0,0,0);
-            transform:translate3d(0,0,0);
-        }
-    }
-    a {
-    	display: inline-block;
-    	padding: 0 14px 0 25px;
-    	text-decoration: none !important;
-    	color: $ma5-mobile-menu-color4;
-    	width: 100%;
-        width:calc(100% + #{$ma5-mobile-menu-link-height});
-    	overflow: hidden;
-    	white-space: nowrap;
-    	text-overflow: ellipsis;
-    	font-size: $ma5-mobile-menu-font-size;
-        line-height:$ma5-mobile-menu-link-height;
-    	outline: none !important;
-
-        &:active {
-            background-color:rgba(0,0,0,0.03);
-        }
-        &.ma5-has-submenu {
-            width: 100%;
-        }
-    }
-    .ma5-btn-enter {
-    	font-size: $ma5-mobile-menu-font-size;
-    	cursor: pointer;
-    	display: inline-block;
-    	color: $ma5-mobile-menu-color8;
-    	position: absolute;
-    	right: 0;
-        top:-1px;
-    	padding: 16px 15px 13px 15px;
-        width:$ma5-mobile-menu-link-height;
-        height:$ma5-mobile-menu-link-height;
-    	overflow: hidden;
-    	text-align: center;
-    	z-index: 0;
-        border-left:1px solid $ma5-mobile-menu-color3;
-
-        &:active {
-            background-color:rgba(0,0,0,0.08);
-        }
-
-        &:before {
-            content:">";
-            color:$ma5-mobile-menu-color5;
-            display:block;
-            position:absolute;
-            top:17px;
-            right:19px;
-            width:10px;
-            height:16px;
-            color:$ma5-mobile-menu-color8;
-        }
-    }
-    .ma5-leave-bar {
-    	font-size: $ma5-mobile-menu-font-size;
-    	cursor: pointer;
-    	display: block;
-    	position: relative;
-    	padding: 0 20px;
-        height: $ma5-mobile-menu-link-height;
-        line-height: $ma5-mobile-menu-link-height;
-    	margin-right: -$ma5-mobile-menu-link-height;
-    	text-align: center;
-    	color: $ma5-mobile-menu-color5;
-        background-color:$ma5-mobile-menu-color7;
-    	text-transform: uppercase;
-    	overflow: hidden;
-    	white-space: nowrap;
-    	text-overflow: ellipsis;
-
-        &:before {
-            content: "< ";
-            margin-right: 10px;
-        }
-    }
-    &:first-of-type {
-    	z-index: 160;
-        visibility:visible;
-    }
-    &.ma5-active-ul {
-    	z-index: 170;
-        visibility:visible;
-    }
-    .ma5-active-li a,
-    .ma5-path-to-active {
-    	color: $ma5-mobile-menu-color5;
-    }
-    &.ma5-parent-leave,
-    &.ma5-parent-enter {
-    	z-index: 180;
-        visibility:visible;
-    }
-    &.ma5-active-leave,
-    &.ma5-active-enter {
-    	z-index: 190;
-        visibility:visible;
-    }
-    &.ma5-active-enter {
-    	-webkit-animation-timing-function: ease-out;
-    	-webkit-animation-duration: 0.4s;
-    	-webkit-animation-delay: 0;
-    	-webkit-animation-fill-mode: both;
-    	-webkit-animation-name: ma5-panelIn;
-    	animation-timing-function: ease-out;
-    	animation-duration: 0.4s;
-    	animation-delay: 0;
-    	animation-fill-mode: both;
-    	animation-name: ma5-panelIn;
-    }
-    &.ma5-active-leave {
-    	-webkit-animation-timing-function: ease-out;
-    	-webkit-animation-duration: 0.4s;
-    	-webkit-animation-delay: 0;
-    	-webkit-animation-fill-mode: both;
-    	-webkit-animation-name: ma5-panelOut;
-    	animation-timing-function: ease-out;
-    	animation-duration: 0.4s;
-    	animation-delay: 0;
-    	animation-fill-mode: both;
-    	animation-name: ma5-panelOut;
+}
+.ma5-menu-panel a {
+	display: inline-block;
+	padding: 15px;
+	text-decoration: none !important;
+	color: $ma5-mobile-menu-color7;
+	width: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 16px;
+	outline: none !important;
+}
+.ma5-menu-panel .ma5-btn-enter, .ma5-menu-panel .ma5-btn-leave {
+	font-size: 16px;
+	cursor: pointer;
+	display: inline-block;
+	position: absolute;
+	padding: 15px 15px 14px 15px;
+	width: 50px;
+	overflow: hidden;
+	left: 0;
+	top: 0;
+	text-align: center;
+	background-color: $ma5-mobile-menu-color4;
+	color: $ma5-mobile-menu-color7;
+}
+.ma5-menu-panel .ma5-btn-enter .glyphicon, .ma5-menu-panel .ma5-btn-leave .glyphicon {
+	top: 2px;
+}
+.ma5-menu-panel .ma5-btn-enter {
+	z-index: 0;
+	left: auto;
+	right: 0;
+}
+.ma5-menu-panel .ma5-leave-bar {
+	font-size: 16px;
+	cursor: pointer;
+	display: block;
+	position: relative;
+	padding: 15px 20px 15px 60px;
+	margin-right: -50px;
+	text-align: center;
+	color: $ma5-mobile-menu-color5;
+	text-transform: uppercase;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.ma5-menu-panel .ma5-leave-bar:after {
+	content: "";
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 1px;
+	left: 0;
+	bottom: 0;
+	background-color: $ma5-mobile-menu-color3;
+}
+.ma5-menu-panel:first-of-type {
+	z-index: 160;
+}
+.ma5-menu-panel.ma5-active-ul {
+	z-index: 170;
+}
+.ma5-menu-panel .ma5-active-li a, .ma5-menu-panel .ma5-path-to-active {
+	color: $ma5-mobile-menu-color5;
+}
+.ma5-menu-panel.ma5-parent-leave, .ma5-menu-panel.ma5-parent-enter {
+	z-index: 180;
+}
+.ma5-menu-panel.ma5-active-leave, .ma5-menu-panel.ma5-active-enter {
+	z-index: 190;
+}
+.ma5-menu-panel.ma5-active-enter {
+	-webkit-animation-timing-function: ease-out;
+	-webkit-animation-duration: 0.4s;
+	-webkit-animation-delay: 0;
+	-webkit-animation-fill-mode: both;
+	-webkit-animation-name: ma5-panelIn;
+	animation-timing-function: ease-out;
+	animation-duration: 0.4s;
+	animation-delay: 0;
+	animation-fill-mode: both;
+	animation-name: ma5-panelIn;
+}
+.ma5-menu-panel.ma5-active-leave {
+	-webkit-animation-timing-function: ease-out;
+	-webkit-animation-duration: 0.4s;
+	-webkit-animation-delay: 0;
+	-webkit-animation-fill-mode: both;
+	-webkit-animation-name: ma5-panelOut;
+	animation-timing-function: ease-out;
+	animation-duration: 0.4s;
+	animation-delay: 0;
+	animation-fill-mode: both;
+	animation-name: ma5-panelOut;
+}
+.ma5-close-bar {
+    padding:7px 5px;
+    border-bottom:1px solid darken($ma5-mobile-menu-color6, 8%);
+    height:50px;
+    text-align:center;
+    background-color:$ma5-mobile-menu-color6;
+    
+    .ma5-toggle-menu {
+        position:static;
+        display:inline-block !important;
     }
 }
-
-// menu active
-@media (max-width: ($ma5-mobile-menu-breakpoint - 1)) {
-    .ma5-menu-mobile {
+.ma5-toggle-menu {
+    position:static;
+    background-color:$ma5-mobile-menu-color8 !important;
+    border-color:$ma5-mobile-menu-color8 !important;
+    -webkit-box-shadow:none !important;
+    -ms-box-shadow:none !important;
+    box-shadow:none !important;
+}
+.ma5-menu-overflow {
+    overflow-x:hidden !important;
+}
+.ma5-hidden-phone {
+    @media (max-width: ($ma5-phone-desktop-breakpoint - 1)) {
         display:none;
-    }
-    .ma5-menu-header,
-    .ma5-close-bar {
-        position: relative;
-        height: $ma5-mobile-menu-top-position;
-        padding:10px 10px 10px ($ma5-mobile-menu-top-position + 10px);
-        text-align:center;
-
-        .ma5-menu-heading {
-            margin:0;
-            font-size:20px;
-            line-height:1;
-            margin-top:calc(((#{$ma5-mobile-menu-top-position} - 20px)/2) - 10px );
-        }
-
-        .ma5-toggle-menu {
-            cursor:pointer;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: $ma5-mobile-menu-top-position;
-            height: $ma5-mobile-menu-top-position;
-            border: none;
-            background-color: $ma5-mobile-menu-color6;
-            padding:0;
-            font-size: 0;
-            letter-spacing:-1px;
-            color:rgba(0,0,0,0);
-        }
-    }
-    .ma5-menu-header {
-        background-color:$ma5-mobile-menu-color9;
-    }
-    .ma5-close-bar {
-        top:-50px;
-        z-index:200;
-    }
-    .hamburger {
-        position: absolute;
-        text-align:left;
-        display: block;
-        width: 29px;
-        height: 21px;
-        margin:0;
-        top:33%;
-        top:calc(50% - 10.5px);
-        left:33%;
-        left:calc(50% - 14.5px);
-
-        span {
-            position: absolute;
-            display: inline-block;
-            border-radius: 1px;
-            height: 3px;
-            width: 100%;
-            background-color: $ma5-color-white;
-            -webkit-transform: translateZ(0);
-            transform: translateZ(0);
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            -webkit-transform-origin: 0 50%;
-            transform-origin: 0 50%;
-            -webkit-transition: -webkit-transform 0.4s ease-in, background-color 0.4s ease-in;
-            transition: transform 0.4s ease-in, background-color 0.4s ease-in;
-
-            &:nth-of-type(1) {
-                top: 0;
-            }
-            &:nth-of-type(2) {
-                top: 43%;
-                top: calc(50% - 1.5px);
-            }
-            &:nth-of-type(3) {
-                bottom: 0;
-            }
-        }
-    }
-    .ma5-menu-active {
-        .hamburger {
-            span {
-                &:nth-of-type(1) {
-                    -webkit-transform: translateX(4px) translateY(-1px) rotate(45deg);
-                    transform: translateX(4px) translateY(-1px) rotate(45deg);
-                }
-                &:nth-of-type(2) {
-                    background-color: rgba(0, 0, 0, 0);
-                }
-                &:nth-of-type(3) {
-                    -webkit-transform: translateX(3.5px) translateY(1.5px) rotate(-45deg);
-                    transform: translateX(3.5px) translateY(1.5px) rotate(-45deg);
-                }
-            }
-        }
-    }
-    .ma5-menu-swipe {
-        .ma5-mobile-menu-container {
-            overflow:visible;
-        }
-        .ma5-close-bar {
-            background-color:$ma5-mobile-menu-color9;
-        }
-        body {
-            overflow-x:hidden;
-        }
-        .hamburger {
-            span {
-                -webkit-transition-delay: 0.4s;
-                transition-delay: 0.4s;
-            }
-        }
     }
 }
+* {
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+}
 
-
-// desktop menu 
-@media (min-width: $ma5-mobile-menu-breakpoint) {
-    .ma5-mobile-menu-container {
-        display:none;
-    }
-    .ma5-menu-panel {
-        display:none;
-        opacity:0;
-    }
+@media (min-width: $ma5-phone-desktop-breakpoint) {
     .ma5-toggle-menu {
         display:none;
     }
     .ma5-menu-active {
 	   overflow: visible;
-       height:auto;
     }
     .ma5-menu-active body {
 	   overflow: visible;
-       height:auto;
-
     }
     .ma5-menu-active .ma5-page {
     	-webkit-transform: translate3d(0, 0, 0);
@@ -465,8 +354,8 @@ $ma5-mobile-menu-color9:#cccccc; // menu-header background-color;
     	transform: translate3d(0, 0, 0);
     }
     .ma5-menu-active .ma5-mobile-menu-container {
-    	-webkit-transform: translate3d(-100%, 0, 0);
-        -ms-transform: translate3d(-100%, 0, 0);
-    	transform: translate3d(-100%, 0, 0);
+    	-webkit-transform: translate3d(-280px, 0, 0);
+        -ms-transform: translate3d(-280px, 0, 0);
+    	transform: translate3d(-280px, 0, 0);
     }
 }

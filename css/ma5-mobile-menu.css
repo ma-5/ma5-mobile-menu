@@ -1,0 +1,357 @@
+/* 
+MA5 jquery mobile menu component 
+v2.1.0 
+GitHub: https://github.com/ma-5/ 
+*/
+@-webkit-keyframes ma5-panelIn {
+  0% {
+    -webkit-transform: translate3d(-280px, 0, 0); }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0); } }
+
+@-ms-keyframes ma5-panelIn {
+  /* line 28, stdin */
+  0% {
+    -ms-transform: translate3d(-280px, 0, 0); }
+  /* line 31, stdin */
+  100% {
+    -ms-transform: translate3d(0, 0, 0); } }
+
+@keyframes ma5-panelIn {
+  0% {
+    transform: translate3d(-280px, 0, 0); }
+  100% {
+    transform: translate3d(0, 0, 0); } }
+
+@-webkit-keyframes ma5-panelOut {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0); }
+  100% {
+    -webkit-transform: translate3d(-280px, 0, 0); } }
+
+@-ms-keyframes ma5-panelOut {
+  /* line 52, stdin */
+  0% {
+    -ms-transform: translate3d(0, 0, 0); }
+  /* line 55, stdin */
+  100% {
+    -ms-transform: translate3d(-280px, 0, 0); } }
+
+@keyframes ma5-panelOut {
+  0% {
+    transform: translate3d(0, 0, 0); }
+  100% {
+    transform: translate3d(-280px, 0, 0); } }
+
+@media (max-width: 767px) {
+  /* line 68, stdin */
+  .ma5-menu-mobile > ul {
+    display: none; } }
+
+/* line 75, stdin */
+.ma5-toggle-menu {
+  cursor: pointer; }
+  /* line 78, stdin */
+  .ma5-toggle-menu .glyphicon {
+    font-size: 12px;
+    margin-left: 5px;
+    -webkit-transform: scale(1.4, 1);
+    transform: scale(1.4, 1); }
+
+/* line 85, stdin */
+.ma5-mobile-menu-container {
+  -webkit-transform: translate3d(-280px, 0, 0);
+  -ms-transform: translate3d(-280px, 0, 0);
+  transform: translate3d(-280px, 0, 0);
+  -webkit-transition: -webkit-transform 0.4s ease-out 0s;
+  -ms-transition: -webkit-transform 0.4s ease-out 0s;
+  transition: transform 0.4s ease-out 0s;
+  position: fixed;
+  background-color: #668034;
+  width: 280px;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  line-height: 1.375; }
+
+/* line 101, stdin */
+.ma5-page {
+  -webkit-transition: -webkit-transform 0.4s ease-out 0s;
+  -ms-transition: -webkit-transform 0.4s ease-out 0s;
+  transition: transform 0.4s ease-out 0s;
+  overflow: hidden; }
+
+/* line 107, stdin */
+.ma5-menu-active {
+  overflow: hidden;
+  height: 100%; }
+  /* line 113, stdin */
+  .ma5-menu-active.ma5-menu-swipe .ma5-mobile-menu-container {
+    top: 0;
+    margin-top: 0;
+    overflow: visible; }
+  /* line 119, stdin */
+  .ma5-menu-active > body {
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 100%; }
+  /* line 124, stdin */
+  .ma5-menu-active .ma5-page {
+    margin-right: -16.8px;
+    -webkit-transform: translate3d(280px, 0, 0);
+    -ms-transform: translate3d(280px, 0, 0);
+    transform: translate3d(280px, 0, 0);
+    -webkit-transition: -webkit-transform 0.4s ease-out 0s;
+    -ms-transition: -webkit-transform 0.4s ease-out 0s;
+    transition: transform 0.4s ease-out 0s; }
+    @media (max-width: 767px) {
+      /* line 124, stdin */
+      .ma5-menu-active .ma5-page {
+        height: 100%;
+        overflow: hidden; } }
+  /* line 138, stdin */
+  .ma5-menu-active .ma5-mobile-menu-container {
+    -webkit-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-transition: -webkit-transform 0.4s ease-out 0s;
+    -ms-transition: -ms-transform 0.4s ease-out 0s;
+    transition: transform 0.4s ease-out 0s; }
+
+/* line 148, stdin */
+.ma5-menu-active .ma5-mobile-menu-container {
+  -webkit-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transition: -webkit-transform 0.4s ease-in 0s;
+  -ms-transition: -webkit-transform 0.4s ease-in 0s;
+  transition: transform 0.4s ease-in 0s; }
+
+/* line 156, stdin */
+.ma5-menu-active .ma5-page {
+  -webkit-transform: translate3d(280px, 0, 0);
+  -ms-transform: translate3d(280px, 0, 0);
+  transform: translate3d(280px, 0, 0);
+  -webkit-transition: -webkit-transform 0.4s ease-in 0s;
+  -ms-transition: -webkit-transform 0.4s ease-in 0s;
+  transition: transform 0.4s ease-in 0s; }
+
+/* line 164, stdin */
+.ma5-menu-panel {
+  width: 280px;
+  height: 80%;
+  height: calc(100% - 50px);
+  position: absolute;
+  overflow: hidden;
+  overflow-y: auto;
+  top: 50px;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  z-index: 100;
+  background-color: #668034;
+  -webkit-box-shadow: -8px 0 8px rgba(0, 0, 0, 0.05) inset;
+  -ms-box-shadow: -8px 0 8px rgba(0, 0, 0, 0.05) inset;
+  box-shadow: -8px 0 8px rgba(0, 0, 0, 0.05) inset; }
+
+/* line 182, stdin */
+.ma5-menu-panel:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  right: 0;
+  top: 0;
+  background-color: #668034; }
+
+/* line 192, stdin */
+.ma5-menu-panel li {
+  position: relative;
+  padding-right: 50px;
+  margin-bottom: -1px;
+  font-size: 0; }
+
+/* line 198, stdin */
+.ma5-menu-panel li:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  left: 0;
+  bottom: 0;
+  background-color: #7e9e40;
+  -webkit-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
+
+/* line 211, stdin */
+.ma5-menu-panel a {
+  display: inline-block;
+  padding: 15px;
+  text-decoration: none !important;
+  color: #a3b978;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 16px;
+  outline: none !important; }
+
+/* line 223, stdin */
+.ma5-menu-panel .ma5-btn-enter, .ma5-menu-panel .ma5-btn-leave {
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  position: absolute;
+  padding: 15px 15px 14px 15px;
+  width: 50px;
+  overflow: hidden;
+  left: 0;
+  top: 0;
+  text-align: center;
+  background-color: #7e9e40;
+  color: #a3b978; }
+
+/* line 237, stdin */
+.ma5-menu-panel .ma5-btn-enter .glyphicon, .ma5-menu-panel .ma5-btn-leave .glyphicon {
+  top: 2px; }
+
+/* line 240, stdin */
+.ma5-menu-panel .ma5-btn-enter {
+  z-index: 0;
+  left: auto;
+  right: 0; }
+
+/* line 245, stdin */
+.ma5-menu-panel .ma5-leave-bar {
+  font-size: 16px;
+  cursor: pointer;
+  display: block;
+  position: relative;
+  padding: 15px 20px 15px 60px;
+  margin-right: -50px;
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; }
+
+/* line 259, stdin */
+.ma5-menu-panel .ma5-leave-bar:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  left: 0;
+  bottom: 0;
+  background-color: #7e9e40; }
+
+/* line 269, stdin */
+.ma5-menu-panel:first-of-type {
+  z-index: 160; }
+
+/* line 272, stdin */
+.ma5-menu-panel.ma5-active-ul {
+  z-index: 170; }
+
+/* line 275, stdin */
+.ma5-menu-panel .ma5-active-li a, .ma5-menu-panel .ma5-path-to-active {
+  color: #fff; }
+
+/* line 278, stdin */
+.ma5-menu-panel.ma5-parent-leave, .ma5-menu-panel.ma5-parent-enter {
+  z-index: 180; }
+
+/* line 281, stdin */
+.ma5-menu-panel.ma5-active-leave, .ma5-menu-panel.ma5-active-enter {
+  z-index: 190; }
+
+/* line 284, stdin */
+.ma5-menu-panel.ma5-active-enter {
+  -webkit-animation-timing-function: ease-out;
+  -webkit-animation-duration: 0.4s;
+  -webkit-animation-delay: 0;
+  -webkit-animation-fill-mode: both;
+  -webkit-animation-name: ma5-panelIn;
+  animation-timing-function: ease-out;
+  animation-duration: 0.4s;
+  animation-delay: 0;
+  animation-fill-mode: both;
+  animation-name: ma5-panelIn; }
+
+/* line 296, stdin */
+.ma5-menu-panel.ma5-active-leave {
+  -webkit-animation-timing-function: ease-out;
+  -webkit-animation-duration: 0.4s;
+  -webkit-animation-delay: 0;
+  -webkit-animation-fill-mode: both;
+  -webkit-animation-name: ma5-panelOut;
+  animation-timing-function: ease-out;
+  animation-duration: 0.4s;
+  animation-delay: 0;
+  animation-fill-mode: both;
+  animation-name: ma5-panelOut; }
+
+/* line 308, stdin */
+.ma5-close-bar {
+  padding: 7px 5px;
+  border-bottom: 1px solid #668034;
+  height: 50px;
+  text-align: center;
+  background-color: #7e9e40; }
+  /* line 315, stdin */
+  .ma5-close-bar .ma5-toggle-menu {
+    position: static;
+    display: inline-block !important; }
+
+/* line 320, stdin */
+.ma5-toggle-menu {
+  position: static;
+  background-color: #94b74f !important;
+  border-color: #94b74f !important;
+  -webkit-box-shadow: none !important;
+  -ms-box-shadow: none !important;
+  box-shadow: none !important; }
+
+/* line 328, stdin */
+.ma5-menu-overflow {
+  overflow-x: hidden !important; }
+
+@media (max-width: 767px) {
+  /* line 331, stdin */
+  .ma5-hidden-phone {
+    display: none; } }
+
+/* line 336, stdin */
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+@media (min-width: 768px) {
+  /* line 342, stdin */
+  .ma5-toggle-menu {
+    display: none; }
+  /* line 345, stdin */
+  .ma5-menu-active {
+    overflow: visible; }
+  /* line 348, stdin */
+  .ma5-menu-active body {
+    overflow: visible; }
+  /* line 351, stdin */
+  .ma5-menu-active .ma5-page {
+    -webkit-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); }
+  /* line 356, stdin */
+  .ma5-menu-active .ma5-mobile-menu-container {
+    -webkit-transform: translate3d(-280px, 0, 0);
+    -ms-transform: translate3d(-280px, 0, 0);
+    transform: translate3d(-280px, 0, 0); } }
+
+
