@@ -3,8 +3,8 @@
   "description": "",
   "main": [
     "./scss/_ma5-mobile-menu.scss", 
-    "./css/_ma5-mobile-menu.css",
-    "./css/_ma5-mobile-menu.min.css", 
+    "./css/ma5-mobile-menu.css",
+    "./css/ma5-mobile-menu.min.css", 
     "./js/ma5-mobile-menu.js"
   ],
   "authors": [
