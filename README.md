@@ -4,7 +4,7 @@ Simple and ultralight jQuery menu with panels for mobile phones.
 
 >v.1.1 Add animation options
 
->v2.1.0 Changes for some CMS compatibility, transfer order css class atttributes to data-ma5-order
+>v2.1.0 Changes for some CMS compatibility, transfer order css class attributes to data-ma5-order
 
 ###Features:
 * Small
@@ -22,7 +22,7 @@ Simple and ultralight jQuery menu with panels for mobile phones.
 <!-- html head -->
 <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui, user-scalable=no">
 <link href="./css/ma5-mobile-menu.css" media="screen, projection" rel="stylesheet" type="text/css">
-<script src="./js/jquery-2.1.1.min.js"></script>
+<script src="./js/jquery.min.js"></script>
 <script src="./js/ma5-mobile-menu.js"></script>
 ```
 
