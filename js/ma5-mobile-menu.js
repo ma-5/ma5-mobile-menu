@@ -1,12 +1,10 @@
 /*
 *   MA5 jquery mobile menu
-*   v2.1.0
+*   v2.1.1
 *   GitHub: https://github.com/ma-5/ma5-mobile-menu
 */
-
-
 function ma5mobileMenu(atributes) {
-    if(atributes.swipe == true) {
+    if(atributes.swipe === true) {
         $('html').addClass('ma5-menu-swipe');
         $('body').wrapInner('<div class="ma5-page" />');
     }    
