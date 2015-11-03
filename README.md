@@ -6,6 +6,8 @@ Simple and ultralight jQuery menu with panels for mobile phones.
 
 >v2.1.0 Changes for some CMS compatibility, transfer order css class attributes to data-ma5-order
 
+>v2.1.1 Clear js, add bower.json
+
 ###Features:
 * Small
 * Light
