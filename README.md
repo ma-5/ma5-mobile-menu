@@ -8,6 +8,9 @@ Simple and ultralight jQuery menu with panels for mobile phones.
 
 >v2.1.1 Clear js, add bower.json
 
+>v2.1.2 Modify toogle on action, add example
+
+
 ###Features:
 * Small
 * Light
@@ -35,8 +38,9 @@ swipe:true -> panels with page swipe animation
 
 ```javascript
 $(document).ready(function(){
-ma5mobileMenu({
-    swipe: false
+    ma5mobileMenu({
+        swipe: false
+    });
 });
 ```
 
