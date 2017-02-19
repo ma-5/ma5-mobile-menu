@@ -1,19 +1,16 @@
 {
   "name": "ma5-mobile-menu",
   "description": "",
+  "version": "v2.1.2",
   "main": [
-    "./scss/_ma5-mobile-menu.scss", 
+    "./scss/_ma5-mobile-menu.scss",
     "./css/ma5-mobile-menu.css",
-    "./css/ma5-mobile-menu.min.css", 
     "./js/ma5-mobile-menu.js"
   ],
   "authors": [
     "ma-5 <ma-5@users.noreply.github.com>"
   ],
   "license": "MIT",
-  "moduleType": [],
-  "homepage": "",
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
