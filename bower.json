@@ -1,7 +1,7 @@
 {
   "name": "ma5-mobile-menu",
   "description": "",
-  "version": "v2.1.2",
+  "version": "v2.1.3",
   "main": [
     "./scss/_ma5-mobile-menu.scss",
     "./css/ma5-mobile-menu.css",
