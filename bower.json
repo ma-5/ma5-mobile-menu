@@ -3,9 +3,9 @@
   "description": "",
   "version": "v3.0.0",
   "main": [
-    "./scss/_ma5-mobile-menu.scss",
-    "./css/ma5-mobile-menu.css",
-    "./js/ma5-mobile-menu.js"
+    "./scss/ma5-menu.scss",
+    "./css/ma5-menu.css",
+    "./js/ma5-menu.js"
   ],
   "authors": [
     "ma-5 <ma-5@users.noreply.github.com>"
