@@ -115,7 +115,7 @@
 }
 
 .ma5menu__footer {
-  padding: 20px 20px 15px 20px;
+  padding: 20px 20px 30px 20px;
   text-align: center;
   color: rgba(255, 255, 255, 0.6);
   background-color: transparent;
@@ -262,7 +262,7 @@
   position: fixed;
   background-color: #0e65b6;
   height: 100%;
-  height: 100vh;
+  height: 100%;
   top: 0;
   line-height: 19px;
   overflow: hidden;
@@ -449,6 +449,12 @@
   .ma5menu__panel {
     width: 360px;
   }
+}
+
+.ma5menu__panel.has-scrollbar {
+  overflow: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .ma5menu__panel:hover::-webkit-scrollbar-thumb {
@@ -813,14 +819,22 @@
   .ma5menu--active > body .ma5menu__container * {
     pointer-events: auto;
   }
+  .ma5menu--active > body .ma5menu__container .ma5menu__alert {
+    pointer-events: none;
+  }
+  .ma5menu--active > body .ma5menu__container--scroll {
+    pointer-events: auto;
+  }
 }
 
-.ma5menu--active.has-body-scrollbar {
-  overflow: hidden;
-  overflow-y: scroll;
-  height: auto;
-  min-height: 100vh;
-  -webkit-overflow-scrolling: touch;
+@media (max-width: 1199px) {
+  .ma5menu--active.has-body-scrollbar {
+    overflow: hidden;
+    overflow-y: scroll;
+    height: auto;
+    min-height: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 .ma5menu--active.ma5menu--left:before {

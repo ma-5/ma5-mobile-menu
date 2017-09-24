@@ -189,7 +189,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         }
     }
     &__footer {
-        padding: 20px 20px 15px 20px;
+        padding: 20px 20px 30px 20px;
         text-align: center;
         color: $ma5menu-footer-text-color;
         background-color: $ma5menu-footer-bg;
@@ -311,7 +311,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         position: fixed;
         background-color: $ma5menu-panel-bg;
         height: 100%;
-        height: 100vh;
+        height: 100%;
         top: 0;
         line-height: 19px;
         overflow: hidden;
@@ -436,6 +436,12 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
 
         @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
             width: $ma5-mobile-menu-width-tablet;
+        }
+
+        &.has-scrollbar {
+            overflow: hidden;
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
         }
 
         &:hover {
@@ -739,16 +745,25 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
                     * {
                         pointer-events: auto;
                     }
+                    .ma5menu__alert {
+                        pointer-events: none;
+                    }
+                    &--scroll {
+                        pointer-events: auto;
+                    }
+
                 }
             }
 
         }
         &.has-body-scrollbar {
-            overflow: hidden;
-            overflow-y: scroll;
-            height: auto;
-            min-height: 100vh;
-            -webkit-overflow-scrolling: touch;
+            @media (max-width: 1199px) {
+                overflow: hidden;
+                overflow-y: scroll;
+                height: auto;
+                min-height: 100%;
+                -webkit-overflow-scrolling: touch;
+            }
         }
         &.ma5menu--left {
             &:before {
