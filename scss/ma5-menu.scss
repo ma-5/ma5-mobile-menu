@@ -971,3 +971,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         opacity: 1;
     }
 }
+
+*, *::after, *::before {
+    box-sizing: border-box;
+}
