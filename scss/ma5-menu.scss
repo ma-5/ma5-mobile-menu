@@ -1,0 +1,973 @@
+/*!
+*   MA5-mobile-menu
+*   v 3.0.0
+*   Copyright (c) 2016 Tomasz Kalinowski
+*   GitHub: https://github.com/ma-5/ma5-mobile-menu
+*/
+
+// mixins
+@function str-replace($string, $search, $replace: '') {
+    $index: str-index($string, $search);
+    @if $index {
+        @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    }
+    @return $string;
+}
+
+$ma5menu-color-1: #ffffff; // white
+$ma5menu-color-2: rgba($ma5menu-color-1, .3); // white transparent medium
+$ma5menu-color-3: rgba($ma5menu-color-1, .6); // white transparent light
+$ma5menu-color-4: rgba($ma5menu-color-1, .1); // white transparent dark
+$ma5menu-color-5: #ffc107; // yellow
+$ma5menu-color-6: #0e65b6; // blue
+$ma5menu-color-7: #eeeeee; // gray light
+
+
+$ma5-mobile-menu-width-phone: 280px;
+$ma5-mobile-menu-width-tablet: 360px;
+$ma5-mobile-menu-breakpoint: 768px;
+
+
+$ma5menu-button-enter-bg: $ma5menu-color-4;
+$ma5menu-button-enter-bg-hover: $ma5menu-color-2;
+$ma5menu-button-enter-color: $ma5menu-color-1;
+$ma5menu-button-enter-colorSVG: str-replace(#{$ma5menu-button-enter-color}, '#', '');
+$ma5menu-button-enter-color-hover: $ma5menu-color-5;
+$ma5menu-button-enter-color-hoverSVG: str-replace(#{$ma5menu-button-enter-color-hover}, '#', '');
+$ma5menu-button-enter-image: 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%205%207%22%3E%3Cpath%20d%3D%22M4.999%2C3.502%20L2.500%2C0.001%20L0.103%2C0.001%20L2.619%2C3.502%20L-0.001%2C7.001%20L2.500%2C7.001%20L4.999%2C3.502%20L4.999%2C3.502%20Z%22%20fill%3D%22%23#{$ma5menu-button-enter-colorSVG}%22/%3E%3C/svg%3E';
+$ma5menu-button-enter-image-hover: 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%205%207%22%3E%3Cpath%20d%3D%22M4.999%2C3.502%20L2.500%2C0.001%20L0.103%2C0.001%20L2.619%2C3.502%20L-0.001%2C7.001%20L2.500%2C7.001%20L4.999%2C3.502%20L4.999%2C3.502%20Z%22%20fill%3D%22%23#{$ma5menu-button-enter-color-hoverSVG}%22/%3E%3C/svg%3E';
+$ma5menu-button-enter-pipe: rgba(0,0,0,0);
+
+$ma5menu-button-leave-bg: transparent;
+$ma5menu-button-leave-bg-hover: transparent;
+$ma5menu-button-leave-color: $ma5menu-color-1;
+$ma5menu-button-leave-colorSVG: str-replace(#{$ma5menu-button-leave-color}, '#', '');
+$ma5menu-button-leave-color-hover: $ma5menu-color-5;
+$ma5menu-button-leave-color-hoverSVG: str-replace(#{$ma5menu-button-leave-color-hover}, '#', '');
+$ma5menu-button-leave-image: 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%205%207%22%3E%3Cpath%20d%3D%22M0.001%2C3.498%20L2.500%2C6.999%20L4.897%2C6.999%20L2.381%2C3.498%20L5.001%2C-0.001%20L2.500%2C-0.001%20L0.001%2C3.498%20L0.001%2C3.498%20Z%22%20fill%3D%22%23#{$ma5menu-button-leave-colorSVG}%22/%3E%3C/svg%3E';
+$ma5menu-button-leave-image-hover: 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%205%207%22%3E%3Cpath%20d%3D%22M0.001%2C3.498%20L2.500%2C6.999%20L4.897%2C6.999%20L2.381%2C3.498%20L5.001%2C-0.001%20L2.500%2C-0.001%20L0.001%2C3.498%20L0.001%2C3.498%20Z%22%20fill%3D%22%23#{$ma5menu-button-leave-color-hoverSVG}%22/%3E%3C/svg%3E';
+$ma5menu-button-leave-pipe: rgba(0,0,0,0);
+
+$ma5menu-button-close-bg: transparent;
+$ma5menu-button-close-bg-hover: transparent;
+$ma5menu-button-close-color: $ma5menu-color-1;
+$ma5menu-button-close-color-hover: $ma5menu-color-5;
+
+$ma5menu-panel-bg: $ma5menu-color-6;
+$ma5menu-panel-text-color: $ma5menu-color-4;
+$ma5menu-panel-link-color: $ma5menu-color-1;
+$ma5menu-panel-link-color-hover: $ma5menu-color-5;
+$ma5menu-panel-link-separator: $ma5menu-color-2;
+$ma5menu-panel-link-font-size: 15px;
+
+$ma5menu-panel-link-text-transform-lvl-1: uppercase;
+$ma5menu-panel-link-text-transform-lvl-2: none;
+
+$ma5-mobile-path-color: $ma5menu-color-5;
+$ma5-mobile-path-bg: transparent;
+
+$ma5menu-logo-color: $ma5menu-color-1;
+$ma5menu-logo-color-hover: $ma5menu-color-5;
+
+$ma5menu-toggle-color: rgba($ma5menu-color-6, .7);
+$ma5menu-toggle-bg: rgba($ma5menu-color-6, .15);
+$ma5menu-toggle-color-hover: $ma5menu-color-6;
+$ma5menu-toggle-bg-hover: rgba($ma5menu-color-6, .3);
+
+$ma5menu-head-bg: transparent;
+$ma5menu-head-text-color: $ma5menu-color-1;
+
+$ma5menu-header-bg: transparent;
+$ma5menu-header-text-color: $ma5menu-color-1;
+$ma5menu-header-link-color: $ma5menu-color-5;
+$ma5menu-header-link-color-hover: $ma5menu-color-5;
+
+$ma5menu-leave-bg: $ma5menu-color-4;
+$ma5menu-leave-bg-hover: $ma5menu-color-4;
+$ma5menu-leave-color: $ma5menu-color-1;
+$ma5menu-leave-color-hover: $ma5menu-color-5;
+$ma5menu-leave-border: $ma5menu-color-2;
+$ma5menu-leave-font-size: 15px;
+
+$ma5menu-footer-bg: transparent;
+$ma5menu-footer-text-color: $ma5menu-color-3;
+$ma5menu-footer-link-color: $ma5menu-color-5;
+$ma5menu-footer-link-color-hover: $ma5menu-color-5;
+
+$ma5menu-backdrop-color: $ma5menu-color-3;
+
+.ma5menu {
+    display: none;
+
+    &__page {
+        .ma5menu--active & {
+            margin-right: -17px;
+            height: 100%;
+            overflow: hidden;
+            transform: translate3d($ma5-mobile-menu-width-phone, 0, 0);
+            transition: transform 0.3s ease-out 0s;
+
+            @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
+                transform: translate3d($ma5-mobile-menu-width-tablet, 0, 0);
+            }
+        }
+    }
+    > ul {
+        display: none;
+    }
+    &__head {
+        padding: 7px 5px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        height: 70px;
+        text-align: center;
+        color: $ma5menu-head-text-color;
+        background-color:$ma5menu-head-bg;
+        position: relative;
+    }
+    &__header {
+        line-height: 35px;
+        color: $ma5menu-header-text-color;
+        background-color:$ma5menu-header-bg;
+
+        a {
+            color: $ma5menu-header-link-color;
+
+            &:hover {
+                color: $ma5menu-header-link-color-hover;
+            }
+        }
+    }
+    &__close {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: $ma5menu-button-close-color;
+        background-color: $ma5menu-button-close-bg;
+
+        .ie & {
+            fill: $ma5menu-button-close-color;
+        }
+        .ma5menu__toggle:hover & {
+            color: $ma5menu-button-close-color-hover;
+            background-color: $ma5menu-button-close-bg-hover;
+
+            .ie & {
+                fill: $ma5menu-button-close-color-hover;
+            }
+        }
+    }
+    &__logo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: $ma5menu-logo-color;
+        height: 40px;
+        width: 40px;
+
+        .ie & {
+            fill: $ma5menu-logo-color;
+        }
+        .ma5menu__home:hover & {
+            color: $ma5menu-logo-color-hover;
+
+            .ie & {
+                fill: $ma5menu-logo-color-hover;
+            }
+        }
+    }
+    &__home {
+        font-weight: 700;
+        color: inherit;
+    }
+    &__tools {
+        display: none;
+
+        .ma5menu__footer & {
+            display: block;
+        }
+    }
+    &__footer {
+        padding: 20px 20px 15px 20px;
+        text-align: center;
+        color: $ma5menu-footer-text-color;
+        background-color: $ma5menu-footer-bg;
+
+        a {
+            color: $ma5menu-footer-link-color;
+
+            &:hover {
+                color: $ma5menu-footer-link-color-hover;
+            }
+        }
+    }
+    &__toggle {
+        cursor: pointer;
+        color: $ma5menu-toggle-color;
+        background-color: $ma5menu-toggle-bg;
+        touch-action: manipulation;
+        width: 52px;
+        height: 38px;
+        position: relative;
+
+        &:hover {
+            color: $ma5menu-toggle-color-hover;
+            background-color: $ma5menu-toggle-bg-hover;
+        }
+        .ma5menu__icon-toggle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 42px;
+            height: 24px;
+        }
+        .ma5menu__header & {
+            position: absolute;
+
+            top: 0;
+            width: 70px;
+            height: 70px;
+
+            color: $ma5menu-button-close-color;
+            background-color: $ma5menu-button-close-bg;
+
+            &:hover {
+                color: $ma5menu-button-close-color-hover;
+                background-color: $ma5menu-button-close-bg-hover;
+            }
+
+            .ma5menu--left & {
+                right: 0;
+            }
+            .ma5menu--right & {
+                left: 0;
+            }
+        }
+    }
+    &__icon-up {
+        margin: 0;
+        width: 44px;
+        height: 44px;
+        display: inline-block;
+        transform: translateZ(0);
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-size: 10px 8px;
+        background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%206%204%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M2.999%2C3.999%20L5.999%2C1.999%20L5.999%2C0.082%20L2.999%2C2.095%20L-0.001%2C-0.001%20L-0.001%2C1.999%20L2.999%2C3.999%20L2.999%2C3.999%20Z%22/%3E%3C/svg%3E);
+    }
+    &__alert {
+        display: block;
+        text-align: center;
+        width: 263px;
+        height: 50px;
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        overflow: hidden;
+        z-index: 500;
+        transform: translateZ(0);
+        background-image: linear-gradient(to bottom, rgba($ma5menu-panel-bg, 0) 0%, rgba($ma5menu-panel-bg, 1) 50%);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-position: 0 50px;
+        transition: background-position .4s ease-in .3s;
+        will-change: auto;
+        pointer-events: none;
+
+        @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
+            width: 367px;
+        }
+        .ma5menu__container--scroll & {
+            background-position: 0 0;
+            transition: background-position .4s ease-out;
+            pointer-events: auto;
+        }
+    }
+    &__alert-content {
+        width: 150px;
+        height: 40px;
+        position: absolute;
+        bottom: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: bottom .4s ease-in;
+
+        .ma5menu__container--scroll & {
+            bottom: 0;
+            animation-timing-function: linear;
+            animation-iteration-count: 3;
+            animation-duration: 0.6s;
+            animation-delay: 1s;
+            animation-fill-mode: both;
+            animation-name: ma5-arrowDown;
+            transition: bottom .4s ease-out .4s;
+        }
+    }
+
+    &__container {
+        transition: none !important;
+        position: fixed;
+        background-color: $ma5menu-panel-bg;
+        height: 100%;
+        height: 100vh;
+        top: 0;
+        line-height: 19px;
+        overflow: hidden;
+        border: none;
+        z-index: 10000;
+        box-shadow: 0 0 12px rgba(0,0,0,0.14);
+
+        @media (max-width: #{$ma5-mobile-menu-breakpoint - 1}) {
+            width: $ma5-mobile-menu-width-phone;
+        }
+        @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
+            width: $ma5-mobile-menu-width-tablet;
+        }
+
+        .ma5menu--left & {
+            transform: translate3d(-$ma5-mobile-menu-width-phone, 0, 0);
+            left: 0;
+        }
+        .ma5menu--right & {
+            transform: translate3d($ma5-mobile-menu-width-phone, 0, 0);
+            right: -$ma5-mobile-menu-width-phone;
+        }
+
+        .ma5menu--ready.ma5menu--left & {
+            animation-timing-function: ease-out;
+            animation-duration: 0.5s;
+            animation-delay: 0s;
+            animation-fill-mode: both;
+
+            @media (max-width: #{$ma5-mobile-menu-breakpoint - 1}) {
+                animation-name: ma5menuOut;
+            }
+            @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
+                animation-name: ma5menuOutTablet;
+            }
+        }
+        .ma5menu--ready.ma5menu--right & {
+            animation-timing-function: ease-out;
+            animation-duration: 0.5s;
+            animation-delay: 0s;
+            animation-fill-mode: both;
+
+            @media (max-width: #{$ma5-mobile-menu-breakpoint - 1}) {
+                animation-name: ma5menuOutB;
+            }
+            @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
+                animation-name: ma5menuOutBTablet;
+            }
+        }
+        .ma5menu--active.ma5menu--left & {
+            animation-timing-function: ease-out;
+            animation-duration: 0.5s;
+            animation-delay: 0s;
+            animation-fill-mode: both;
+
+            @media (max-width: #{$ma5-mobile-menu-breakpoint - 1}) {
+                animation-name: ma5menuOutB;
+            }
+            @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
+                animation-name: ma5menuOutBTablet;
+            }
+        }
+        .ma5menu--active.ma5menu--right & {
+            animation-timing-function: ease-out;
+            animation-duration: 0.5s;
+            animation-delay: 0s;
+            animation-fill-mode: both;
+
+            @media (max-width: #{$ma5-mobile-menu-breakpoint - 1}) {
+                animation-name: ma5menuIn;
+            }
+            @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
+                animation-name: ma5menuInTablet;
+            }
+        }
+
+        .ma5menu--swipe & {
+            top: 0;
+            margin-top: 0;
+            overflow: visible;
+        }
+
+        .ma5menu--left & {
+            @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
+                transform: translate3d(-$ma5-mobile-menu-width-tablet, 0, 0);
+                padding: 0;
+                left: 0;
+            }
+        }
+        .ma5menu--right & {
+            @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
+                transform: translate3d($ma5-mobile-menu-width-tablet, 0, 0);
+                right: -$ma5-mobile-menu-width-tablet;
+            }
+        }
+        .safari & {
+            height: 100%;
+        }
+        .preload & {
+            opacity: 0;
+            z-index: -1;
+        }
+    }
+
+
+    &__panel {
+        display: none;
+        width: $ma5-mobile-menu-width-phone;
+        height: 80%;
+        height: calc(100% - 70px);
+        position: absolute;
+        overflow: hidden;
+        overflow-y: auto;
+        top: 70px;
+        left: 0;
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        z-index: 100;
+        color: $ma5menu-panel-text-color;
+        background-color: $ma5menu-panel-bg;
+
+        @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
+            width: $ma5-mobile-menu-width-tablet;
+        }
+
+        &:hover {
+            &::-webkit-scrollbar-thumb {
+                background-color: rgba(255, 255, 255, 0.4);
+            }
+        }
+        &::-webkit-scrollbar {
+            width: 9px;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.15);
+            outline: none;
+            border-right: 3px solid $ma5menu-panel-bg;
+        }
+
+        &:first-of-type {
+            z-index: 160;
+        }
+        &--parent-leave,
+        &--parent-enter {
+            z-index: 180;
+            display: block;
+        }
+        &--active-leave,
+        &--active-enter {
+            z-index: 190;
+            display: block;
+        }
+        &--active-enter {
+            animation-timing-function: ease-out;
+            animation-duration: 0.5s;
+            animation-delay: 0s;
+            animation-fill-mode: both;
+
+            @media (max-width: #{$ma5-mobile-menu-breakpoint - 1}) {
+                animation-name: ma5-panelIn;
+            }
+            @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
+                animation-name: ma5-panelInTablet;
+            }
+        }
+        &--active-leave {
+            animation-timing-function: ease-out;
+            animation-duration: 0.5s;
+            animation-delay: 0s;
+            animation-fill-mode: both;
+
+            @media (max-width: #{$ma5-mobile-menu-breakpoint - 1}) {
+                animation-name: ma5-panelOut;
+            }
+            @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
+                animation-name: ma5-panelOutTablet;
+            }
+        }
+        &--parent-enter {
+            animation-timing-function: ease-out;
+            animation-duration: 0.5s;
+            animation-delay: 0s;
+            animation-fill-mode: both;
+
+            @media (max-width: #{$ma5-mobile-menu-breakpoint - 1}) {
+                animation-name: ma5menuOut;
+            }
+            @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
+                animation-name: ma5menuOutTablet;
+            }
+        }
+        &--parent-leave {
+            animation-timing-function: ease-out;
+            animation-duration: 0.5s;
+            animation-delay: 0s;
+            animation-fill-mode: both;
+
+            @media (max-width: #{$ma5-mobile-menu-breakpoint - 1}) {
+                animation-name: ma5menuOutB;
+            }
+            @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
+                animation-name: ma5menuOutBTablet;
+            }
+        }
+        &.lvl-0 {
+            text-transform: $ma5menu-panel-link-text-transform-lvl-1;
+        }
+        &.lvl-1 {
+            text-transform: $ma5menu-panel-link-text-transform-lvl-2;
+        }
+        > ul {
+            margin: 0;
+            padding: 0;
+
+            li {
+                position: relative;
+                font-size: 0;
+                padding-right: 0;
+                margin-bottom: 0;
+                line-height: 0;
+
+                a {
+                    display: inline-block;
+                    vertical-align: top;
+                    text-decoration: none !important;
+                    color: $ma5menu-panel-link-color;
+                    width: 100%;
+                    outline: none !important;
+                    border-bottom: 1px solid $ma5menu-panel-link-separator;
+                    pointer-events: none;
+                    letter-spacing: .3px;
+                    transition: color .3s ease-out;
+                    padding-top: 13px;
+                    padding-bottom: 12px;
+                    margin-right: -44px;
+                    padding-left: 20px;
+                    padding-right: 20px;
+                    font-size: $ma5menu-panel-link-font-size;
+                    line-height: 19px;
+                    overflow: hidden;
+                    touch-action: manipulation;
+
+
+                    &:hover {
+                        color: $ma5menu-panel-link-color-hover;
+                        transition: none;
+                    }
+                }
+                > .ma5menu__btn--enter {
+                    + a {
+                        padding-right: 50px;
+                    }
+                }
+            }
+        }
+        &--active {
+            z-index: 170;
+            display: block;
+
+            > ul {
+                li {
+                    a {
+                        pointer-events: auto;
+                    }
+                }
+            }
+        }
+    }
+    &__btn--enter,
+    &__btn--leave {
+        font-size: 13px;
+        cursor: pointer;
+        display: block;
+        position: absolute;
+        padding: 10px;
+        width: 44px;
+        height: 100%;
+        left: 0;
+        top: 0;
+        text-align: center;
+        touch-action: manipulation;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-size: 8px 8px;
+        transition: background-color 0.3s ease-out;
+
+        &:hover {
+            transition: none;
+        }
+    }
+    &__btn--enter {
+        z-index: 0;
+        left: auto;
+        right: 0;
+        color: $ma5menu-button-enter-color;
+        background-color: $ma5menu-button-enter-bg;
+        background-image: url($ma5menu-button-enter-image);
+
+        &:hover {
+            color: $ma5menu-button-enter-color-hover;
+            background-color: $ma5menu-button-enter-bg-hover;
+            background-image: url($ma5menu-button-enter-image-hover);
+        }
+
+        //pipe
+        &:before {
+            content: "";
+            display: block;
+            width: 1px;
+            position: absolute;
+            top: 3px;
+            bottom:3px;
+            left: -2px;
+            background-color: $ma5menu-button-enter-pipe;
+            transform: translateZ(0);
+        }
+    }
+    &__btn--leave {
+        color: $ma5menu-button-leave-color;
+        background-color: $ma5menu-button-leave-bg;
+        background-image: url($ma5menu-button-leave-image);
+
+        &:hover {
+            color: $ma5menu-button-leave-color-hover;
+            background-color: $ma5menu-button-leave-bg-hover;
+            background-image: url($ma5menu-button-leave-image-hover);
+        }
+        .ma5menu__leave:hover & {
+            color: $ma5menu-button-leave-color-hover;
+            background-color: $ma5menu-button-leave-bg-hover;
+            background-image: url($ma5menu-button-leave-image-hover);
+        }
+        // pipe
+        &:before {
+            content: "";
+            display: block;
+            width: 1px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: -2px;
+            background-color: $ma5menu-button-leave-pipe;
+            transform: translateZ(0);
+        }
+    }
+    &__leave {
+        font-size: $ma5menu-leave-font-size;
+        color: $ma5menu-leave-color;
+        background-color: $ma5menu-leave-bg;
+        cursor: pointer;
+        display: block;
+        position: relative;
+        padding: 12px 44px 12px 44px;
+        text-align: center;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 100%;
+        border-bottom: 1px solid $ma5menu-leave-border;
+        height: 44px;
+        line-height: $ma5menu-leave-font-size;
+        user-select: none;
+        margin-right: -44px;
+
+        &:hover {
+            color: $ma5menu-leave-color-hover;
+            background-color: $ma5menu-leave-bg-hover;
+        }
+
+        + .ma5menu__btn--enter {
+            bottom: 0;
+            height: calc(100% - 44px);
+            top: auto;
+        }
+    }
+    &__path {
+        color: $ma5-mobile-path-color !important;
+        background-color: $ma5-mobile-path-bg !important;
+    }
+    &--overflow {
+        overflow-x: hidden !important;
+    }
+    &--left,
+    &--right {
+        &:before {
+            content: "";
+            display: block;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            background-color: rgba(255, 255, 255, 0.01);
+            z-index: -1;
+            transition: background-color 0.4s ease-out 0.5s, z-index 0.8s linear;
+            width: 100%;
+        }
+    }
+    &--active  {
+        &:before {
+            background-color: $ma5menu-backdrop-color;
+            transition: background-color 0.4s ease-in;
+            z-index: 9000;
+        }
+        > body {
+            .container {
+                * {
+                    touch-action: none;
+                    pointer-events: none;
+                }
+            }
+            @media (max-width: #{$ma5-mobile-menu-breakpoint - 1}) {
+                * {
+                    pointer-events: none;
+                }
+                .ma5menu__toggle {
+                    pointer-events: auto;
+
+                    * {
+                        pointer-events: auto;
+                    }
+                }
+                .ma5menu__container {
+                    pointer-events: auto;
+
+                    * {
+                        pointer-events: auto;
+                    }
+                }
+            }
+
+        }
+        &.has-body-scrollbar {
+            overflow: hidden;
+            overflow-y: scroll;
+            height: auto;
+            min-height: 100vh;
+            -webkit-overflow-scrolling: touch;
+        }
+        &.ma5menu--left {
+            &:before {
+                right: 0;
+            }
+        }
+        &.ma5menu--right {
+            &:before {
+                left: 0;
+            }
+        }
+    }
+}
+
+// ma5menu animations
+@-webkit-keyframes ma5-panelIn {
+    0% {
+        -webkit-transform: translate3d($ma5-mobile-menu-width-phone, 0, 0);
+    }
+    100% {
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes ma5-panelIn {
+    0% {
+        transform: translate3d($ma5-mobile-menu-width-phone, 0, 0);
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@-webkit-keyframes ma5-panelOut {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+    100% {
+        -webkit-transform: translate3d($ma5-mobile-menu-width-phone, 0, 0);
+    }
+}
+
+@keyframes ma5-panelOut {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d($ma5-mobile-menu-width-phone, 0, 0);
+    }
+}
+
+@-webkit-keyframes ma5menuIn {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+    100% {
+        -webkit-transform: translate3d(-$ma5-mobile-menu-width-phone, 0, 0);
+    }
+}
+
+@keyframes ma5menuIn {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-$ma5-mobile-menu-width-phone, 0, 0);
+    }
+}
+
+@-webkit-keyframes ma5menuOut {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+    100% {
+        -webkit-transform: translate3d(-$ma5-mobile-menu-width-phone, 0, 0);
+    }
+}
+
+@keyframes ma5menuOut {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-$ma5-mobile-menu-width-phone, 0, 0);
+    }
+}
+
+@-webkit-keyframes ma5menuOutB {
+    0% {
+        -webkit-transform: translate3d(-$ma5-mobile-menu-width-phone, 0, 0);
+    }
+    100% {
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+}
+@keyframes ma5menuOutB {
+    0% {
+        transform: translate3d(-$ma5-mobile-menu-width-phone, 0, 0);
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@-webkit-keyframes ma5-panelInTablet {
+    0% {
+        -webkit-transform: translate3d($ma5-mobile-menu-width-tablet, 0, 0);
+    }
+    100% {
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes ma5-panelInTablet {
+    0% {
+        transform: translate3d($ma5-mobile-menu-width-tablet, 0, 0);
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@-webkit-keyframes ma5-panelOutTablet {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+    100% {
+        -webkit-transform: translate3d($ma5-mobile-menu-width-tablet, 0, 0);
+    }
+}
+
+@keyframes ma5-panelOutTablet {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d($ma5-mobile-menu-width-tablet, 0, 0);
+    }
+}
+
+@-webkit-keyframes ma5menuInTablet {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+    100% {
+        -webkit-transform: translate3d(-$ma5-mobile-menu-width-tablet, 0, 0);
+    }
+}
+
+@keyframes ma5menuInTablet {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-$ma5-mobile-menu-width-tablet, 0, 0);
+    }
+}
+
+@-webkit-keyframes ma5menuOutTablet {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+    100% {
+        -webkit-transform: translate3d(-$ma5-mobile-menu-width-tablet, 0, 0);
+    }
+}
+
+@keyframes ma5menuOutTablet {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-$ma5-mobile-menu-width-tablet, 0, 0);
+    }
+}
+
+@-webkit-keyframes ma5menuOutBTablet {
+    0% {
+        -webkit-transform: translate3d(-$ma5-mobile-menu-width-tablet, 0, 0);
+    }
+    100% {
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+}
+@keyframes ma5menuOutBTablet {
+    0% {
+        transform: translate3d(-$ma5-mobile-menu-width-tablet, 0, 0);
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@-webkit-keyframes ma5-arrowDown {
+    0% {
+        opacity: 1;
+    }
+    40% {
+        opacity: 0;
+    }
+    60% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes ma5-arrowDown {
+    0% {
+        opacity: 1;
+    }
+    40% {
+        opacity: 0;
+    }
+    60% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}

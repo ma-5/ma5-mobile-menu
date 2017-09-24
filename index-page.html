@@ -81,16 +81,12 @@
             </ul>
         </div>
     </div>
-</nav>
-    <article class="container">
-        <header class="site-header ma5-menu-header">
-            <h1 class="my-4">MA5 mobile menu</h1>
-            <p>Simple and ultralight jQuery mobile menu with panels. Sources: <a href="https://github.com/ma-5/ma5-mobile-menu" rel="noopener noreferrer"  target="_blank">GitHub</a></p>
-        </header>
-                <button class="ma5menu__toggle btn" type="button">
+</nav><div class="container">
+    <h1 class="my-4">Example Page Year 2017</h1>
+        <button class="ma5menu__toggle btn" type="button">
     <svg class="ma5menu__icon-toggle" aria-hidden="true" width="25" height="14"><use xlink:href="images/svg/material.svg#menu"></use></svg>
     <span class="sr-only">Menu</span>
-</button>        <nav class="ma5menu">
+</button>    <nav class="ma5menu">
     <div class="ma5menu__header">
         <a class="ma5menu__home" href="index.html">
             <svg class="ma5menu__logo" aria-hidden="true" width="24" height="24"><use xlink:href="images/svg/material.svg#terrain"></use></svg>
@@ -99,16 +95,16 @@
             <svg class="ma5menu__close" aria-hidden="true" width="24" height="24"><use xlink:href="images/svg/material.svg#clear"></use></svg>
         </a>
     </div>
-    <ul class="lvl-0 ma5menu__panel--active" data-ma5order="ma5-ul">
-        <li class="ma5menu__li--current" data-ma5order="ma5-li-1">
+    <ul class="lvl-0" data-ma5order="ma5-ul">
+        <li data-ma5order="ma5-li-1">
             <span class="ma5menu__btn--enter"></span>
             <a class="ma5menu__path" href="index-page.html">About us</a>
             <ul class="lvl-1" data-ma5order="ma5-ul-1">
                 <li data-ma5order="ma5-li-1-1">
                     <div class="ma5menu__leave"><span class="ma5menu__btn--leave"></span>About Us</div>
                     <span class="ma5menu__btn--enter"></span>
-                    <a href="index-page.html">Years</a>
-                    <ul class="lvl-2" data-ma5order="ma5-ul-1-1">
+                    <a class="ma5menu__path" href="index-page.html">Years</a>
+                    <ul class="lvl-2 ma5menu__panel--active" data-ma5order="ma5-ul-1-1">
                         <li data-ma5order="ma5-li-1-1-1">
                             <div class="ma5menu__leave"><span class="ma5menu__btn--leave"></span>Years</div>
                             <a href="index-page.html">Year 1990</a>
@@ -117,7 +113,7 @@
                         <li data-ma5order="ma5-li-1-1-3"><a href="index-page.html">Year 2005</a></li>
                         <li data-ma5order="ma5-li-1-1-4"><a href="index-page.html">Year 2010</a></li>
                         <li data-ma5order="ma5-li-1-1-5"><a href="index-page.html">year 2015</a></li>
-                        <li data-ma5order="ma5-li-1-1-6"><a href="index-page.html">Year 2017</a></li>
+                        <li class="ma5menu__li--current" data-ma5order="ma5-li-1-1-6"><a class="ma5menu__path" href="index-page.html">Year 2017</a></li>
                         <li data-ma5order="ma5-li-1-1-7"><a href="index-page.html">Future</a></li>
                     </ul>
                 </li>
@@ -198,71 +194,7 @@
 <div class="ma5menu__tools">
     footer <a href="index-page.html">content</a> here
 </div>
-
-        <h2 class="my-4">Quick start</h2>
-
-        <p>HTML in &lt;head&gt;:</p>
-<pre class="prettyprint lang-html linenums">
-    &lt;!-- jQuery --&gt;
-    &lt;script src="./js/jquery.js"&gt;&lt;/script&gt;
-
-    &lt;!-- ma5menu --&gt;
-    &lt;link href="./css/ma5menu.min.css" rel="stylesheet" type="text/css"&gt;
-    &lt;script src="./js/ma5menu.min.js"&gt;&lt;/script&gt;
-
-    &lt;!-- Call the script --&gt;
-    &lt;script&gt;
-        $(document).ready(function () {
-            ma5menu({
-                position: 'left'
-            });
-        });
-    &lt;/script&gt;
-</pre>
-        <p>HTML in &lt;body&gt;:</p>
-<pre class="prettyprint lang-html linenums">
-&lt;nav class="ma5menu"&gt;
-    &lt;div class="ma5menu__header"&gt;
-        &lt;a class="ma5menu__home" href="#"&gt;
-            &lt;svg class="ma5menu__logo" aria-hidden="true" width="24" height="24"&gt;&lt;use xlink:href="images/svg/material.svg#terrain"&gt;&lt;/use&gt;&lt;/svg&gt;
-        &lt;/a&gt;
-        &lt;a class="ma5menu__toggle"&gt;
-            &lt;svg class="ma5menu__close" aria-hidden="true" width="24" height="24"&gt;&lt;use xlink:href="images/svg/material.svg#clear"&gt;&lt;/use&gt;&lt;/svg&gt;
-        &lt;/a&gt;
-    &lt;/div&gt;
-    &lt;!-- ma5menu__panel--active (unordered-list which has active list-item and is closest to him, only one for menu) --&gt;
-    &lt;ul class="lvl-0 ma5menu__panel--active" data-ma5order="ma5-ul"&gt;
-        &lt;!-- ma5menu__li--current (current list-item, only one for menu) --&gt;
-        &lt;li class="ma5menu__li--current" data-ma5order="ma5-li-1"&gt;
-            &lt;span class="ma5menu__btn--enter"&gt;&lt;/span&gt;
-            &lt;!-- ma5menu__path for color link --&gt;
-            &lt;a class="ma5menu__path" href="#"&gt;About us&lt;/a&gt;
-            &lt;ul class="lvl-1" data-ma5order="ma5-ul-1"&gt;
-                &lt;li data-ma5order="ma5-li-1-1"&gt;
-                    &lt;div class="ma5menu__leave"&gt;&lt;span class="ma5menu__btn--leave"&gt;&lt;/span&gt;About Us&lt;/div&gt;
-                    &lt;span class="ma5menu__btn--enter"&gt;&lt;/span&gt;
-                    &lt;a href="#"&gt;Years&lt;/a&gt;
-                    &lt;ul class="lvl-2" data-ma5order="ma5-ul-1-1"&gt;
-                        &lt;li data-ma5order="ma5-li-1-1-1"&gt;
-                            &lt;div class="ma5menu__leave"&gt;&lt;span class="ma5menu__btn--leave"&gt;&lt;/span&gt;Years&lt;/div&gt;
-                            &lt;a href="#"&gt;Year 1990&lt;/a&gt;
-                        &lt;/li&gt;
-                        &lt;li data-ma5order="ma5-li-1-1-2"&gt;&lt;a href="#"&gt;Year 2000&lt;/a&gt;&lt;/li&gt;
-                        &lt;li data-ma5order="ma5-li-1-1-3"&gt;&lt;a href="#"&gt;Year 2005&lt;/a&gt;&lt;/li&gt;
-                    &lt;/ul&gt;
-                &lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/li&gt;
-        &lt;li data-ma5order="ma5-li-2"&gt;&lt;a href="#"&gt;Offer&lt;/a&gt;&lt;/li&gt;
-        &lt;li data-ma5order="ma5-li-3"&gt;&lt;a href="#"&gt;Gallery&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/nav&gt;
-&lt;div class="ma5menu__tools"&gt;
-    footer &lt;a href="#"&gt;content&lt;/a&gt; here
-&lt;/div&gt;
-</pre>
-
-    </article>
+</div>
 
 
 </body>

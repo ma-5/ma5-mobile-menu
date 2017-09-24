@@ -10,6 +10,8 @@ Simple and ultralight jQuery menu with panels for mobile phones.
 
 >v2.1.2 Modify toogle on action, add example
 
+>v3.0.0 Rewrite code for BEM standard, panel position options left and right, menu footer and more changes
+
 
 ###Features:
 * Small
@@ -17,36 +19,48 @@ Simple and ultralight jQuery menu with panels for mobile phones.
 * Panels navigation
 * jQuery
 * Html5
-* CSS3
+* CSS3 
+* BEM
 
 ### Example
 * [See example](http://mobile-menu.ma5.pl)
 
-### 1.Getting Started
+### Getting Started
 ```html
 <!-- html head -->
 <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui, user-scalable=no">
 <link href="./css/ma5-mobile-menu.css" media="screen, projection" rel="stylesheet" type="text/css">
 <script src="./js/jquery.min.js"></script>
 <script src="./js/ma5-mobile-menu.js"></script>
-```
 
-### 2. Call the script & option
-
-swipe: false -> panels animation (default)
-swipe:true -> panels with page swipe animation
-
-```javascript
-$(document).ready(function(){
-    ma5mobileMenu({
-        swipe: false
+<script>
+    $(document).ready(function () {
+        // call menu
+        ma5menu({
+            swipe: false,
+            position: 'right'
+        });
+        // close menu at body click
+        $('html').on('click touch', function (e) {
+            if (!$('.ma5menu__container').is(e.target) && $('.ma5menu__container').has(e.target).length === 0 && !$('.ma5menu__toggle').is(e.target) && $('.ma5menu__toggle').has(e.target).length === 0) {
+                $('html').removeClass('ma5menu--active');
+            }
+        });
     });
-});
+</script>
+```
+### Options
+```js
+{
+    swipe:  false       //panels animation (default)
+    swipe:  true        //panels with page swipe animation
+    position: 'right'   // menu sticked to right
+    position: 'left'    // menu sticked to left
+}
 ```
 
 
-
-### 2. Set up HTML
+### HTML
 Example 1
 
 ```html
@@ -114,7 +128,7 @@ Example 1
 ```
 
 
-### 3. Schemats
+### Schemats
 Building structure menu by 'data-ma5-order' attributes.
 ```
 ma5-ul (root)
