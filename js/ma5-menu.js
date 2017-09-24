@@ -91,6 +91,11 @@ if (isIE()) {
 }
 // detect scrollbar
 function detectElementScrollbar() {
+    if ($('body').outerHeight() > $(window).height()) {
+        $('html').addClass('has-body-scrollbar');
+    } else {
+        $('html').addClass('hasnt-body-scrollbar');
+    }
     $('[data-detect-scrollbar]').each(function() {
         if($(this).get(0).scrollHeight > $(this).get(0).clientHeight) {
             $(this).addClass('has-scrollbar').removeClass('hasnt-scrollbar');
@@ -116,12 +121,14 @@ $(document).ready(function () {
         }
     });
 });
+
 $(window).on('resize', function () {
     detectElementScrollbar();
 });
 $(window).on('load', function () {
     detectElementScrollbar();
 });
+
 
 
 
