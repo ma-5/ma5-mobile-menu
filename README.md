@@ -12,6 +12,7 @@ Simple and ultralight jQuery menu with panels for mobile phones.
 
 >v3.0.0 Rewrite code for BEM standard, panel position options left and right, menu footer and more changes
 
+>v3.0.1 Example, CSS changes
 
 ###Features:
 * Small
