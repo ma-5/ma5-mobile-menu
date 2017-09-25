@@ -6,6 +6,7 @@
 function ma5menu(atributes) {
     if(atributes.swipe === true) {
         $('html').addClass('ma5menu--swipe');
+        //$('body').wrapInner('<div class="ma5menu__page" />');
     }
     var position = 'left';
     if(atributes.position == 'right') {
@@ -88,6 +89,8 @@ function isIE() {
 }
 if (isIE()) {
     htmlRootForDetectBrowser.className += " ie";
+} else {
+    htmlRootForDetectBrowser.className += " noie";
 }
 // detect scrollbar
 function detectElementScrollbar() {

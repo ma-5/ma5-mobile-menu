@@ -13,21 +13,73 @@
     }
     @return $string;
 }
+// https://gist.github.com/terkel/4373420
+@function decimal-round ($number, $digits: 0, $mode: round) {
+    $n: 1;
+    @if type-of($number) != number {
+        @warn '#{ $number } is not a number.';
+        @return $number;
+    }
+    @if type-of($digits) != number {
+        @warn '#{ $digits } is not a number.';
+        @return $number;
+    } @else if not unitless($digits) {
+        @warn '#{ $digits } has a unit.';
+        @return $number;
+    }
+    @if $digits > 0 {
+        @for $i from 1 through $digits {
+            $n: $n * 10;
+        }
+    }
+    @if $mode == round {
+        @return round($number * $n) / $n;
+    } @else if $mode == ceil {
+        @return ceil($number * $n) / $n;
+    } @else if $mode == floor {
+        @return floor($number * $n) / $n;
+    } @else {
+        @warn '#{ $mode } is undefined keyword.';
+        @return $number;
+    }
+}
+@function decimal-floor ($number, $digits: 0) {
+    @return decimal-round($number, $digits, floor);
+}
 
-$ma5menu-color-1: #ffffff; // white
-$ma5menu-color-2: rgba($ma5menu-color-1, .3); // white transparent medium
-$ma5menu-color-3: rgba($ma5menu-color-1, .6); // white transparent light
-$ma5menu-color-4: rgba($ma5menu-color-1, .1); // white transparent dark
-$ma5menu-color-5: #ffc107; // yellow
-$ma5menu-color-6: #0e65b6; // blue
-$ma5menu-color-7: #eeeeee; // gray light
+// used colors
+$ma5menu-color-1: #ffffff;                      // white
+$ma5menu-color-2: rgba($ma5menu-color-1, .3);   // white transparent medium
+$ma5menu-color-3: rgba($ma5menu-color-1, .6);   // white transparent light
+$ma5menu-color-4: rgba($ma5menu-color-1, .1);   // white transparent dark
+$ma5menu-color-5: #ffc107;                      // yellow
+$ma5menu-color-6: #0e65b6;                      // blue
+$ma5menu-color-7: #eeeeee;                      // gray light
+$ma5menu-color-8: darken($ma5menu-color-6,5%);  // blue dark
+$ma5menu-color-9: #ef6c00;                      // orange
 
-
+// sizes
+$ma5menu-head-height: 60px;
+$ma5menu-leave-height: 50px;
+$ma5menu-panel-link-height: 50px;
+$ma5menu-button-enter-width: 50px;
+$ma5menu-button-leave-width: 50px;
 $ma5-mobile-menu-width-phone: 280px;
 $ma5-mobile-menu-width-tablet: 360px;
 $ma5-mobile-menu-breakpoint: 768px;
+$ma5-mobile-logo-width: 40px;
+$ma5-mobile-logo-height: 40px;
+//
 
+// font style
+$ma5menu-panel-link-text-transform-lvl-1: uppercase;
+$ma5menu-panel-link-text-transform-lvl-2: none;
+//
 
+$ma5menu-panel-link-line-height: 19px;
+$ma5menu-panel-link-padding-y: decimal-floor(($ma5menu-panel-link-height - $ma5menu-panel-link-line-height)/2);
+
+// button enter
 $ma5menu-button-enter-bg: $ma5menu-color-4;
 $ma5menu-button-enter-bg-hover: $ma5menu-color-2;
 $ma5menu-button-enter-color: $ma5menu-color-1;
@@ -37,7 +89,9 @@ $ma5menu-button-enter-color-hoverSVG: str-replace(#{$ma5menu-button-enter-color-
 $ma5menu-button-enter-image: 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%205%207%22%3E%3Cpath%20d%3D%22M4.999%2C3.502%20L2.500%2C0.001%20L0.103%2C0.001%20L2.619%2C3.502%20L-0.001%2C7.001%20L2.500%2C7.001%20L4.999%2C3.502%20L4.999%2C3.502%20Z%22%20fill%3D%22%23#{$ma5menu-button-enter-colorSVG}%22/%3E%3C/svg%3E';
 $ma5menu-button-enter-image-hover: 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%205%207%22%3E%3Cpath%20d%3D%22M4.999%2C3.502%20L2.500%2C0.001%20L0.103%2C0.001%20L2.619%2C3.502%20L-0.001%2C7.001%20L2.500%2C7.001%20L4.999%2C3.502%20L4.999%2C3.502%20Z%22%20fill%3D%22%23#{$ma5menu-button-enter-color-hoverSVG}%22/%3E%3C/svg%3E';
 $ma5menu-button-enter-pipe: rgba(0,0,0,0);
+//
 
+// button leave
 $ma5menu-button-leave-bg: transparent;
 $ma5menu-button-leave-bg-hover: transparent;
 $ma5menu-button-leave-color: $ma5menu-color-1;
@@ -47,54 +101,80 @@ $ma5menu-button-leave-color-hoverSVG: str-replace(#{$ma5menu-button-leave-color-
 $ma5menu-button-leave-image: 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%205%207%22%3E%3Cpath%20d%3D%22M0.001%2C3.498%20L2.500%2C6.999%20L4.897%2C6.999%20L2.381%2C3.498%20L5.001%2C-0.001%20L2.500%2C-0.001%20L0.001%2C3.498%20L0.001%2C3.498%20Z%22%20fill%3D%22%23#{$ma5menu-button-leave-colorSVG}%22/%3E%3C/svg%3E';
 $ma5menu-button-leave-image-hover: 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%205%207%22%3E%3Cpath%20d%3D%22M0.001%2C3.498%20L2.500%2C6.999%20L4.897%2C6.999%20L2.381%2C3.498%20L5.001%2C-0.001%20L2.500%2C-0.001%20L0.001%2C3.498%20L0.001%2C3.498%20Z%22%20fill%3D%22%23#{$ma5menu-button-leave-color-hoverSVG}%22/%3E%3C/svg%3E';
 $ma5menu-button-leave-pipe: rgba(0,0,0,0);
+//
 
+// button close
 $ma5menu-button-close-bg: transparent;
 $ma5menu-button-close-bg-hover: transparent;
 $ma5menu-button-close-color: $ma5menu-color-1;
 $ma5menu-button-close-color-hover: $ma5menu-color-5;
+//
 
+// panel
 $ma5menu-panel-bg: $ma5menu-color-6;
 $ma5menu-panel-text-color: $ma5menu-color-4;
 $ma5menu-panel-link-color: $ma5menu-color-1;
 $ma5menu-panel-link-color-hover: $ma5menu-color-5;
 $ma5menu-panel-link-separator: $ma5menu-color-2;
 $ma5menu-panel-link-font-size: 15px;
+$ma5menu-panel-scrollbar-bg: darken($ma5menu-panel-bg,2%);
+//
 
-$ma5menu-panel-link-text-transform-lvl-1: uppercase;
-$ma5menu-panel-link-text-transform-lvl-2: none;
-
+// path to link
 $ma5-mobile-path-color: $ma5menu-color-5;
 $ma5-mobile-path-bg: transparent;
+//
 
+// logo
 $ma5menu-logo-color: $ma5menu-color-1;
 $ma5menu-logo-color-hover: $ma5menu-color-5;
+//
 
-$ma5menu-toggle-color: rgba($ma5menu-color-6, .7);
-$ma5menu-toggle-bg: rgba($ma5menu-color-6, .15);
-$ma5menu-toggle-color-hover: $ma5menu-color-6;
-$ma5menu-toggle-bg-hover: rgba($ma5menu-color-6, .3);
+// toggle page button
+$ma5menu-toggle-color: $ma5menu-color-1;
+$ma5menu-toggle-bg: $ma5menu-color-6;
+$ma5menu-toggle-color-hover: $ma5menu-color-1;
+$ma5menu-toggle-bg-hover: $ma5menu-color-9;
+//
 
+// head
 $ma5menu-head-bg: transparent;
 $ma5menu-head-text-color: $ma5menu-color-1;
+$ma5menu-head-border: $ma5menu-color-8;
+//
 
+// head header
 $ma5menu-header-bg: transparent;
 $ma5menu-header-text-color: $ma5menu-color-1;
 $ma5menu-header-link-color: $ma5menu-color-5;
 $ma5menu-header-link-color-hover: $ma5menu-color-5;
+//
 
+// leave bar
 $ma5menu-leave-bg: $ma5menu-color-4;
 $ma5menu-leave-bg-hover: $ma5menu-color-4;
 $ma5menu-leave-color: $ma5menu-color-1;
 $ma5menu-leave-color-hover: $ma5menu-color-5;
 $ma5menu-leave-border: $ma5menu-color-2;
 $ma5menu-leave-font-size: 15px;
+//
 
+// footer
 $ma5menu-footer-bg: transparent;
 $ma5menu-footer-text-color: $ma5menu-color-3;
 $ma5menu-footer-link-color: $ma5menu-color-5;
 $ma5menu-footer-link-color-hover: $ma5menu-color-5;
+//
 
+// alert icon up
+$ma5menu-icon-up-color: '#fff';
+$ma5menu-icon-up-colorSVG: str-replace(#{$ma5menu-icon-up-color}, '#', '');
+$ma5menu-icon-up-image: 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%206%204%22%3E%3Cpath%20fill%3D%22%23#{$ma5menu-icon-up-colorSVG}%22%20d%3D%22M2.999%2C3.999%20L5.999%2C1.999%20L5.999%2C0.082%20L2.999%2C2.095%20L-0.001%2C-0.001%20L-0.001%2C1.999%20L2.999%2C3.999%20L2.999%2C3.999%20Z%22/%3E%3C/svg%3E';
+//
+
+// backdrop
 $ma5menu-backdrop-color: $ma5menu-color-3;
+//
 
 .ma5menu {
     display: none;
@@ -115,10 +195,11 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
     > ul {
         display: none;
     }
+
     &__head {
-        padding: 7px 5px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-        height: 70px;
+        padding: 0 5px;
+        border-bottom: 1px solid $ma5menu-head-border;
+        height: $ma5menu-head-height;
         text-align: center;
         color: $ma5menu-head-text-color;
         background-color:$ma5menu-head-bg;
@@ -163,8 +244,8 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         left: 50%;
         transform: translate(-50%, -50%);
         color: $ma5menu-logo-color;
-        height: 40px;
-        width: 40px;
+        width: $ma5-mobile-logo-width;
+        height: $ma5-mobile-logo-height;
 
         .ie & {
             fill: $ma5menu-logo-color;
@@ -214,6 +295,13 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         &:hover {
             color: $ma5menu-toggle-color-hover;
             background-color: $ma5menu-toggle-bg-hover;
+
+            .ie & {
+                fill:$ma5menu-toggle-color-hover;
+            }
+        }
+        .ie & {
+            fill:$ma5menu-toggle-color;
         }
         .ma5menu__icon-toggle {
             position: absolute;
@@ -227,8 +315,8 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
             position: absolute;
 
             top: 0;
-            width: 70px;
-            height: 70px;
+            width: $ma5menu-head-height;
+            height: $ma5menu-head-height;
 
             color: $ma5menu-button-close-color;
             background-color: $ma5menu-button-close-bg;
@@ -255,12 +343,12 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         background-repeat: no-repeat;
         background-position: 50% 50%;
         background-size: 10px 8px;
-        background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%206%204%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M2.999%2C3.999%20L5.999%2C1.999%20L5.999%2C0.082%20L2.999%2C2.095%20L-0.001%2C-0.001%20L-0.001%2C1.999%20L2.999%2C3.999%20L2.999%2C3.999%20Z%22/%3E%3C/svg%3E);
+        background-image: url($ma5menu-icon-up-image);
     }
     &__alert {
         display: block;
         text-align: center;
-        width: 263px;
+        width: $ma5-mobile-menu-width-phone;
         height: 50px;
         bottom: 0;
         left: 0;
@@ -277,7 +365,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         pointer-events: none;
 
         @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
-            width: 367px;
+            width: $ma5-mobile-menu-width-tablet;
         }
         .ma5menu__container--scroll & {
             background-position: 0 0;
@@ -311,7 +399,6 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         position: fixed;
         background-color: $ma5menu-panel-bg;
         height: 100%;
-        height: 100%;
         top: 0;
         line-height: 19px;
         overflow: hidden;
@@ -340,12 +427,15 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
             animation-duration: 0.5s;
             animation-delay: 0s;
             animation-fill-mode: both;
+        }
+        .noie.ma5menu--ready.ma5menu--left & {
+            animation-name: ma5menuOut;
+        }
+        .ie.ma5menu--ready.ma5menu--left & {
+            animation-name: ma5menuOutIEphone;
 
-            @media (max-width: #{$ma5-mobile-menu-breakpoint - 1}) {
-                animation-name: ma5menuOut;
-            }
             @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
-                animation-name: ma5menuOutTablet;
+                animation-name: ma5menuOutIEtablet;
             }
         }
         .ma5menu--ready.ma5menu--right & {
@@ -353,12 +443,15 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
             animation-duration: 0.5s;
             animation-delay: 0s;
             animation-fill-mode: both;
+        }
+        .noie.ma5menu--ready.ma5menu--right & {
+            animation-name: ma5menuOutB;
+        }
+        .ie.ma5menu--ready.ma5menu--right & {
+            animation-name: ma5menuOutBIEphone;
 
-            @media (max-width: #{$ma5-mobile-menu-breakpoint - 1}) {
-                animation-name: ma5menuOutB;
-            }
             @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
-                animation-name: ma5menuOutBTablet;
+                animation-name: ma5menuOutBIEtablet;
             }
         }
         .ma5menu--active.ma5menu--left & {
@@ -366,12 +459,15 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
             animation-duration: 0.5s;
             animation-delay: 0s;
             animation-fill-mode: both;
+        }
+        .noie.ma5menu--active.ma5menu--left & {
+            animation-name: ma5menuOutB;
+        }
+        .ie.ma5menu--active.ma5menu--left & {
+            animation-name: ma5menuOutBIEphone;
 
-            @media (max-width: #{$ma5-mobile-menu-breakpoint - 1}) {
-                animation-name: ma5menuOutB;
-            }
             @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
-                animation-name: ma5menuOutBTablet;
+                animation-name: ma5menuOutBIEtablet;
             }
         }
         .ma5menu--active.ma5menu--right & {
@@ -379,19 +475,16 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
             animation-duration: 0.5s;
             animation-delay: 0s;
             animation-fill-mode: both;
-
-            @media (max-width: #{$ma5-mobile-menu-breakpoint - 1}) {
-                animation-name: ma5menuIn;
-            }
-            @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
-                animation-name: ma5menuInTablet;
-            }
         }
+        .noie.ma5menu--active.ma5menu--right & {
+            animation-name: ma5menuIn;
+        }
+        .ie.ma5menu--active.ma5menu--right & {
+            animation-name: ma5menuInIEphone;
 
-        .ma5menu--swipe & {
-            top: 0;
-            margin-top: 0;
-            overflow: visible;
+            @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
+                animation-name: ma5menuInIEtablet;
+            }
         }
 
         .ma5menu--left & {
@@ -421,11 +514,11 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         display: none;
         width: $ma5-mobile-menu-width-phone;
         height: 80%;
-        height: calc(100% - 70px);
+        height: calc(100% - #{$ma5menu-head-height});
         position: absolute;
         overflow: hidden;
         overflow-y: auto;
-        top: 70px;
+        top: $ma5menu-head-height;
         left: 0;
         margin: 0;
         padding: 0;
@@ -451,11 +544,12 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         }
         &::-webkit-scrollbar {
             width: 9px;
+            background-color: $ma5menu-panel-scrollbar-bg;
         }
         &::-webkit-scrollbar-thumb {
             background-color: rgba(255, 255, 255, 0.15);
             outline: none;
-            border-right: 3px solid $ma5menu-panel-bg;
+            border-right: 3px solid $ma5menu-panel-scrollbar-bg;
         }
 
         &:first-of-type {
@@ -477,11 +571,15 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
             animation-delay: 0s;
             animation-fill-mode: both;
 
-            @media (max-width: #{$ma5-mobile-menu-breakpoint - 1}) {
+            .noie & {
                 animation-name: ma5-panelIn;
             }
-            @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
-                animation-name: ma5-panelInTablet;
+            .ie & {
+                animation-name: ma5-panelInIEphone;
+
+                @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
+                    animation-name: ma5-panelInIEtablet;
+                }
             }
         }
         &--active-leave {
@@ -490,11 +588,15 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
             animation-delay: 0s;
             animation-fill-mode: both;
 
-            @media (max-width: #{$ma5-mobile-menu-breakpoint - 1}) {
+            .noie & {
                 animation-name: ma5-panelOut;
             }
-            @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
-                animation-name: ma5-panelOutTablet;
+            .ie & {
+                animation-name: ma5-panelOutIEphone;
+
+                @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
+                    animation-name: ma5-panelOutIEtablet;
+                }
             }
         }
         &--parent-enter {
@@ -503,11 +605,15 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
             animation-delay: 0s;
             animation-fill-mode: both;
 
-            @media (max-width: #{$ma5-mobile-menu-breakpoint - 1}) {
+            .noie & {
                 animation-name: ma5menuOut;
             }
-            @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
-                animation-name: ma5menuOutTablet;
+            .ie & {
+                animation-name: ma5menuOutIEphone;
+
+                @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
+                    animation-name: ma5menuOutIEtablet;
+                }
             }
         }
         &--parent-leave {
@@ -516,11 +622,15 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
             animation-delay: 0s;
             animation-fill-mode: both;
 
-            @media (max-width: #{$ma5-mobile-menu-breakpoint - 1}) {
+            .noie & {
                 animation-name: ma5menuOutB;
             }
-            @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
-                animation-name: ma5menuOutBTablet;
+            .ie & {
+                animation-name: ma5menuOutBIEphone;
+
+                @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
+                    animation-name: ma5menuOutBIEtablet;
+                }
             }
         }
         &.lvl-0 {
@@ -540,6 +650,10 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
                 margin-bottom: 0;
                 line-height: 0;
 
+                &:first-of-type {
+                    border-top: 1px solid $ma5menu-panel-link-separator;
+                }
+
                 a {
                     display: inline-block;
                     vertical-align: top;
@@ -551,16 +665,15 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
                     pointer-events: none;
                     letter-spacing: .3px;
                     transition: color .3s ease-out;
-                    padding-top: 13px;
-                    padding-bottom: 12px;
-                    margin-right: -44px;
+                    padding-top: $ma5menu-panel-link-padding-y;
+                    padding-bottom: $ma5menu-panel-link-padding-y;
                     padding-left: 20px;
                     padding-right: 20px;
                     font-size: $ma5menu-panel-link-font-size;
-                    line-height: 19px;
+                    line-height: $ma5menu-panel-link-line-height;
                     overflow: hidden;
                     touch-action: manipulation;
-
+                    min-height: $ma5menu-panel-link-height;
 
                     &:hover {
                         color: $ma5menu-panel-link-color-hover;
@@ -569,7 +682,8 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
                 }
                 > .ma5menu__btn--enter {
                     + a {
-                        padding-right: 50px;
+                        padding-right: ($ma5menu-button-enter-width + 10);
+                        margin-right: -$ma5menu-button-enter-width;
                     }
                 }
             }
@@ -593,11 +707,9 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         cursor: pointer;
         display: block;
         position: absolute;
-        padding: 10px;
-        width: 44px;
-        height: 100%;
-        left: 0;
+        padding: 0;
         top: 0;
+        height: 100%;
         text-align: center;
         touch-action: manipulation;
         background-repeat: no-repeat;
@@ -616,6 +728,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         color: $ma5menu-button-enter-color;
         background-color: $ma5menu-button-enter-bg;
         background-image: url($ma5menu-button-enter-image);
+        width: $ma5menu-button-enter-width;
 
         &:hover {
             color: $ma5menu-button-enter-color-hover;
@@ -637,9 +750,12 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         }
     }
     &__btn--leave {
+        left: 0;
+        right: auto;
         color: $ma5menu-button-leave-color;
         background-color: $ma5menu-button-leave-bg;
         background-image: url($ma5menu-button-leave-image);
+        width: $ma5menu-button-leave-width;
 
         &:hover {
             color: $ma5menu-button-leave-color-hover;
@@ -671,15 +787,15 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         cursor: pointer;
         display: block;
         position: relative;
-        padding: 12px 44px 12px 44px;
+        padding: 0 44px 0 44px;
         text-align: center;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
         width: 100%;
         border-bottom: 1px solid $ma5menu-leave-border;
-        height: 44px;
-        line-height: $ma5menu-leave-font-size;
+        height: $ma5menu-leave-height;
+        line-height: $ma5menu-leave-height;
         user-select: none;
         margin-right: -44px;
 
@@ -690,7 +806,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
 
         + .ma5menu__btn--enter {
             bottom: 0;
-            height: calc(100% - 44px);
+            height: calc(100% - #{$ma5menu-leave-height});
             top: auto;
         }
     }
@@ -776,6 +892,46 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
             }
         }
     }
+    &--swipe {
+        position: relative;
+        overflow-x: hidden !important;
+
+        body {
+            position: relative;
+        }
+        &.ma5menu--left {
+            body {
+                transition: left 0.5s ease-out;
+                left: 0;
+            }
+        }
+        &.ma5menu--right {
+            body {
+                transition: right 0.5s ease-out;
+                right: 0;
+            }
+        }
+        &.ma5menu--active {
+            &.ma5menu--left {
+                body {
+                    left: $ma5-mobile-menu-width-phone;
+
+                    @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
+                        left: $ma5-mobile-menu-width-tablet;
+                    }
+                }
+            }
+            &.ma5menu--right {
+                body {
+                    right: $ma5-mobile-menu-width-phone;
+
+                    @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
+                        right: $ma5-mobile-menu-width-tablet;
+                    }
+                }
+            }
+        }
+    }
 }
 
 // ma5menu animations
@@ -787,7 +943,6 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         -webkit-transform: translate3d(0, 0, 0);
     }
 }
-
 @keyframes ma5-panelIn {
     0% {
         transform: translate3d($ma5-mobile-menu-width-phone, 0, 0);
@@ -796,7 +951,6 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         transform: translate3d(0, 0, 0);
     }
 }
-
 @-webkit-keyframes ma5-panelOut {
     0% {
         -webkit-transform: translate3d(0, 0, 0);
@@ -805,7 +959,6 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         -webkit-transform: translate3d($ma5-mobile-menu-width-phone, 0, 0);
     }
 }
-
 @keyframes ma5-panelOut {
     0% {
         transform: translate3d(0, 0, 0);
@@ -814,7 +967,6 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         transform: translate3d($ma5-mobile-menu-width-phone, 0, 0);
     }
 }
-
 @-webkit-keyframes ma5menuIn {
     0% {
         -webkit-transform: translate3d(0, 0, 0);
@@ -823,7 +975,6 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         -webkit-transform: translate3d(-$ma5-mobile-menu-width-phone, 0, 0);
     }
 }
-
 @keyframes ma5menuIn {
     0% {
         transform: translate3d(0, 0, 0);
@@ -832,7 +983,6 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         transform: translate3d(-$ma5-mobile-menu-width-phone, 0, 0);
     }
 }
-
 @-webkit-keyframes ma5menuOut {
     0% {
         -webkit-transform: translate3d(0, 0, 0);
@@ -841,16 +991,6 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         -webkit-transform: translate3d(-$ma5-mobile-menu-width-phone, 0, 0);
     }
 }
-
-@keyframes ma5menuOut {
-    0% {
-        transform: translate3d(0, 0, 0);
-    }
-    100% {
-        transform: translate3d(-$ma5-mobile-menu-width-phone, 0, 0);
-    }
-}
-
 @-webkit-keyframes ma5menuOutB {
     0% {
         -webkit-transform: translate3d(-$ma5-mobile-menu-width-phone, 0, 0);
@@ -867,17 +1007,124 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         transform: translate3d(0, 0, 0);
     }
 }
-
-@-webkit-keyframes ma5-panelInTablet {
-    0% {
-        -webkit-transform: translate3d($ma5-mobile-menu-width-tablet, 0, 0);
+@media (min-width: #{$ma5-mobile-menu-breakpoint}) {
+    @-webkit-keyframes ma5-panelIn {
+        0% {
+            -webkit-transform: translate3d($ma5-mobile-menu-width-tablet, 0, 0);
+        }
+        100% {
+            -webkit-transform: translate3d(0, 0, 0);
+        }
     }
-    100% {
-        -webkit-transform: translate3d(0, 0, 0);
+    @keyframes ma5-panelIn {
+        0% {
+            transform: translate3d($ma5-mobile-menu-width-tablet, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+    @-webkit-keyframes ma5-panelOut {
+        0% {
+            -webkit-transform: translate3d(0, 0, 0);
+        }
+        100% {
+            -webkit-transform: translate3d($ma5-mobile-menu-width-tablet, 0, 0);
+        }
+    }
+    @keyframes ma5-panelOut {
+        0% {
+            transform: translate3d(0, 0, 0);
+        }
+        100% {
+            transform: translate3d($ma5-mobile-menu-width-tablet, 0, 0);
+        }
+    }
+    @-webkit-keyframes ma5menuIn {
+        0% {
+            -webkit-transform: translate3d(0, 0, 0);
+        }
+        100% {
+            -webkit-transform: translate3d(-$ma5-mobile-menu-width-tablet, 0, 0);
+        }
+    }
+    @keyframes ma5menuIn {
+        0% {
+            transform: translate3d(0, 0, 0);
+        }
+        100% {
+            transform: translate3d(-$ma5-mobile-menu-width-tablet, 0, 0);
+        }
+    }
+    @-webkit-keyframes ma5menuOut {
+        0% {
+            -webkit-transform: translate3d(0, 0, 0);
+        }
+        100% {
+            -webkit-transform: translate3d(-$ma5-mobile-menu-width-tablet, 0, 0);
+        }
+    }
+    @-webkit-keyframes ma5menuOutB {
+        0% {
+            -webkit-transform: translate3d(-$ma5-mobile-menu-width-tablet, 0, 0);
+        }
+        100% {
+            -webkit-transform: translate3d(0, 0, 0);
+        }
+    }
+    @keyframes ma5menuOutB {
+        0% {
+            transform: translate3d(-$ma5-mobile-menu-width-tablet, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
     }
 }
 
-@keyframes ma5-panelInTablet {
+
+// ie
+@keyframes ma5-panelInIEphone {
+    0% {
+        transform: translate3d($ma5-mobile-menu-width-phone, 0, 0);
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+@keyframes ma5-panelOutIEphone {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d($ma5-mobile-menu-width-phone, 0, 0);
+    }
+}
+@keyframes ma5menuInIEphone {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-$ma5-mobile-menu-width-phone, 0, 0);
+    }
+}
+@keyframes ma5menuOutIEphone {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-$ma5-mobile-menu-width-phone, 0, 0);
+    }
+}
+@keyframes ma5menuOutBIEphone {
+    0% {
+        transform: translate3d(-$ma5-mobile-menu-width-phone, 0, 0);
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+@keyframes ma5-panelInIEtablet {
     0% {
         transform: translate3d($ma5-mobile-menu-width-tablet, 0, 0);
     }
@@ -885,17 +1132,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         transform: translate3d(0, 0, 0);
     }
 }
-
-@-webkit-keyframes ma5-panelOutTablet {
-    0% {
-        -webkit-transform: translate3d(0, 0, 0);
-    }
-    100% {
-        -webkit-transform: translate3d($ma5-mobile-menu-width-tablet, 0, 0);
-    }
-}
-
-@keyframes ma5-panelOutTablet {
+@keyframes ma5-panelOutIEtablet {
     0% {
         transform: translate3d(0, 0, 0);
     }
@@ -903,17 +1140,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         transform: translate3d($ma5-mobile-menu-width-tablet, 0, 0);
     }
 }
-
-@-webkit-keyframes ma5menuInTablet {
-    0% {
-        -webkit-transform: translate3d(0, 0, 0);
-    }
-    100% {
-        -webkit-transform: translate3d(-$ma5-mobile-menu-width-tablet, 0, 0);
-    }
-}
-
-@keyframes ma5menuInTablet {
+@keyframes ma5menuInIEtablet {
     0% {
         transform: translate3d(0, 0, 0);
     }
@@ -921,17 +1148,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         transform: translate3d(-$ma5-mobile-menu-width-tablet, 0, 0);
     }
 }
-
-@-webkit-keyframes ma5menuOutTablet {
-    0% {
-        -webkit-transform: translate3d(0, 0, 0);
-    }
-    100% {
-        -webkit-transform: translate3d(-$ma5-mobile-menu-width-tablet, 0, 0);
-    }
-}
-
-@keyframes ma5menuOutTablet {
+@keyframes ma5menuOutIEtablet {
     0% {
         transform: translate3d(0, 0, 0);
     }
@@ -939,16 +1156,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         transform: translate3d(-$ma5-mobile-menu-width-tablet, 0, 0);
     }
 }
-
-@-webkit-keyframes ma5menuOutBTablet {
-    0% {
-        -webkit-transform: translate3d(-$ma5-mobile-menu-width-tablet, 0, 0);
-    }
-    100% {
-        -webkit-transform: translate3d(0, 0, 0);
-    }
-}
-@keyframes ma5menuOutBTablet {
+@keyframes ma5menuOutBIEtablet {
     0% {
         transform: translate3d(-$ma5-mobile-menu-width-tablet, 0, 0);
     }

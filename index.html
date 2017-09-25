@@ -87,6 +87,17 @@
             <h1 class="my-4">MA5 mobile menu</h1>
             <p>Simple and ultralight jQuery mobile menu with panels. Sources: <a href="https://github.com/ma-5/ma5-mobile-menu" rel="noopener noreferrer"  target="_blank">GitHub</a></p>
         </header>
+
+        <form class="my-4" id="selectPosition">
+            <div class="form-check form-check-inline">
+                <label class="form-check-label" for="pos1"><input id="pos1" class="form-check-input" type="radio" name="position" value="1" checked="checked"> Left</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <label class="form-check-label" for="pos2"><input id="pos2" class="form-check-input" type="radio" name="position" value="2"> Right</label>
+            </div>
+                    </form>
+
+
                 <button class="ma5menu__toggle btn" type="button">
     <svg class="ma5menu__icon-toggle" aria-hidden="true" width="25" height="14"><use xlink:href="images/svg/material.svg#menu"></use></svg>
     <span class="sr-only">Menu</span>
@@ -202,26 +213,23 @@
         <h2 class="my-4">Quick start</h2>
 
         <p>HTML in &lt;head&gt;:</p>
-<pre class="prettyprint lang-html linenums">
-    &lt;!-- jQuery --&gt;
-    &lt;script src="./js/jquery.js"&gt;&lt;/script&gt;
+        <pre class="prettyprint lang-html linenums"><code><span class="text-danger">&lt;!-- jQuery --&gt;</span>
+&lt;script src="./js/jquery.js"&gt;&lt;/script&gt;
 
-    &lt;!-- ma5menu --&gt;
-    &lt;link href="./css/ma5menu.min.css" rel="stylesheet" type="text/css"&gt;
-    &lt;script src="./js/ma5menu.min.js"&gt;&lt;/script&gt;
+<span class="text-danger">&lt;!-- ma5menu --&gt;</span>
+&lt;link href="./css/ma5menu.min.css" rel="stylesheet" type="text/css"&gt;
+&lt;script src="./js/ma5menu.min.js"&gt;&lt;/script&gt;
 
-    &lt;!-- Call the script --&gt;
-    &lt;script&gt;
-        $(document).ready(function () {
-            ma5menu({
-                position: 'left'
-            });
+<span class="text-danger">&lt;!-- Call the script --&gt;</span>
+&lt;script&gt;
+    $(document).ready(function () {
+        ma5menu({
+            position: 'left'
         });
-    &lt;/script&gt;
-</pre>
+    });
+&lt;/script&gt;</code></pre>
         <p>HTML in &lt;body&gt;:</p>
-<pre class="prettyprint lang-html linenums">
-&lt;nav class="ma5menu"&gt;
+<pre class="prettyprint lang-html linenums"><code>&lt;nav class="ma5menu"&gt;
     &lt;div class="ma5menu__header"&gt;
         &lt;a class="ma5menu__home" href="#"&gt;
             &lt;svg class="ma5menu__logo" aria-hidden="true" width="24" height="24"&gt;&lt;use xlink:href="images/svg/material.svg#terrain"&gt;&lt;/use&gt;&lt;/svg&gt;
@@ -230,12 +238,12 @@
             &lt;svg class="ma5menu__close" aria-hidden="true" width="24" height="24"&gt;&lt;use xlink:href="images/svg/material.svg#clear"&gt;&lt;/use&gt;&lt;/svg&gt;
         &lt;/a&gt;
     &lt;/div&gt;
-    &lt;!-- ma5menu__panel--active (unordered-list which has active list-item and is closest to him, only one for menu) --&gt;
+    <span class="text-danger">&lt;!-- ma5menu__panel--active (unordered-list which has active list-item and is closest to him, only one for menu) --&gt;</span>
     &lt;ul class="lvl-0 ma5menu__panel--active" data-ma5order="ma5-ul"&gt;
-        &lt;!-- ma5menu__li--current (current list-item, only one for menu) --&gt;
+        <span class="text-danger">&lt;!-- ma5menu__li--current (current list-item, only one for menu) --&gt;</span>
         &lt;li class="ma5menu__li--current" data-ma5order="ma5-li-1"&gt;
             &lt;span class="ma5menu__btn--enter"&gt;&lt;/span&gt;
-            &lt;!-- ma5menu__path for color link --&gt;
+            <span class="text-danger">&lt;!-- ma5menu__path for color link --&gt;</span>
             &lt;a class="ma5menu__path" href="#"&gt;About us&lt;/a&gt;
             &lt;ul class="lvl-1" data-ma5order="ma5-ul-1"&gt;
                 &lt;li data-ma5order="ma5-li-1-1"&gt;
@@ -259,8 +267,7 @@
 &lt;/nav&gt;
 &lt;div class="ma5menu__tools"&gt;
     footer &lt;a href="#"&gt;content&lt;/a&gt; here
-&lt;/div&gt;
-</pre>
+&lt;/div&gt;</code></pre>
 
     </article>
 
