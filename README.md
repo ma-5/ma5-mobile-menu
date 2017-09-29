@@ -16,6 +16,7 @@ Simple and ultralight jQuery menu with panels for mobile phones.
 
 >v3.0.2 Add category, option `closeOnBodyClick` and close by `ESC` key. From now is possible enter to next panel menu by `category` or `enter button`
 
+
 ###Features:
 * Small
 * Light
