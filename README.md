@@ -6,6 +6,7 @@ Simple and ultralight jQuery menu with panels for mobile phones.
 * Good for very large phone menu
 * IE 11 compatybility, but SVG Sprite icons need svg4everybody.js, see <head> index.html
 * it's jQuery.js script
+* Left and right side option
 * Html5
 * Customizable SCSS 
 * BEM notation
