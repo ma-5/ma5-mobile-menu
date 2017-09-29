@@ -59,6 +59,9 @@ Simple and ultralight jQuery menu with panels for mobile phones.
         </script>
     </head>
     <body>
+        <button class="ma5menu__toggle" type="button">
+            <svg class="ma5menu__icon-toggle" aria-hidden="true"><use xlink:href="images/svg/material.svg#menu"></use></svg>
+        </button>
         <nav class="ma5menu" itemscope itemtype="http://schema.org/SiteNavigationElement">
             <div class="ma5menu__header">
                 <a class="ma5menu__home" href="index.html" tabindex="-1">
