@@ -1,7 +1,7 @@
 # MA5 mobile menu
 Simple and ultralight jQuery menu with panels for mobile phones.
 
-###Features:
+### Features:
 * Minified script only 4.9kB
 * Good for very large phone menu
 * IE 11 compatybility, but SVG Sprite icons need svg4everybody.js, see <head> index.html
