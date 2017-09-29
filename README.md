@@ -1,30 +1,14 @@
 # MA5 mobile menu
 Simple and ultralight jQuery menu with panels for mobile phones.
->v.1.0 Initial
-
->v.1.1 Add animation options
-
->v2.1.0 Changes for some CMS compatibility, transfer order css class attributes to data-ma5-order
-
->v2.1.1 Clear js, add bower.json
-
->v2.1.2 Modify toogle on action, add example
-
->v3.0.0 Rewrite code for BEM standard, panel position options left and right, menu footer and more changes
-
->v3.0.1 Example, smal changes CSS
-
->v3.0.2 Add category, option `closeOnBodyClick` and close by `ESC` key. From now is possible enter to next panel menu by `category` or `enter button`
-
 
 ###Features:
-* Small
-* Light
-* Panels navigation
-* jQuery
+* Minified script only 4.9kB
+* Good for very large phone menu
+* IE 11 compatybility, but SVG Sprite icons need svg4everybody.js, see <head> index.html
+* it's jQuery.js script
 * Html5
-* CSS3 
-* BEM
+* Customizable SCSS 
+* BEM notation
 
 ### Example
 * [See example](http://mobile-menu.ma5.pl)
@@ -158,4 +142,20 @@ Simple and ultralight jQuery menu with panels for mobile phones.
 </html>
 ```
 
+### History
+>v.1.0 Initial
+
+>v.1.1 Add animation options
+
+>v2.1.0 Changes for some CMS compatibility, transfer order css class attributes to data-ma5-order
+
+>v2.1.1 Clear js, add bower.json
+
+>v2.1.2 Modify toogle on action, add example
+
+>v3.0.0 Rewrite code for BEM standard, panel position options left and right, menu footer and more changes
+
+>v3.0.1 Example, smal changes CSS
+
+>v3.0.2 Add category, option `closeOnBodyClick` and close by `ESC` key. From now is possible enter to next panel menu by `category` or `enter button`
 
