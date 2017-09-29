@@ -34,14 +34,20 @@ Simple and ultralight jQuery menu with panels for mobile phones.
 <!DOCTYPE html>
 <html lang='en'>
     <head>
+        <meta charset="utf-8">
+        <title>MA5 mobile menu</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta http-equiv="x-ua-compatible" content="IE=edge">
+    
         <!-- jQuery -->
         <script src="./js/jquery.js"></script>
-
+    
         <!-- ma5menu -->
-        <link href="./css/ma5menu.min.css" rel="stylesheet" type="text/css">
-        <script src="./js/ma5menu.min.js"></script>
-
+        <link href="./css/ma5-menu.min.css" rel="stylesheet" type="text/css">
+        <script src="./js/ma5-menu.min.js"></script>
+        
         <!-- Call the script -->
         <script>
             $(document).ready(function () {

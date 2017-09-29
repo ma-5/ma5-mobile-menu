@@ -225,15 +225,21 @@
         <pre class="prettyprint lang-html linenums"><code>&lt;!DOCTYPE html&gt;
 &lt;html lang='en'&gt;
     &lt;head&gt;
+        &lt;meta charset="utf-8"&gt;
+        &lt;title&gt;MA5 mobile menu&lt;/title&gt;
         &lt;meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"&gt;
-        <span class="text-danger">&lt;!-- jQuery --&gt;</span>
+        &lt;meta name="MobileOptimized" content="width"&gt;
+        &lt;meta name="HandheldFriendly" content="true"&gt;
+        &lt;meta http-equiv="x-ua-compatible" content="IE=edge"&gt;
+
+                    &lt;!-- jQuery --&gt;
         &lt;script src="./js/jquery.js"&gt;&lt;/script&gt;
 
-        <span class="text-danger">&lt;!-- ma5menu --&gt;</span>
-        &lt;link href="./css/ma5menu.min.css" rel="stylesheet" type="text/css"&gt;
-        &lt;script src="./js/ma5menu.min.js"&gt;&lt;/script&gt;
+                    &lt;!-- ma5menu --&gt;
+        &lt;link href="./css/ma5-menu.min.css" rel="stylesheet" type="text/css"&gt;
+        &lt;script src="./js/ma5-menu.min.js"&gt;&lt;/script&gt;
 
-        <span class="text-danger">&lt;!-- Call the script --&gt;</span>
+                    &lt;!-- Call the script --&gt;
         &lt;script&gt;
             $(document).ready(function () {
                 ma5menu({
