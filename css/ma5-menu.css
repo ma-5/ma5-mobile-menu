@@ -1,6 +1,6 @@
 /*!
 *   MA5-mobile-menu
-*   v 3.0.1
+*   v 3.0.2
 *   Copyright (c) 2016 Tomasz Kalinowski
 *   GitHub: https://github.com/ma-5/ma5-mobile-menu
 */
@@ -119,6 +119,7 @@
   text-align: center;
   color: rgba(255, 255, 255, 0.6);
   background-color: transparent;
+  text-transform: none;
 }
 
 .ma5menu__footer a {
@@ -636,18 +637,18 @@
   border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.ma5menu__panel > ul li a {
+.ma5menu__panel > ul li a,
+.ma5menu__panel > ul li .ma5menu__category {
   display: inline-block;
   vertical-align: top;
   text-decoration: none !important;
-  color: #ffffff;
   width: 100%;
   outline: none !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   pointer-events: none;
   letter-spacing: .3px;
-  -o-transition: color .3s ease-out;
-  transition: color .3s ease-out;
+  -o-transition: color .3s ease-out, background-color .3s ease-out;
+  transition: color .3s ease-out, background-color .3s ease-out;
   padding-top: 15px;
   padding-bottom: 15px;
   padding-left: 20px;
@@ -660,8 +661,41 @@
   min-height: 50px;
 }
 
+.ma5menu__panel > ul li a {
+  color: #ffffff;
+  background-color: transparent;
+}
+
 .ma5menu__panel > ul li a:hover {
   color: #ffc107;
+  background-color: transparent;
+  -o-transition: none;
+  transition: none;
+}
+
+.ma5menu__panel > ul li .ma5menu__category {
+  position: relative;
+  text-align: left;
+  background-position: calc(100% - 23px) 50%;
+  color: #ffffff;
+  background-color: transparent;
+}
+
+.ma5menu__panel > ul li .ma5menu__category:hover {
+  color: #ffc107;
+  background-color: transparent;
+  -o-transition: none;
+  transition: none;
+}
+
+.ma5menu__panel > ul li .ma5menu__category.ma5menu__path {
+  color: #ffc107 !important;
+  background-color: transparent !important;
+}
+
+.ma5menu__panel > ul li .ma5menu__category.ma5menu__path:hover {
+  color: #ffc107 !important;
+  background-color: transparent !important;
   -o-transition: none;
   transition: none;
 }
@@ -676,7 +710,8 @@
   display: block;
 }
 
-.ma5menu__panel--active > ul li a {
+.ma5menu__panel--active > ul li a,
+.ma5menu__panel--active > ul li .ma5menu__category {
   pointer-events: auto;
 }
 
@@ -985,6 +1020,17 @@
   }
   100% {
     -webkit-transform: translate3d(-280px, 0, 0);
+  }
+}
+
+@keyframes ma5menuOut {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(-280px, 0, 0);
+            transform: translate3d(-280px, 0, 0);
   }
 }
 

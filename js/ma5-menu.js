@@ -1,12 +1,19 @@
 /*
 *   MA5 jquery mobile menu
-*   v3.0.1
+*   v3.0.2
 *   GitHub: https://github.com/ma-5/ma5-mobile-menu
 */
 function ma5menu(atributes) {
     var position = 'left';
     if(atributes.position == 'right') {
         position = atributes.position;
+    }
+    if(atributes.closeOnBodyClick === true) {
+        $('html').on('click touch', function (e) {
+            if (!$('.ma5menu__container').is(e.target) && $('.ma5menu__container').has(e.target).length === 0 && !$('.ma5menu__toggle').is(e.target) && $('.ma5menu__toggle').has(e.target).length === 0) {
+                $('html').removeClass('ma5menu--active');
+            }
+        });
     }
     $('html').addClass('ma5menu--' + position);
     $('body').append('<div class="ma5menu__container"><div class="ma5menu__head"></div><div class="ma5menu__alert"><div class="ma5menu__alert-content"><span class="ma5menu__icon-up" aria-hidden="true"></span><span class="ma5menu__icon-up" aria-hidden="true"></span><span class="ma5menu__icon-up" aria-hidden="true"></span></div></div></div>');
@@ -22,7 +29,7 @@ function ma5menu(atributes) {
     $('.ma5menu__toggle').on('click touch', function () {
         $('html').addClass('ma5menu--ready').toggleClass('ma5menu--active').addClass('ma5menu--overflow');
         $('.ma5menu__panel').removeClass('ma5menu__panel--active-leave ma5menu__panel--parent-leave ma5menu__panel--active-enter ma5menu__panel--parent-enter');
-        setTimeout(function() { ma5menuCheckScroll() }, 500);
+        setTimeout(function() { ma5menuCheckScroll(); }, 500);
     });
     $('.ma5menu__btn--enter').on('click touch', function () {
         $('.ma5menu__panel').removeClass('ma5menu__panel--active');
@@ -34,7 +41,7 @@ function ma5menu(atributes) {
         $('.ma5menu__panel').removeClass('ma5menu__panel--active-leave ma5menu__panel--parent-leave ma5menu__panel--active-enter ma5menu__panel--parent-enter');
         $('[data-ma5order="' + itemParent + '"]').addClass('ma5menu__panel--parent-enter');
         $('[data-ma5order="' + itemPath + '"]').addClass('ma5menu__panel--active-enter ma5menu__panel--active');
-        setTimeout(function() { ma5menuCheckScroll() }, 500);
+        setTimeout(function() { ma5menuCheckScroll(); }, 500);
     });
     $('.ma5menu__leave').on('click touch', function () {
         $('.ma5menu__panel').removeClass('ma5menu__panel--active');
@@ -48,7 +55,7 @@ function ma5menu(atributes) {
         $('.ma5menu__panel').removeClass('ma5menu__panel--active-leave ma5menu__panel--parent-leave ma5menu__panel--active-enter ma5menu__panel--parent-enter');
         $('[data-ma5order="' + itemParent + '"]').addClass('ma5menu__panel--parent-leave ma5menu__panel--active');
         $('[data-ma5order="' + itemPath + '"]').addClass('ma5menu__panel--active-leave');
-        setTimeout(function() { ma5menuCheckScroll() }, 500);
+        setTimeout(function() { ma5menuCheckScroll(); }, 500);
     });
     var didResize = false;
     $(window).on('resize', function () {
@@ -114,8 +121,10 @@ $.fn.detectElementScrollbar = function () {
 };
 $(document).ready(function () {
     detectElementScrollbar();
-    $('html').on('click touch', function (e) {
-        if (!$('.ma5menu__container').is(e.target) && $('.ma5menu__container').has(e.target).length === 0 && !$('.ma5menu__toggle').is(e.target) && $('.ma5menu__toggle').has(e.target).length === 0) {
+    // ESC close
+    var tabOneLimit = 1;
+    $("body").keydown(function (e) {
+        if (e.keyCode == 27) {
             $('html').removeClass('ma5menu--active');
         }
     });

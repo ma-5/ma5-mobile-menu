@@ -53,7 +53,8 @@
     <script>
         $(document).ready(function () {
             ma5menu({
-                position: 'left'
+                position: 'left',
+                closeOnBodyClick: true
             });
         });
     </script>
@@ -101,9 +102,9 @@
                 <button class="ma5menu__toggle btn" type="button">
     <svg class="ma5menu__icon-toggle" aria-hidden="true" width="25" height="14"><use xlink:href="images/svg/material.svg#menu"></use></svg>
     <span class="sr-only">Menu</span>
-</button>        <nav class="ma5menu">
+</button>        <nav class="ma5menu" itemscope="" itemtype="http://schema.org/SiteNavigationElement">
     <div class="ma5menu__header">
-        <a class="ma5menu__home" href="index.html">
+        <a class="ma5menu__home" href="index.html" tabindex="-1">
             <svg class="ma5menu__logo" aria-hidden="true" width="24" height="24"><use xlink:href="images/svg/material.svg#terrain"></use></svg>
         </a>
         <a class="ma5menu__toggle" tabindex="-1">
@@ -112,13 +113,11 @@
     </div>
     <ul class="lvl-0 ma5menu__panel--active" data-ma5order="ma5-ul">
         <li class="ma5menu__li--current" data-ma5order="ma5-li-1">
-            <span class="ma5menu__btn--enter"></span>
-            <a class="ma5menu__path" href="index-page.html">About us</a>
+            <span class="ma5menu__btn--enter ma5menu__category  ma5menu__path">About us</span>
             <ul class="lvl-1" data-ma5order="ma5-ul-1">
                 <li data-ma5order="ma5-li-1-1">
                     <div class="ma5menu__leave"><span class="ma5menu__btn--leave"></span>About Us</div>
-                    <span class="ma5menu__btn--enter"></span>
-                    <a href="index-page.html">Years</a>
+                    <span class="ma5menu__btn--enter ma5menu__category ">Years</span>
                     <ul class="lvl-2" data-ma5order="ma5-ul-1-1">
                         <li data-ma5order="ma5-li-1-1-1">
                             <div class="ma5menu__leave"><span class="ma5menu__btn--leave"></span>Years</div>
@@ -128,13 +127,12 @@
                         <li data-ma5order="ma5-li-1-1-3"><a href="index-page.html">Year 2005</a></li>
                         <li data-ma5order="ma5-li-1-1-4"><a href="index-page.html">Year 2010</a></li>
                         <li data-ma5order="ma5-li-1-1-5"><a href="index-page.html">year 2015</a></li>
-                        <li data-ma5order="ma5-li-1-1-6"><a href="index-page.html">Year 2017</a></li>
+                        <li data-ma5order="ma5-li-1-1-6"><a class="" href="index-page.html">Year 2017</a></li>
                         <li data-ma5order="ma5-li-1-1-7"><a href="index-page.html">Future</a></li>
                     </ul>
                 </li>
                 <li data-ma5order="ma5-li-1-2">
-                    <span class="ma5menu__btn--enter"></span>
-                    <a  href="index-page.html">Places</a>
+                    <span class="ma5menu__btn--enter ma5menu__category">Places</span>
                     <ul class="lvl-2" data-ma5order="ma5-ul-1-2">
                         <li data-ma5order="ma5-li-1-2-1">
                             <div class="ma5menu__leave"><span class="ma5menu__btn--leave"></span>Places</div>
@@ -162,13 +160,11 @@
             </ul>
         </li>
         <li data-ma5order="ma5-li-2">
-            <span class="ma5menu__btn--enter"></span>
-            <a href="index-page.html">Offer</a>
+            <span class="ma5menu__btn--enter ma5menu__category">Offer</span>
             <ul class="lvl-1" data-ma5order="ma5-ul-2">
                 <li data-ma5order="ma5-li-2-1">
                     <div class="ma5menu__leave"><span class="ma5menu__btn--leave"></span>Offers</div>
-                    <span class="ma5menu__btn--enter"></span>
-                    <a href="index-page.html">Categories</a>
+                    <span class="ma5menu__btn--enter ma5menu__category">Categories</span>
                     <ul class="lvl-2" data-ma5order="ma5-ul-2-1">
                         <li data-ma5order="ma5-li-2-1-1">
                             <div class="ma5menu__leave"><span class="ma5menu__btn--leave"></span>Categories</div>
@@ -191,17 +187,30 @@
         <li data-ma5order="ma5-li-6"><a href="index-page.html">Products</a></li>
         <li data-ma5order="ma5-li-7">
             <span class="ma5menu__btn--enter"></span>
-            <a href="index-page.html">Animals</a>
+            <a href="index-page.html">Animals (link & button)</a>
             <ul class="lvl-1" data-ma5order="ma5-ul-7">
                 <li data-ma5order="ma5-li-7-1">
                     <div class="ma5menu__leave"><span class="ma5menu__btn--leave"></span>Animals</div>
-                    <a href="index-page.html">Fish</a>
+                    <a href="index-page.html">Fishes</a>
                 </li>
-                <li data-ma5order="ma5-li-7-2"><a href="index-page.html">Cat</a>
-                <li data-ma5order="ma5-li-7-3"><a href="index-page.html">Bird</a>
-                <li data-ma5order="ma5-li-7-4"><a href="index-page.html">Horse</a>
-                <li data-ma5order="ma5-li-7-5"><a href="index-page.html">Snake</a>
-                <li data-ma5order="ma5-li-7-6"><a href="index-page.html">Dog</a>
+                <li data-ma5order="ma5-li-7-2"><a href="index-page.html">Cats</a></li>
+                <li data-ma5order="ma5-li-7-3">
+                    <span class="ma5menu__btn--enter ma5menu__category">Birds</span>
+                    <ul class="lvl-2" data-ma5order="ma5-ul-7-3">
+                        <li data-ma5order="ma5-li-7-3-1">
+                            <div class="ma5menu__leave"><span class="ma5menu__btn--leave"></span>Birds</div>
+                            <a href="index-page.html">Parrot</a>
+                        </li>
+                        <li data-ma5order="ma5-li-7-3-2"><a href="index-page.html">Duck</a></li>
+                        <li data-ma5order="ma5-li-7-3-3"><a href="index-page.html">Owl</a></li>
+                        <li data-ma5order="ma5-li-7-3-4"><a href="index-page.html">Eagle</a></li>
+                        <li data-ma5order="ma5-li-7-3-5"><a href="index-page.html">Penguin</a></li>
+                        <li data-ma5order="ma5-li-7-3-6"><a href="index-page.html">Sparrow</a></li>
+                    </ul>
+                </li>
+                <li data-ma5order="ma5-li-7-4"><a href="index-page.html">Horses</a></li>
+                <li data-ma5order="ma5-li-7-5"><a href="index-page.html">Snakes</a></li>
+                <li data-ma5order="ma5-li-7-6"><a href="index-page.html">Dogs</a></li>
             </ul>
         </li>
     </ul>
@@ -212,62 +221,124 @@
 
         <h2 class="my-4">Quick start</h2>
 
-        <p>HTML in &lt;head&gt;:</p>
-        <pre class="prettyprint lang-html linenums"><code><span class="text-danger">&lt;!-- jQuery --&gt;</span>
-&lt;script src="./js/jquery.js"&gt;&lt;/script&gt;
+        <p>HTML</p>
+        <pre class="prettyprint lang-html linenums"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang='en'&gt;
+    &lt;head&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"&gt;
+        <span class="text-danger">&lt;!-- jQuery --&gt;</span>
+        &lt;script src="./js/jquery.js"&gt;&lt;/script&gt;
 
-<span class="text-danger">&lt;!-- ma5menu --&gt;</span>
-&lt;link href="./css/ma5menu.min.css" rel="stylesheet" type="text/css"&gt;
-&lt;script src="./js/ma5menu.min.js"&gt;&lt;/script&gt;
+        <span class="text-danger">&lt;!-- ma5menu --&gt;</span>
+        &lt;link href="./css/ma5menu.min.css" rel="stylesheet" type="text/css"&gt;
+        &lt;script src="./js/ma5menu.min.js"&gt;&lt;/script&gt;
 
-<span class="text-danger">&lt;!-- Call the script --&gt;</span>
-&lt;script&gt;
-    $(document).ready(function () {
-        ma5menu({
-            position: 'left'
-        });
-    });
-&lt;/script&gt;</code></pre>
-        <p>HTML in &lt;body&gt;:</p>
-<pre class="prettyprint lang-html linenums"><code>&lt;nav class="ma5menu"&gt;
-    &lt;div class="ma5menu__header"&gt;
-        &lt;a class="ma5menu__home" href="#"&gt;
-            &lt;svg class="ma5menu__logo" aria-hidden="true" width="24" height="24"&gt;&lt;use xlink:href="images/svg/material.svg#terrain"&gt;&lt;/use&gt;&lt;/svg&gt;
-        &lt;/a&gt;
-        &lt;a class="ma5menu__toggle"&gt;
-            &lt;svg class="ma5menu__close" aria-hidden="true" width="24" height="24"&gt;&lt;use xlink:href="images/svg/material.svg#clear"&gt;&lt;/use&gt;&lt;/svg&gt;
-        &lt;/a&gt;
-    &lt;/div&gt;
-    <span class="text-danger">&lt;!-- ma5menu__panel--active (unordered-list which has active list-item and is closest to him, only one for menu) --&gt;</span>
-    &lt;ul class="lvl-0 ma5menu__panel--active" data-ma5order="ma5-ul"&gt;
-        <span class="text-danger">&lt;!-- ma5menu__li--current (current list-item, only one for menu) --&gt;</span>
-        &lt;li class="ma5menu__li--current" data-ma5order="ma5-li-1"&gt;
-            &lt;span class="ma5menu__btn--enter"&gt;&lt;/span&gt;
-            <span class="text-danger">&lt;!-- ma5menu__path for color link --&gt;</span>
-            &lt;a class="ma5menu__path" href="#"&gt;About us&lt;/a&gt;
-            &lt;ul class="lvl-1" data-ma5order="ma5-ul-1"&gt;
-                &lt;li data-ma5order="ma5-li-1-1"&gt;
-                    &lt;div class="ma5menu__leave"&gt;&lt;span class="ma5menu__btn--leave"&gt;&lt;/span&gt;About Us&lt;/div&gt;
-                    &lt;span class="ma5menu__btn--enter"&gt;&lt;/span&gt;
-                    &lt;a href="#"&gt;Years&lt;/a&gt;
-                    &lt;ul class="lvl-2" data-ma5order="ma5-ul-1-1"&gt;
-                        &lt;li data-ma5order="ma5-li-1-1-1"&gt;
-                            &lt;div class="ma5menu__leave"&gt;&lt;span class="ma5menu__btn--leave"&gt;&lt;/span&gt;Years&lt;/div&gt;
-                            &lt;a href="#"&gt;Year 1990&lt;/a&gt;
+        <span class="text-danger">&lt;!-- Call the script --&gt;</span>
+        &lt;script&gt;
+            $(document).ready(function () {
+                ma5menu({
+                    position: 'left',
+                    closeOnBodyClick: true
+                });
+            });
+        &lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;nav class="ma5menu" itemscope itemtype="http://schema.org/SiteNavigationElement"&gt;
+            &lt;div class="ma5menu__header"&gt;
+                &lt;a class="ma5menu__home" href="index.html" tabindex="-1"&gt;
+                    &lt;svg class="ma5menu__logo" aria-hidden="true" width="24" height="24"&gt;&lt;use xlink:href="images/svg/material.svg#terrain"&gt;&lt;/use&gt;&lt;/svg&gt;
+                &lt;/a&gt;
+                &lt;a class="ma5menu__toggle" tabindex="-1"&gt;
+                    &lt;svg class="ma5menu__close" aria-hidden="true" width="24" height="24"&gt;&lt;use xlink:href="images/svg/material.svg#clear"&gt;&lt;/use&gt;&lt;/svg&gt;
+                &lt;/a&gt;
+            &lt;/div&gt;
+            <span class="text-danger">&lt;!-- 'ma5menu__panel--active' - unordered-list which has active list-item and is closest to him in menu tree (only one for menu) --&gt;</span>
+            <span class="text-danger">&lt;!-- At Home page active link set as first in menu tree --&gt;</span>
+            &lt;ul class="lvl-0 ma5menu__panel--active" data-ma5order="ma5-ul"&gt;
+                <span class="text-danger">&lt;!-- 'ma5menu__li--current' - current list-item wchich is closest to active link in menu tree (only one for menu) --&gt;</span>
+                &lt;li class="ma5menu__li--current" data-ma5order="ma5-li-1"&gt;
+                    <span class="text-danger">&lt;!-- Use class 'ma5menu__path' when you need colored link or category, for example to active link or path links --&gt;</span>
+                    &lt;span class="ma5menu__btn--enter ma5menu__category  ma5menu__path"&gt;About us&lt;/span&gt;
+                    &lt;ul class="lvl-1" data-ma5order="ma5-ul-1"&gt;
+                        &lt;li data-ma5order="ma5-li-1-1"&gt;
+                            &lt;div class="ma5menu__leave"&gt;&lt;span class="ma5menu__btn--leave"&gt;&lt;/span&gt;About Us&lt;/div&gt;
+                            &lt;span class="ma5menu__btn--enter ma5menu__category "&gt;Years&lt;/span&gt;
+                            &lt;ul class="lvl-2" data-ma5order="ma5-ul-1-1"&gt;
+                                &lt;li data-ma5order="ma5-li-1-1-1"&gt;
+                                    &lt;div class="ma5menu__leave"&gt;&lt;span class="ma5menu__btn--leave"&gt;&lt;/span&gt;Years&lt;/div&gt;
+                                    &lt;a href="index-page.html"&gt;Year 1990&lt;/a&gt;
+                                &lt;/li&gt;
+                                &lt;li data-ma5order="ma5-li-1-1-2"&gt;&lt;a href="index-page.html"&gt;Year 2000&lt;/a&gt;&lt;/li&gt;
+                                &lt;li data-ma5order="ma5-li-1-1-3"&gt;&lt;a href="index-page.html"&gt;Year 2005&lt;/a&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
                         &lt;/li&gt;
-                        &lt;li data-ma5order="ma5-li-1-1-2"&gt;&lt;a href="#"&gt;Year 2000&lt;/a&gt;&lt;/li&gt;
-                        &lt;li data-ma5order="ma5-li-1-1-3"&gt;&lt;a href="#"&gt;Year 2005&lt;/a&gt;&lt;/li&gt;
+                        &lt;li data-ma5order="ma5-li-1-2"&gt;
+                            &lt;span class="ma5menu__btn--enter ma5menu__category"&gt;Places&lt;/span&gt;
+                            &lt;ul class="lvl-2" data-ma5order="ma5-ul-1-2"&gt;
+                                &lt;li data-ma5order="ma5-li-1-2-1"&gt;
+                                    &lt;div class="ma5menu__leave"&gt;&lt;span class="ma5menu__btn--leave"&gt;&lt;/span&gt;Places&lt;/div&gt;
+                                    &lt;a href="index-page.html"&gt;Paris&lt;/a&gt;
+                                &lt;/li&gt;
+                                &lt;li data-ma5order="ma5-li-1-2-2"&gt;&lt;a href="index-page.html"&gt;Barcelona&lt;/a&gt;&lt;/li&gt;
+                                &lt;li data-ma5order="ma5-li-1-2-3"&gt;&lt;a href="index-page.html"&gt;Pekin&lt;/a&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                        &lt;li data-ma5order="ma5-li-1-3"&gt;&lt;a href="index-page.html"&gt;Branches&lt;/a&gt;&lt;/li&gt;
+                        &lt;li data-ma5order="ma5-li-1-4"&gt;&lt;a href="index-page.html"&gt;Programs&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li data-ma5order="ma5-li-2"&gt;
+                    &lt;span class="ma5menu__btn--enter ma5menu__category"&gt;Offer&lt;/span&gt;
+                    &lt;ul class="lvl-1" data-ma5order="ma5-ul-2"&gt;
+                        &lt;li data-ma5order="ma5-li-2-1"&gt;
+                            &lt;div class="ma5menu__leave"&gt;&lt;span class="ma5menu__btn--leave"&gt;&lt;/span&gt;Offers&lt;/div&gt;
+                            &lt;span class="ma5menu__btn--enter ma5menu__category"&gt;Categories&lt;/span&gt;
+                            &lt;ul class="lvl-2" data-ma5order="ma5-ul-2-1"&gt;
+                                &lt;li data-ma5order="ma5-li-2-1-1"&gt;
+                                    &lt;div class="ma5menu__leave"&gt;&lt;span class="ma5menu__btn--leave"&gt;&lt;/span&gt;Categories&lt;/div&gt;
+                                    &lt;a href="index-page.html"&gt;Electronic&lt;/a&gt;
+                                &lt;/li&gt;
+                                &lt;li data-ma5order="ma5-li-2-1-2"&gt;&lt;a href="index-page.html"&gt;Houses&lt;/a&gt;&lt;/li&gt;
+                                &lt;li data-ma5order="ma5-li-2-1-3"&gt;&lt;a href="index-page.html"&gt;Art&lt;/a&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                        &lt;li data-ma5order="ma5-li-2-2"&gt;&lt;a href="index-page.html"&gt;Technologies&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li data-ma5order="ma5-li-3"&gt;&lt;a href="index-page.html"&gt;Gallery&lt;/a&gt;&lt;/li&gt;
+                &lt;li data-ma5order="ma5-li-4"&gt;
+                    &lt;span class="ma5menu__btn--enter"&gt;&lt;/span&gt;
+                    &lt;a href="index-page.html"&gt;Animals (link & button)&lt;/a&gt;
+                    &lt;ul class="lvl-1" data-ma5order="ma5-ul-4"&gt;
+                        &lt;li data-ma5order="ma5-li-4-1"&gt;
+                            &lt;div class="ma5menu__leave"&gt;&lt;span class="ma5menu__btn--leave"&gt;&lt;/span&gt;Animals&lt;/div&gt;
+                            &lt;a href="index-page.html"&gt;Fishes&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li data-ma5order="ma5-li-4-2"&gt;&lt;a href="index-page.html"&gt;Cats&lt;/a&gt;&lt;/li&gt;
+                        &lt;li data-ma5order="ma5-li-4-3"&gt;
+                            &lt;span class="ma5menu__btn--enter ma5menu__category"&gt;Birds&lt;/span&gt;
+                            &lt;ul class="lvl-2" data-ma5order="ma5-ul-4-3"&gt;
+                                &lt;li data-ma5order="ma5-li-4-3-1"&gt;
+                                    &lt;div class="ma5menu__leave"&gt;&lt;span class="ma5menu__btn--leave"&gt;&lt;/span&gt;Birds&lt;/div&gt;
+                                    &lt;a href="index-page.html"&gt;Parrot&lt;/a&gt;
+                                &lt;/li&gt;
+                                &lt;li data-ma5order="ma5-li-4-3-2"&gt;&lt;a href="index-page.html"&gt;Duck&lt;/a&gt;&lt;/li&gt;
+                                &lt;li data-ma5order="ma5-li-4-3-3"&gt;&lt;a href="index-page.html"&gt;Owl&lt;/a&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                        &lt;li data-ma5order="ma5-li-4-4"&gt;&lt;a href="index-page.html"&gt;Horses&lt;/a&gt;&lt;/li&gt;
+                        &lt;li data-ma5order="ma5-li-4-5"&gt;&lt;a href="index-page.html"&gt;Snakes&lt;/a&gt;&lt;/li&gt;
                     &lt;/ul&gt;
                 &lt;/li&gt;
             &lt;/ul&gt;
-        &lt;/li&gt;
-        &lt;li data-ma5order="ma5-li-2"&gt;&lt;a href="#"&gt;Offer&lt;/a&gt;&lt;/li&gt;
-        &lt;li data-ma5order="ma5-li-3"&gt;&lt;a href="#"&gt;Gallery&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/nav&gt;
-&lt;div class="ma5menu__tools"&gt;
-    footer &lt;a href="#"&gt;content&lt;/a&gt; here
-&lt;/div&gt;</code></pre>
+        &lt;/nav&gt;
+        &lt;div class="ma5menu__tools"&gt;
+            footer &lt;a href="index-page.html"&gt;content&lt;/a&gt; here
+        &lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+            </code></pre>
 
     </article>
 
