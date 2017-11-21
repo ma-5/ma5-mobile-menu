@@ -1123,6 +1123,14 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
             -webkit-transform: translate3d(-$ma5-mobile-menu-width-tablet, 0, 0);
         }
     }
+    @keyframes ma5menuOut {
+        0% {
+            -webkit-transform: translate3d(0, 0, 0);
+        }
+        100% {
+            -webkit-transform: translate3d(-$ma5-mobile-menu-width-tablet, 0, 0);
+        }
+    }
     @-webkit-keyframes ma5menuOutB {
         0% {
             -webkit-transform: translate3d(-$ma5-mobile-menu-width-tablet, 0, 0);
@@ -1140,7 +1148,6 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         }
     }
 }
-
 
 // ie
 @keyframes ma5-panelInIEphone {

@@ -1117,6 +1117,14 @@
       -webkit-transform: translate3d(-360px, 0, 0);
     }
   }
+  @keyframes ma5menuOut {
+    0% {
+      -webkit-transform: translate3d(0, 0, 0);
+    }
+    100% {
+      -webkit-transform: translate3d(-360px, 0, 0);
+    }
+  }
   @-webkit-keyframes ma5menuOutB {
     0% {
       -webkit-transform: translate3d(-360px, 0, 0);
