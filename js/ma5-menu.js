@@ -1,6 +1,6 @@
 /*
 *   MA5 jquery mobile menu
-*   v3.0.2
+*   v3.0.3
 *   GitHub: https://github.com/ma-5/ma5-mobile-menu
 */
 function ma5menu(atributes) {
