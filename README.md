@@ -1,20 +1,53 @@
 # MA5 mobile menu
-Simple and ultralight jQuery menu with panels for mobile phones.
+jQuery mobile menu with panels.
 
 ### Features:
-* Minified script only 4.9kB
+* Minified script only 9kB
 * Good for very large phone menu
-* IE 11 compatybility, but SVG Sprite icons need svg4everybody.js, see <head> index.html
+* IE 11 compatybility
 * it's jQuery.js script
 * Left and right side option
-* Html5
-* Customizable SCSS 
+* HTML5
+* SCSS 
 * BEM notation
 
 ### Example
 * [See example](http://mobile-menu.ma5.pl)
 
-### Getting Started
+### How to use
+The script copies the desktop menu and converts it to the mobile menu.
+
+Select the desktop menu with the <code>menu</code> parameter to be transformed into the mobile menu. The HTML structure in the desktop menu can be any. The condition is to keep the structure of the unordered list in the desktop menu. Parameter should indicate the main &lt;ul&gt; desktop menu.
+
+In the next step, enter the name of the active class in the desktop menu using the <code>activeClass</code> parameter.
+
+You can add the footer of the mobile menu using the <code>footer</code> parameter, which should indicate the container <code>&lt;div id="ma5menu-tools" class="ma5menu__tools"&gt;...&lt;/div&gt;</code> containing the content for the footer.
+
+By using the <code>position</code> parameter ('left' / 'right'), you can set the left or right position for the mobile menu.
+
+The <code>closeOnBodyClick</code> parameter (true / false) automatically closes the menu after clicking outside the menu area.
+```html
+<script>
+$(document).ready(function () {
+    ma5menu({
+        menu: '.site-menu',
+        activeClass: 'active',
+        footer: '#ma5menu-tools',
+        position: 'left',
+        closeOnBodyClick: true
+    });
+});
+</script>
+```
+In last step add to page menu toggle button.
+```html
+<button class="ma5menu__toggle" type="button">
+    <span class="ma5menu__icon-toggle"></span><span class="ma5menu__sr-only">Menu</span>
+</button>
+```
+
+###Example
+
 ```html
 <!DOCTYPE html>
 <html lang='en'>
@@ -25,18 +58,21 @@ Simple and ultralight jQuery menu with panels for mobile phones.
         <meta name="MobileOptimized" content="width">
         <meta name="HandheldFriendly" content="true">
         <meta http-equiv="x-ua-compatible" content="IE=edge">
-    
+
         <!-- jQuery -->
         <script src="./js/jquery.js"></script>
-    
+
         <!-- ma5menu -->
         <link href="./css/ma5-menu.min.css" rel="stylesheet" type="text/css">
         <script src="./js/ma5-menu.min.js"></script>
-        
+
         <!-- Call the script -->
         <script>
             $(document).ready(function () {
                 ma5menu({
+                    menu: '.site-menu',
+                    activeClass: 'active',
+                    footer: '#ma5menu-tools',
                     position: 'left',
                     closeOnBodyClick: true
                 });
@@ -45,98 +81,79 @@ Simple and ultralight jQuery menu with panels for mobile phones.
     </head>
     <body>
         <button class="ma5menu__toggle" type="button">
-            <svg class="ma5menu__icon-toggle" aria-hidden="true"><use xlink:href="images/svg/material.svg#menu"></use></svg>
+            <span class="ma5menu__icon-toggle"></span><span class="ma5menu__sr-only">Menu</span>
         </button>
-        <nav class="ma5menu" itemscope itemtype="http://schema.org/SiteNavigationElement">
-            <div class="ma5menu__header">
-                <a class="ma5menu__home" href="index.html" tabindex="-1">
-                    <svg class="ma5menu__logo" aria-hidden="true" width="24" height="24"><use xlink:href="images/svg/material.svg#terrain"></use></svg>
-                </a>
-                <a class="ma5menu__toggle" tabindex="-1">
-                    <svg class="ma5menu__close" aria-hidden="true" width="24" height="24"><use xlink:href="images/svg/material.svg#clear"></use></svg>
-                </a>
-            </div>
-            <!-- 'ma5menu__panel--active' - unordered-list which has active list-item and is closest to him in menu tree (only one for menu) -->
-            <!-- At Home page active link set as first in menu tree -->
-            <ul class="lvl-0 ma5menu__panel--active" data-ma5order="ma5-ul">
-                <!-- 'ma5menu__li--current' - current list-item wchich is closest to active link in menu tree (only one for menu) -->
-                <li class="ma5menu__li--current" data-ma5order="ma5-li-1">
-                    <!-- Use class 'ma5menu__path' when you need colored link or category, for example to active link or path links -->
-                    <span class="ma5menu__btn--enter ma5menu__category  ma5menu__path">About us</span>
-                    <ul class="lvl-1" data-ma5order="ma5-ul-1">
-                        <li data-ma5order="ma5-li-1-1">
-                            <div class="ma5menu__leave"><span class="ma5menu__btn--leave"></span>About Us</div>
-                            <span class="ma5menu__btn--enter ma5menu__category ">Years</span>
-                            <ul class="lvl-2" data-ma5order="ma5-ul-1-1">
-                                <li data-ma5order="ma5-li-1-1-1">
-                                    <div class="ma5menu__leave"><span class="ma5menu__btn--leave"></span>Years</div>
-                                    <a href="index-page.html">Year 1990</a>
-                                </li>
-                                <li data-ma5order="ma5-li-1-1-2"><a href="index-page.html">Year 2000</a></li>
-                                <li data-ma5order="ma5-li-1-1-3"><a href="index-page.html">Year 2005</a></li>
-                            </ul>
-                        </li>
-                        <li data-ma5order="ma5-li-1-2">
-                            <span class="ma5menu__btn--enter ma5menu__category">Places</span>
-                            <ul class="lvl-2" data-ma5order="ma5-ul-1-2">
-                                <li data-ma5order="ma5-li-1-2-1">
-                                    <div class="ma5menu__leave"><span class="ma5menu__btn--leave"></span>Places</div>
-                                    <a href="index-page.html">Paris</a>
-                                </li>
-                                <li data-ma5order="ma5-li-1-2-2"><a href="index-page.html">Barcelona</a></li>
-                                <li data-ma5order="ma5-li-1-2-3"><a href="index-page.html">Pekin</a></li>
-                            </ul>
-                        </li>
-                        <li data-ma5order="ma5-li-1-3"><a href="index-page.html">Branches</a></li>
-                        <li data-ma5order="ma5-li-1-4"><a href="index-page.html">Programs</a></li>
-                    </ul>
-                </li>
-                <li data-ma5order="ma5-li-2">
-                    <span class="ma5menu__btn--enter ma5menu__category">Offer</span>
-                    <ul class="lvl-1" data-ma5order="ma5-ul-2">
-                        <li data-ma5order="ma5-li-2-1">
-                            <div class="ma5menu__leave"><span class="ma5menu__btn--leave"></span>Offers</div>
-                            <span class="ma5menu__btn--enter ma5menu__category">Categories</span>
-                            <ul class="lvl-2" data-ma5order="ma5-ul-2-1">
-                                <li data-ma5order="ma5-li-2-1-1">
-                                    <div class="ma5menu__leave"><span class="ma5menu__btn--leave"></span>Categories</div>
-                                    <a href="index-page.html">Electronic</a>
-                                </li>
-                                <li data-ma5order="ma5-li-2-1-2"><a href="index-page.html">Houses</a></li>
-                                <li data-ma5order="ma5-li-2-1-3"><a href="index-page.html">Art</a></li>
-                            </ul>
-                        </li>
-                        <li data-ma5order="ma5-li-2-2"><a href="index-page.html">Technologies</a></li>
-                    </ul>
-                </li>
-                <li data-ma5order="ma5-li-3"><a href="index-page.html">Gallery</a></li>
-                <li data-ma5order="ma5-li-4">
-                    <span class="ma5menu__btn--enter"></span>
-                    <a href="index-page.html">Animals (link & button)</a>
-                    <ul class="lvl-1" data-ma5order="ma5-ul-4">
-                        <li data-ma5order="ma5-li-4-1">
-                            <div class="ma5menu__leave"><span class="ma5menu__btn--leave"></span>Animals</div>
-                            <a href="index-page.html">Fishes</a>
-                        </li>
-                        <li data-ma5order="ma5-li-4-2"><a href="index-page.html">Cats</a></li>
-                        <li data-ma5order="ma5-li-4-3">
-                            <span class="ma5menu__btn--enter ma5menu__category">Birds</span>
-                            <ul class="lvl-2" data-ma5order="ma5-ul-4-3">
-                                <li data-ma5order="ma5-li-4-3-1">
-                                    <div class="ma5menu__leave"><span class="ma5menu__btn--leave"></span>Birds</div>
-                                    <a href="index-page.html">Parrot</a>
-                                </li>
-                                <li data-ma5order="ma5-li-4-3-2"><a href="index-page.html">Duck</a></li>
-                                <li data-ma5order="ma5-li-4-3-3"><a href="index-page.html">Owl</a></li>
-                            </ul>
-                        </li>
-                        <li data-ma5order="ma5-li-4-4"><a href="index-page.html">Horses</a></li>
-                        <li data-ma5order="ma5-li-4-5"><a href="index-page.html">Snakes</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-        <div class="ma5menu__tools">
+        <ul class="site-menu">
+            <li>
+                <a href="index-page.html">Shop</a>
+                <ul>
+                    <li><a href="index-page.html">Products</a></li>
+                    <li>
+                        <a href="index-page.html">Collections</a>
+                        <ul>
+                            <li><a href="index-page.html">Premium</a></li>
+                            <li><a href="index-page.html">Common</a></li>
+                            <li>
+                                <a href="index-page.html">Exclusive</a>
+                                <ul>
+                                    <li><a href="index-page.html">First</a></li>
+                                    <li><a href="index-page.html">Secound</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="index-page.html">Other</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="index-page.html">Accesories</a>
+                        <ul>
+                            <li><a href="index-page.html">Small</a></li>
+                            <li><a href="index-page.html">Medium</a></li>
+                            <li><a href="index-page.html">Large</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="index-page.html">Cards</a></li>
+                    <li>
+                        <a href="index-page.html">Sets</a>
+                        <ul>
+                            <li><a href="index-page.html">Example 1</a></li>
+                            <li><a href="index-page.html">Example 2</a></li>
+                            <li><a href="index-page.html">Example 3</a></li>
+                            <li class="active"><a href="index-page.html"><b>Example 4</b></a></li>
+                            <li><a href="index-page.html">Example 5</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="index-page.html">Lookbook</a>
+                <ul>
+                    <li><a href="index-page.html">For business</a></li>
+                    <li><a href="index-page.html">Premium Area</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="index-page.html">Campaigns</a>
+                <ul>
+                    <li>
+                        <a href="index-page.html">Summer 2019</a>
+                        <ul>
+                            <li><a href="index-page.html">Winter 2018</a></li>
+                            <li><a href="index-page.html">Spring 2017</a></li>
+                        </ul>
+
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="index-page.html">Brand</a>
+                <ul>
+                    <li><a href="index-page.html">About us</a></li>
+                    <li><a href="index-page.html">Press</a></li>
+                </ul>
+            </li>
+            <li><a href="index-page.html">Contact</a></li>
+        </ul>
+        <div id="ma5menu-tools" class="ma5menu__tools">
             footer <a href="index-page.html">content</a> here
         </div>
     </body>
@@ -161,4 +178,6 @@ Simple and ultralight jQuery menu with panels for mobile phones.
 >v3.0.2 Add category, option `closeOnBodyClick` and close by `ESC` key. From now is possible enter to next panel menu by `category` or `enter button`
 
 >v3.0.3 Fix space after animation in tablet mediaqueries
+
+>v4.0.0 Menu with builder
 
