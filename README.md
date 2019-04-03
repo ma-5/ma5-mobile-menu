@@ -46,7 +46,7 @@ In last step add to page menu toggle button.
 </button>
 ```
 
-###Example
+### Example
 
 ```html
 <!DOCTYPE html>
