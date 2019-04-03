@@ -1,6 +1,6 @@
 /*!
 *   MA5-mobile-menu
-*   v 3.0.3
+*   v 4.0.0
 *   Copyright (c) 2016 Tomasz Kalinowski
 *   GitHub: https://github.com/ma-5/ma5-mobile-menu
 */
@@ -45,6 +45,27 @@
 @function decimal-floor ($number, $digits: 0) {
     @return decimal-round($number, $digits, floor);
 }
+@function icons-material__chevron_left($color) {
+    $color: str-replace(#{$color}, '#', '%23');
+    @return url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20fill%3D%22#{$color}%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M15.41%207.41L14%206l-6%206%206%206%201.41-1.41L10.83%2012z%22/%3E%3C/svg%3E');
+}
+
+@function icons-material__chevron_right($color) {
+    $color: str-replace(#{$color}, '#', '%23');
+    @return url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20fill%3D%22#{$color}%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M10%206L8.59%207.41%2013.17%2012l-4.58%204.59L10%2018l6-6z%22/%3E%3C/svg%3E');
+}
+@function icons-material__expand_more($color) {
+    $color: str-replace(#{$color}, '#', '%23');
+    @return url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20fill%3D%22#{$color}%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M16.59%208.59L12%2013.17%207.41%208.59%206%2010l6%206%206-6z%22/%3E%3C/svg%3E');
+}
+@function icons-material__menu($color) {
+    $color: str-replace(#{$color}, '#', '%23');
+    @return url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20fill%3D%22#{$color}%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M3%2018h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z%22/%3E%3C/svg%3E');
+}
+@function icons-material__terrain($color) {
+    $color: str-replace(#{$color}, '#', '%23');
+    @return url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20fill%3D%22#{$color}%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M14%206l-3.75%205%202.85%203.8-1.6%201.2C9.81%2013.75%207%2010%207%2010l-6%208h22L14%206z%22/%3E%3C/svg%3E');
+}
 
 // used colors
 $ma5menu-color-1: #ffffff;                      // white
@@ -65,12 +86,16 @@ $ma5menu-panel-link-height: 50px;
 $ma5menu-panel-link-font-size: 15px;
 $ma5menu-button-enter-width: 50px;
 $ma5menu-button-leave-width: 50px;
+$ma5menu-button-up-icon-width: 24px;
+$ma5menu-button-up-icon-height: 24px;
+$ma5menu-button-icon-width: 24px;
+$ma5menu-button-icon-height: 24px;
 $ma5-mobile-menu-width-phone: 280px;
 $ma5-mobile-menu-width-tablet: 360px;
 $ma5-mobile-menu-breakpoint: 768px;
 $ma5-mobile-logo-width: 40px;
 $ma5-mobile-logo-height: 40px;
-$ma5menu-panel-category-arrow-right: 23px;
+$ma5menu-panel-category-arrow-right: ($ma5menu-button-enter-width / 2) - ($ma5menu-button-icon-width / 2);
 //
 
 // font style
@@ -85,24 +110,21 @@ $ma5menu-panel-link-padding-y: decimal-floor(($ma5menu-panel-link-height - $ma5m
 $ma5menu-button-enter-bg: $ma5menu-color-4;
 $ma5menu-button-enter-bg-hover: $ma5menu-color-2;
 $ma5menu-button-enter-color: $ma5menu-color-1;
-$ma5menu-button-enter-colorSVG: str-replace(#{$ma5menu-button-enter-color}, '#', '');
 $ma5menu-button-enter-color-hover: $ma5menu-color-5;
-$ma5menu-button-enter-color-hoverSVG: str-replace(#{$ma5menu-button-enter-color-hover}, '#', '');
-$ma5menu-button-enter-image: 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%205%207%22%3E%3Cpath%20d%3D%22M4.999%2C3.502%20L2.500%2C0.001%20L0.103%2C0.001%20L2.619%2C3.502%20L-0.001%2C7.001%20L2.500%2C7.001%20L4.999%2C3.502%20L4.999%2C3.502%20Z%22%20fill%3D%22%23#{$ma5menu-button-enter-colorSVG}%22/%3E%3C/svg%3E';
-$ma5menu-button-enter-image-hover: 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%205%207%22%3E%3Cpath%20d%3D%22M4.999%2C3.502%20L2.500%2C0.001%20L0.103%2C0.001%20L2.619%2C3.502%20L-0.001%2C7.001%20L2.500%2C7.001%20L4.999%2C3.502%20L4.999%2C3.502%20Z%22%20fill%3D%22%23#{$ma5menu-button-enter-color-hoverSVG}%22/%3E%3C/svg%3E';
-$ma5menu-button-enter-pipe: rgba(0,0,0,0);
+
+$ma5menu-button-enter-image: icons-material__chevron_right($ma5menu-button-enter-color);
+$ma5menu-button-enter-image-hover: icons-material__chevron_right($ma5menu-button-enter-color-hover);
+$ma5menu-button-enter-pipe: rgba(0, 0, 0, 0);
 //
 
 // button leave
 $ma5menu-button-leave-bg: transparent;
 $ma5menu-button-leave-bg-hover: transparent;
 $ma5menu-button-leave-color: $ma5menu-color-1;
-$ma5menu-button-leave-colorSVG: str-replace(#{$ma5menu-button-leave-color}, '#', '');
 $ma5menu-button-leave-color-hover: $ma5menu-color-5;
-$ma5menu-button-leave-color-hoverSVG: str-replace(#{$ma5menu-button-leave-color-hover}, '#', '');
-$ma5menu-button-leave-image: 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%205%207%22%3E%3Cpath%20d%3D%22M0.001%2C3.498%20L2.500%2C6.999%20L4.897%2C6.999%20L2.381%2C3.498%20L5.001%2C-0.001%20L2.500%2C-0.001%20L0.001%2C3.498%20L0.001%2C3.498%20Z%22%20fill%3D%22%23#{$ma5menu-button-leave-colorSVG}%22/%3E%3C/svg%3E';
-$ma5menu-button-leave-image-hover: 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%205%207%22%3E%3Cpath%20d%3D%22M0.001%2C3.498%20L2.500%2C6.999%20L4.897%2C6.999%20L2.381%2C3.498%20L5.001%2C-0.001%20L2.500%2C-0.001%20L0.001%2C3.498%20L0.001%2C3.498%20Z%22%20fill%3D%22%23#{$ma5menu-button-leave-color-hoverSVG}%22/%3E%3C/svg%3E';
-$ma5menu-button-leave-pipe: rgba(0,0,0,0);
+$ma5menu-button-leave-image: icons-material__chevron_left($ma5menu-button-leave-color);
+$ma5menu-button-leave-image-hover: icons-material__chevron_left($ma5menu-button-leave-color-hover);
+$ma5menu-button-leave-pipe: rgba(0, 0, 0, 0);
 //
 
 // button close
@@ -115,7 +137,7 @@ $ma5menu-button-close-color-hover: $ma5menu-color-5;
 // panel
 $ma5menu-panel-bg: $ma5menu-color-6;
 $ma5menu-panel-text-color: $ma5menu-color-4;
-$ma5menu-panel-scrollbar-bg: darken($ma5menu-panel-bg,2%);
+$ma5menu-panel-scrollbar-bg: darken($ma5menu-panel-bg, 2%);
 //
 
 // panel link
@@ -140,7 +162,7 @@ $ma5menu-panel-category-bg-hover: transparent;
 
 // category && path to link
 $ma5menu-panel-category-path-color: $ma5menu-color-5;
-$ma5menu-panel-category-path-color-hover:$ma5menu-color-5;
+$ma5menu-panel-category-path-color-hover: $ma5menu-color-5;
 $ma5menu-panel-category-path-bg: transparent;
 $ma5menu-panel-category-path-bg-hover: transparent;
 //
@@ -187,9 +209,8 @@ $ma5menu-footer-text-transform: none;
 //
 
 // alert icon up
-$ma5menu-icon-up-color: '#fff';
-$ma5menu-icon-up-colorSVG: str-replace(#{$ma5menu-icon-up-color}, '#', '');
-$ma5menu-icon-up-image: 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%206%204%22%3E%3Cpath%20fill%3D%22%23#{$ma5menu-icon-up-colorSVG}%22%20d%3D%22M2.999%2C3.999%20L5.999%2C1.999%20L5.999%2C0.082%20L2.999%2C2.095%20L-0.001%2C-0.001%20L-0.001%2C1.999%20L2.999%2C3.999%20L2.999%2C3.999%20Z%22/%3E%3C/svg%3E';
+$ma5menu-icon-up-color: #fff;
+$ma5menu-icon-up-image: icons-material__expand-more($ma5menu-icon-up-color);
 //
 
 // backdrop
@@ -198,6 +219,11 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
 
 .ma5menu {
     display: none;
+    box-sizing: border-box;
+
+    *, *:after, *:before {
+        box-sizing: border-box;
+    }
 
     &__page {
         .ma5menu--active & {
@@ -222,13 +248,13 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         height: $ma5menu-head-height;
         text-align: center;
         color: $ma5menu-head-text-color;
-        background-color:$ma5menu-head-bg;
+        background-color: $ma5menu-head-bg;
         position: relative;
     }
     &__header {
         line-height: 35px;
         color: $ma5menu-header-text-color;
-        background-color:$ma5menu-header-bg;
+        background-color: $ma5menu-header-bg;
 
         a {
             color: $ma5menu-header-link-color;
@@ -246,16 +272,9 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         color: $ma5menu-button-close-color;
         background-color: $ma5menu-button-close-bg;
 
-        .ie & {
-            fill: $ma5menu-button-close-color;
-        }
         .ma5menu__toggle:hover & {
-            color: $ma5menu-button-close-color-hover;
+            color: rgba(0,0,0,0);
             background-color: $ma5menu-button-close-bg-hover;
-
-            .ie & {
-                fill: $ma5menu-button-close-color-hover;
-            }
         }
     }
     &__logo {
@@ -266,16 +285,12 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         color: $ma5menu-logo-color;
         width: $ma5-mobile-logo-width;
         height: $ma5-mobile-logo-height;
+        background-image: icons-material__terrain($ma5menu-logo-color);
+        background-size: $ma5-mobile-logo-width $ma5-mobile-logo-height;
+        background-position: 50% 50%;
 
-        .ie & {
-            fill: $ma5menu-logo-color;
-        }
         .ma5menu__home:hover & {
             color: $ma5menu-logo-color-hover;
-
-            .ie & {
-                fill: $ma5menu-logo-color-hover;
-            }
         }
     }
     &__home {
@@ -304,6 +319,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
             }
         }
     }
+
     &__toggle {
         cursor: pointer;
         color: $ma5menu-toggle-color;
@@ -312,25 +328,20 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         width: 52px;
         height: 38px;
         position: relative;
+        display: inline-block;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        user-select: none;
+        border: none;
+        font-weight: 400;
+        padding: 8px 12px;
+        border-radius: 4px;
+        transition: box-shadow .15s ease-in-out;
 
         &:hover {
             color: $ma5menu-toggle-color-hover;
             background-color: $ma5menu-toggle-bg-hover;
-
-            .ie & {
-                fill:$ma5menu-toggle-color-hover;
-            }
-        }
-        .ie & {
-            fill:$ma5menu-toggle-color;
-        }
-        .ma5menu__icon-toggle {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 42px;
-            height: 24px;
         }
         .ma5menu__header & {
             position: absolute;
@@ -355,6 +366,22 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
             }
         }
     }
+    &__icon-toggle {
+        display: inline-block;
+        position: absolute;
+        margin: auto;
+        top: -100%;
+        bottom: -100%;
+        left: -100%;
+        right: -100%;
+        vertical-align: top;
+        width: 24px;
+        height: 24px;
+        background-image:icons-material__menu($ma5menu-toggle-color);
+        background-position: 50% 50%;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
     &__icon-up {
         margin: 0;
         width: 44px;
@@ -363,8 +390,8 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         transform: translateZ(0);
         background-repeat: no-repeat;
         background-position: 50% 50%;
-        background-size: 10px 8px;
-        background-image: url($ma5menu-icon-up-image);
+        background-size: $ma5menu-button-up-icon-width $ma5menu-button-up-icon-height;
+        background-image: $ma5menu-icon-up-image;
     }
     &__alert {
         display: block;
@@ -425,7 +452,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         overflow: hidden;
         border: none;
         z-index: 10000;
-        box-shadow: 0 0 12px rgba(0,0,0,0.14);
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.14);
 
         @media (max-width: #{$ma5-mobile-menu-breakpoint - 1}) {
             width: $ma5-mobile-menu-width-phone;
@@ -530,7 +557,6 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         }
     }
 
-
     &__panel {
         display: none;
         width: $ma5-mobile-menu-width-phone;
@@ -547,6 +573,8 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         z-index: 100;
         color: $ma5menu-panel-text-color;
         background-color: $ma5menu-panel-bg;
+        scrollbar-color: darken($ma5menu-color-6, 10%) $ma5menu-color-6;
+        scrollbar-width: thin;
 
         @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
             width: $ma5-mobile-menu-width-tablet;
@@ -686,10 +714,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
                     pointer-events: none;
                     letter-spacing: .3px;
                     transition: color .3s ease-out, background-color .3s ease-out;
-                    padding-top: $ma5menu-panel-link-padding-y;
-                    padding-bottom: $ma5menu-panel-link-padding-y;
-                    padding-left: 20px;
-                    padding-right: 20px;
+                    padding: $ma5menu-panel-link-padding-y 20px $ma5menu-panel-link-padding-y 20px;
                     font-size: $ma5menu-panel-link-font-size;
                     line-height: $ma5menu-panel-link-line-height;
                     overflow: hidden;
@@ -765,7 +790,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         touch-action: manipulation;
         background-repeat: no-repeat;
         background-position: 50% 50%;
-        background-size: 8px 8px;
+        background-size: $ma5menu-button-icon-width $ma5menu-button-icon-height;
         transition: background-color 0.3s ease-out;
 
         &:hover {
@@ -778,13 +803,13 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         right: 0;
         color: $ma5menu-button-enter-color;
         background-color: $ma5menu-button-enter-bg;
-        background-image: url($ma5menu-button-enter-image);
+        background-image: $ma5menu-button-enter-image;
         width: $ma5menu-button-enter-width;
 
         &:hover {
             color: $ma5menu-button-enter-color-hover;
             background-color: $ma5menu-button-enter-bg-hover;
-            background-image: url($ma5menu-button-enter-image-hover);
+            background-image: $ma5menu-button-enter-image-hover;
         }
 
         //pipe
@@ -794,7 +819,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
             width: 1px;
             position: absolute;
             top: 3px;
-            bottom:3px;
+            bottom: 3px;
             left: -2px;
             background-color: $ma5menu-button-enter-pipe;
             transform: translateZ(0);
@@ -805,18 +830,18 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         right: auto;
         color: $ma5menu-button-leave-color;
         background-color: $ma5menu-button-leave-bg;
-        background-image: url($ma5menu-button-leave-image);
+        background-image: $ma5menu-button-leave-image;
         width: $ma5menu-button-leave-width;
 
         &:hover {
             color: $ma5menu-button-leave-color-hover;
             background-color: $ma5menu-button-leave-bg-hover;
-            background-image: url($ma5menu-button-leave-image-hover);
+            background-image: $ma5menu-button-leave-image-hover;
         }
         .ma5menu__leave:hover & {
             color: $ma5menu-button-leave-color-hover;
             background-color: $ma5menu-button-leave-bg-hover;
-            background-image: url($ma5menu-button-leave-image-hover);
+            background-image: $ma5menu-button-leave-image-hover;
         }
         // pipe
         &:before {
@@ -983,6 +1008,17 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
             }
         }
     }
+    &__sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0,0,0,0);
+        white-space: nowrap;
+        clip-path: inset(50%);
+        border: 0;
+    }
 }
 
 // ma5menu animations
@@ -994,6 +1030,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         -webkit-transform: translate3d(0, 0, 0);
     }
 }
+
 @keyframes ma5-panelIn {
     0% {
         transform: translate3d($ma5-mobile-menu-width-phone, 0, 0);
@@ -1002,6 +1039,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         transform: translate3d(0, 0, 0);
     }
 }
+
 @-webkit-keyframes ma5-panelOut {
     0% {
         -webkit-transform: translate3d(0, 0, 0);
@@ -1010,6 +1048,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         -webkit-transform: translate3d($ma5-mobile-menu-width-phone, 0, 0);
     }
 }
+
 @keyframes ma5-panelOut {
     0% {
         transform: translate3d(0, 0, 0);
@@ -1018,6 +1057,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         transform: translate3d($ma5-mobile-menu-width-phone, 0, 0);
     }
 }
+
 @-webkit-keyframes ma5menuIn {
     0% {
         -webkit-transform: translate3d(0, 0, 0);
@@ -1026,6 +1066,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         -webkit-transform: translate3d(-$ma5-mobile-menu-width-phone, 0, 0);
     }
 }
+
 @keyframes ma5menuIn {
     0% {
         transform: translate3d(0, 0, 0);
@@ -1034,6 +1075,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         transform: translate3d(-$ma5-mobile-menu-width-phone, 0, 0);
     }
 }
+
 @-webkit-keyframes ma5menuOut {
     0% {
         -webkit-transform: translate3d(0, 0, 0);
@@ -1042,6 +1084,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         -webkit-transform: translate3d(-$ma5-mobile-menu-width-phone, 0, 0);
     }
 }
+
 @keyframes ma5menuOut {
     0% {
         transform: translate3d(0, 0, 0);
@@ -1050,6 +1093,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         transform: translate3d(-$ma5-mobile-menu-width-phone, 0, 0);
     }
 }
+
 @-webkit-keyframes ma5menuOutB {
     0% {
         -webkit-transform: translate3d(-$ma5-mobile-menu-width-phone, 0, 0);
@@ -1058,6 +1102,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         -webkit-transform: translate3d(0, 0, 0);
     }
 }
+
 @keyframes ma5menuOutB {
     0% {
         transform: translate3d(-$ma5-mobile-menu-width-phone, 0, 0);
@@ -1066,6 +1111,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         transform: translate3d(0, 0, 0);
     }
 }
+
 @media (min-width: #{$ma5-mobile-menu-breakpoint}) {
     @-webkit-keyframes ma5-panelIn {
         0% {
@@ -1158,6 +1204,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         transform: translate3d(0, 0, 0);
     }
 }
+
 @keyframes ma5-panelOutIEphone {
     0% {
         transform: translate3d(0, 0, 0);
@@ -1166,6 +1213,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         transform: translate3d($ma5-mobile-menu-width-phone, 0, 0);
     }
 }
+
 @keyframes ma5menuInIEphone {
     0% {
         transform: translate3d(0, 0, 0);
@@ -1174,6 +1222,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         transform: translate3d(-$ma5-mobile-menu-width-phone, 0, 0);
     }
 }
+
 @keyframes ma5menuOutIEphone {
     0% {
         transform: translate3d(0, 0, 0);
@@ -1182,6 +1231,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         transform: translate3d(-$ma5-mobile-menu-width-phone, 0, 0);
     }
 }
+
 @keyframes ma5menuOutBIEphone {
     0% {
         transform: translate3d(-$ma5-mobile-menu-width-phone, 0, 0);
@@ -1190,6 +1240,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         transform: translate3d(0, 0, 0);
     }
 }
+
 @keyframes ma5-panelInIEtablet {
     0% {
         transform: translate3d($ma5-mobile-menu-width-tablet, 0, 0);
@@ -1198,6 +1249,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         transform: translate3d(0, 0, 0);
     }
 }
+
 @keyframes ma5-panelOutIEtablet {
     0% {
         transform: translate3d(0, 0, 0);
@@ -1206,6 +1258,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         transform: translate3d($ma5-mobile-menu-width-tablet, 0, 0);
     }
 }
+
 @keyframes ma5menuInIEtablet {
     0% {
         transform: translate3d(0, 0, 0);
@@ -1214,6 +1267,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         transform: translate3d(-$ma5-mobile-menu-width-tablet, 0, 0);
     }
 }
+
 @keyframes ma5menuOutIEtablet {
     0% {
         transform: translate3d(0, 0, 0);
@@ -1222,6 +1276,7 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
         transform: translate3d(-$ma5-mobile-menu-width-tablet, 0, 0);
     }
 }
+
 @keyframes ma5menuOutBIEtablet {
     0% {
         transform: translate3d(-$ma5-mobile-menu-width-tablet, 0, 0);
@@ -1261,6 +1316,3 @@ $ma5menu-backdrop-color: $ma5menu-color-3;
     }
 }
 
-*, *::after, *::before {
-    box-sizing: border-box;
-}
