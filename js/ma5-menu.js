@@ -31,9 +31,6 @@ function ma5menu(atributes) {
             '        </a>\n' +
             '    </div>' +
             '</nav>';
-        if($(menuFooter).length > 0) {
-            ma5menuHtml = ma5menuHtml + '<div class="ma5menu__tools">' + $(menuFooter).html() + '</div>';
-        }
         $(menuDesktop).after(ma5menuHtml);
         $(menuDesktop).clone().attr('id', 'js-ma5menu-list').appendTo('#js-ma5menu');
         var menuMobile = $('#js-ma5menu-list');
@@ -65,8 +62,9 @@ function ma5menu(atributes) {
             $(this).parent().addClass($(this).attr('class')).attr('data-ma5order', $(this).attr('data-ma5order'));
             $(this).removeAttr('class').removeAttr('data-ma5order');
         });
-        $('.ma5menu__panel').append('<div class="ma5menu__footer"></div>');
-        $('.ma5menu__tools').appendTo('.ma5menu__footer').addClass('js-append');
+        if($(menuFooter).length > 0) {
+            $('.ma5menu__panel').append('<div class="ma5menu__footer js-append">' + $(menuFooter).html() + '</div>');
+        }
         $('.ma5menu__toggle').on('click touch', function () {
             $('html').addClass('ma5menu--ready').toggleClass('ma5menu--active').addClass('ma5menu--overflow');
             $('.ma5menu__panel').removeClass('ma5menu__panel--active-leave ma5menu__panel--parent-leave ma5menu__panel--active-enter ma5menu__panel--parent-enter');
