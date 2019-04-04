@@ -12,7 +12,7 @@ jQuery mobile menu with panels.
 * BEM notation
 
 ### Example
-* [See example](http://mobile-menu.ma5.pl)
+* [See example](https://ma-5.github.io/ma5-mobile-menu-example/)
 
 ### How to use
 The script copies the desktop menu and converts it to the mobile menu.
