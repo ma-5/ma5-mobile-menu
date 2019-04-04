@@ -80,9 +80,13 @@ In last step add to page menu toggle button.
         </script>
     </head>
     <body>
+        <!-- mobile menu toggle button start -->
         <button class="ma5menu__toggle" type="button">
             <span class="ma5menu__icon-toggle"></span><span class="ma5menu__sr-only">Menu</span>
         </button>
+        <!-- mobile menu toggle button end -->
+        
+        <!-- source for mobile menu start -->
         <ul class="site-menu">
             <li>
                 <a href="index-page.html">Shop</a>
@@ -118,7 +122,8 @@ In last step add to page menu toggle button.
                             <li><a href="index-page.html">Example 1</a></li>
                             <li><a href="index-page.html">Example 2</a></li>
                             <li><a href="index-page.html">Example 3</a></li>
-                            <li class="active"><a href="index-page.html"><b>Example 4</b></a></li>
+                            <!-- active -->
+                            <li class="active"><a href="index-page.html">Example 4</a></li>
                             <li><a href="index-page.html">Example 5</a></li>
                         </ul>
                     </li>
@@ -153,9 +158,14 @@ In last step add to page menu toggle button.
             </li>
             <li><a href="index-page.html">Contact</a></li>
         </ul>
+        <!-- source for mobile menu start -->
+        
+        <!-- source for mobile menu footer start -->
         <div id="ma5menu-tools" class="ma5menu__tools">
             footer <a href="index-page.html">content</a> here
         </div>
+        <!-- source for mobile menu footer end -->
+        
     </body>
 </html>
 ```
