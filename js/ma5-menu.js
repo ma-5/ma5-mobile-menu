@@ -15,7 +15,7 @@ function ma5menu(atributes) {
         activeClass = atributes.activeClass;
     }
     // menuTools = string, target to menu tools container which will be used for build menu mobile footer. For example '#sma5menu-tools'
-    var menuFooter = '#sma5menu-tools';
+    var menuFooter = '#ma5menu-tools';
     if (atributes.footer !== undefined) {
         menuFooter = atributes.footer;
     }
